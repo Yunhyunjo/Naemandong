@@ -1,0 +1,35 @@
+public void save(View view){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},REQEST_PERMISSION);
+        }else{
+            saveBitmap();
+        }
+    }
+
+    public void saveBitmap() {
+        Bitmap bitmap = vw.getBitmap();
+        String file_name = UUID.randomUUID() + ".png";
+
+        File folder = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES) + File.separator + getString(R.string.app_name));
+
+        if(!folder.exists()){
+            folder.mkdirs();
+        }
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(folder+File.separator+file_name);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
+            Toast.makeText(this,"Picture save", Toast.LENGTH_LONG).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if(requestCode == REQEST_PERMISSION && grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            saveBitmap();
+        }
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }

@@ -1,0 +1,108 @@
+package com.example.naemandong_main;
+
+import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.bumptech.glide.Glide;
+
+import java.io.IOException;
+
+public class pScene15 extends Fragment {
+
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer mp3 = new MediaPlayer();
+    AnimationDrawable frameAnimation;
+    private View view;
+    private ImageView background;
+    private ImageButton next;
+    private TextView subtitles;
+    private String subs [] = {"늑대는 빨간 상자를 열어봤어요.", "그 상자 안에는 성냥이 들어있었어요.", "늑대 \"좋은 생각이 났다! 불을 질러서 돼지들이 나오도록 해야겠다!\"" };
+    Handler delayHandler = new Handler();
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.pscene01, container,false);
+
+        background = view.findViewById(R.id.background);
+        subtitles = view.findViewById(R.id.subTitle);
+        next = view.findViewById(R.id.next);
+
+        Glide.with(this)
+                .load("http://49.50.174.179:9000/images/pig/14-01.png")
+                .into(background);
+
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/pig/pScene15_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/pig/pScene15_2.mp3");
+            mp2.prepare();
+            mp3.setDataSource("http://49.50.174.179:9000/voice/pig/pScene15_3.mp3");
+            mp3.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
+        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
+
+        subtitles.setText(subs[0]);
+        mp1.start();
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                subtitles.setText(subs[1]);
+                mp2.start();
+            }
+        }, a);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                subtitles.setText(subs[2]);
+                Glide.with(view)
+                        .load("http://49.50.174.179:9000/images/pig/15-01.png")
+                        .into(background);
+                mp3.start();
+            }
+        }, b);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                next.setVisibility(View.VISIBLE);
+            }
+        }, c);
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                pScene16 pscene16 = new pScene16();
+                transaction.replace(R.id.frame, pscene16);
+                transaction.commit();  //저장
+            }
+        });
+
+        return view;
+    }
+}

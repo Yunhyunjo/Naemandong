@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item android:drawable="@drawable/eat01"
+        android:duration="500" />
+    <item android:drawable="@drawable/eat02"
+        android:duration="500" />
+    <item android:drawable="@drawable/eat03"
+        android:duration="500" />
+    <item android:drawable="@drawable/eat04"
+        android:duration="500" />
+    <item android:drawable="@drawable/eat05"
+        android:duration="500" />
+    <item android:drawable="@drawable/eat06"
+        android:duration="500" />
+    <item android:drawable="@drawable/eat07"
+        android:duration="500" />
+    <item android:drawable="@drawable/eat08"
+        android:duration="500" />
+    <item android:drawable="@drawable/eat09"
+        android:duration="500" />
+    <item android:drawable="@drawable/eat10"
+        android:duration="500" />
+    <item android:drawable="@drawable/eat11"
+        android:duration="500" />
+    <item android:drawable="@drawable/eat12"
+        android:duration="500" />
+    <item android:drawable="@drawable/eat13"
+        android:duration="1000" />
+</animation-list>

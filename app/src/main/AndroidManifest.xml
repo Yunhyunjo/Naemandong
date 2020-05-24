@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.naemandong_main">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
+    <application
+        android:name=".Setting_data"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Pig13"/>
+        <activity android:name=".Pig12"/>
+        <activity android:name=".Pig11"/>
+        <activity android:name=".Pig10"/>
+        <activity android:name=".Pig09"/>
+        <activity android:name=".Pig08"/>
+        <activity android:name=".Pig07"/>
+        <activity android:name=".Pig06"/>
+        <activity android:name=".Pig05"/>
+        <activity android:name=".Pig04"/>
+        <activity android:name=".Pig03"/>
+        <activity android:name=".Pig02"/>
+        <activity android:name=".Pig01"/>
+        <activity android:name=".Rabbit22" />
+        <activity android:name=".Rabbit21" />
+        <activity android:name=".Rabbit20" />
+        <activity android:name=".Rabbit19" />
+        <activity android:name=".Rabbit18" />
+        <activity android:name=".Rabbit17" />
+        <activity android:name=".Rabbit16" />
+        <activity android:name=".Rabbit15" />
+        <activity android:name=".Rabbit14" />
+        <activity android:name=".Rabbit13" />
+        <activity android:name=".Rabbit12" />
+        <activity android:name=".Rabbit11" />
+        <activity android:name=".Rabbit10" />
+        <activity android:name=".Rabbit09" />
+        <activity android:name=".Rabbit08" />
+        <activity android:name=".Rabbit07" />
+        <activity android:name=".Rabbit06" />
+        <activity android:name=".Rabbit05" />
+        <activity android:name=".Rabbit04" />
+        <activity android:name=".Rabbit03" />
+        <activity android:name=".Rabbit02" />
+        <activity
+            android:name=".Setting"
+            android:theme="@style/MyDialog" />
+        <activity android:name=".Rabbit01" />
+        <activity
+            android:name=".Voice"
+            android:theme="@style/Transparent" />
+        <activity
+            android:name=".Making"
+            android:theme="@style/Transparent" />
+        <activity
+            android:name=".Book"
+            android:theme="@style/Transparent" />
+        <activity
+            android:name=".Register"
+            android:theme="@style/MyDialog" />
+        <activity android:name=".Start">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Login"
+            android:theme="@style/MyDialog" />
+        <activity
+            android:name=".findid"
+            android:theme="@style/MyDialog" />
+        <activity
+            android:name=".findidresult"
+            android:theme="@style/MyDialog" />
+        <activity
+            android:name=".findpw"
+            android:theme="@style/MyDialog" />
+        <activity
+            android:name=".findpwresult"
+            android:theme="@style/MyDialog" />
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".SketchbookActivity"
+            android:theme="@style/Transparent" />
+    </application>
+
+</manifest>
