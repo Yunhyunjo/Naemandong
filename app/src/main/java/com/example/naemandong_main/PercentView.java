@@ -5,16 +5,16 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
-import com.example.naemandong_main.Data.MybookListData;
 import com.example.naemandong_main.Data.bookListData;
-import com.example.naemandong_main.Data.bookListResponse;
 import com.example.naemandong_main.Data.percentResponse;
 import com.example.naemandong_main.Network.RetrofitClient;
 import com.example.naemandong_main.Network.ServiceApi;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,9 +26,9 @@ public class PercentView extends View {
         super(context, attrs);
     }
     public int pcount, rcount;
+    public int order = 0;
 
     ServiceApi service = RetrofitClient.getClient().create(ServiceApi.class);
-
 
 
     @Override
@@ -40,16 +40,23 @@ public class PercentView extends View {
         pnt.setColor(Color.parseColor("#FF8C00"));
         pnt.setStyle(Paint.Style.STROKE);
 
-        pigpercent(new bookListData(2));
-        rabbitpercent(new bookListData(1));
+        switch(order) {
+            case 0 :
+                pigpercent(new bookListData(2));
+                rabbitpercent(new bookListData(1));
+                order++;
+            case 1 :
+                RectF rect = new RectF();
+                rect.set(218, 188, 408, 378);
+                canvas.drawArc(rect, (270), (float)pcount/3, false, pnt);
+                Log.d("그리기시작 : ", " "+pcount+" "+order);
 
-        RectF rect = new RectF();
-        rect.set(218, 188, 408, 378);
-        canvas.drawArc(rect, (270), (float)pcount/3, false, pnt);
+                rect = new RectF();
+                rect.set(570, 188, 760, 378);
+                canvas.drawArc(rect, (270), (float)rcount/21, false, pnt);
+                break;
+        }
 
-        rect = new RectF();
-        rect.set(570, 188, 760, 378);
-        canvas.drawArc(rect, (270), (float)rcount/21, false, pnt);
 
     }
 
@@ -59,6 +66,8 @@ public class PercentView extends View {
             public void onResponse(Call<percentResponse> call, Response<percentResponse> response) {
                 percentResponse resource = response.body();
                 pcount = resource.getCount();
+
+                Log.d("ppercent함수 : ", " "+pcount);
             }
 
             @Override
@@ -75,6 +84,8 @@ public class PercentView extends View {
             public void onResponse(Call<percentResponse> call, Response<percentResponse> response) {
                 percentResponse resource = response.body();
                 rcount = resource.getCount();
+
+                Log.d("rpercent함수 : ", " "+rcount);
             }
 
             @Override
@@ -84,4 +95,6 @@ public class PercentView extends View {
             }
         });
     }
+
+
 }
