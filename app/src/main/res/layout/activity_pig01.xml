@@ -5,7 +5,7 @@
     android:usesCleartextTraffic="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Pig01">
+    tools:context=".pig.activity.Pig01">
 
     <FrameLayout
         android:id="@+id/frame"

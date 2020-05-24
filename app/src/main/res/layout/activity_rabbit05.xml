@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:usesCleartextTraffic="true"
-    tools:context=".Rabbit05">
+    tools:context=".rabbit.activity.Rabbit05">
 
     <FrameLayout
         android:id="@+id/frame"

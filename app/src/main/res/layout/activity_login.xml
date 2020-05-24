@@ -5,7 +5,7 @@
     android:layout_width="557.5dp"
     android:layout_height="412dp"
     android:background="@drawable/login"
-    tools:context=".Login">
+    tools:context=".start.Login">
 
     <ImageButton
         android:id="@+id/login"

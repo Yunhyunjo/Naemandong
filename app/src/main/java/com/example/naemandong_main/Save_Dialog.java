@@ -43,7 +43,7 @@ public class Save_Dialog extends Dialog {
 
     ServiceApi service = RetrofitClient.getClient().create(ServiceApi.class);
 
-    protected Save_Dialog(@NonNull Activity activity, String title, int num, ArrayList<Integer> myList, String cover) {
+    public Save_Dialog(@NonNull Activity activity, String title, int num, ArrayList<Integer> myList, String cover) {
         super(activity);
         this.activity = activity;
         this.dtitle = title;

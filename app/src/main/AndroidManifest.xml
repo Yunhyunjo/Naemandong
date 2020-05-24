@@ -16,44 +16,44 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Pig13"/>
-        <activity android:name=".Pig12"/>
-        <activity android:name=".Pig11"/>
-        <activity android:name=".Pig10"/>
-        <activity android:name=".Pig09"/>
-        <activity android:name=".Pig08"/>
-        <activity android:name=".Pig07"/>
-        <activity android:name=".Pig06"/>
-        <activity android:name=".Pig05"/>
-        <activity android:name=".Pig04"/>
-        <activity android:name=".Pig03"/>
-        <activity android:name=".Pig02"/>
-        <activity android:name=".Pig01"/>
-        <activity android:name=".Rabbit22" />
-        <activity android:name=".Rabbit21" />
-        <activity android:name=".Rabbit20" />
-        <activity android:name=".Rabbit19" />
-        <activity android:name=".Rabbit18" />
-        <activity android:name=".Rabbit17" />
-        <activity android:name=".Rabbit16" />
-        <activity android:name=".Rabbit15" />
-        <activity android:name=".Rabbit14" />
-        <activity android:name=".Rabbit13" />
-        <activity android:name=".Rabbit12" />
-        <activity android:name=".Rabbit11" />
-        <activity android:name=".Rabbit10" />
-        <activity android:name=".Rabbit09" />
-        <activity android:name=".Rabbit08" />
-        <activity android:name=".Rabbit07" />
-        <activity android:name=".Rabbit06" />
-        <activity android:name=".Rabbit05" />
-        <activity android:name=".Rabbit04" />
-        <activity android:name=".Rabbit03" />
-        <activity android:name=".Rabbit02" />
+        <activity android:name=".pig.activity.Pig13"/>
+        <activity android:name=".pig.activity.Pig12"/>
+        <activity android:name=".pig.activity.Pig11"/>
+        <activity android:name=".pig.activity.Pig10"/>
+        <activity android:name=".pig.activity.Pig09"/>
+        <activity android:name=".pig.activity.Pig08"/>
+        <activity android:name=".pig.activity.Pig07"/>
+        <activity android:name=".pig.activity.Pig06"/>
+        <activity android:name=".pig.activity.Pig05"/>
+        <activity android:name=".pig.activity.Pig04"/>
+        <activity android:name=".pig.activity.Pig03"/>
+        <activity android:name=".pig.activity.Pig02"/>
+        <activity android:name=".pig.activity.Pig01"/>
+        <activity android:name=".rabbit.activity.Rabbit22" />
+        <activity android:name=".rabbit.activity.Rabbit21" />
+        <activity android:name=".rabbit.activity.Rabbit20" />
+        <activity android:name=".rabbit.activity.Rabbit19" />
+        <activity android:name=".rabbit.activity.Rabbit18" />
+        <activity android:name=".rabbit.activity.Rabbit17" />
+        <activity android:name=".rabbit.activity.Rabbit16" />
+        <activity android:name=".rabbit.activity.Rabbit15" />
+        <activity android:name=".rabbit.activity.Rabbit14" />
+        <activity android:name=".rabbit.activity.Rabbit13" />
+        <activity android:name=".rabbit.activity.Rabbit12" />
+        <activity android:name=".rabbit.activity.Rabbit11" />
+        <activity android:name=".rabbit.activity.Rabbit10" />
+        <activity android:name=".rabbit.activity.Rabbit09" />
+        <activity android:name=".rabbit.activity.Rabbit08" />
+        <activity android:name=".rabbit.activity.Rabbit07" />
+        <activity android:name=".rabbit.activity.Rabbit06" />
+        <activity android:name=".rabbit.activity.Rabbit05" />
+        <activity android:name=".rabbit.activity.Rabbit04" />
+        <activity android:name=".rabbit.activity.Rabbit03" />
+        <activity android:name=".rabbit.activity.Rabbit02" />
         <activity
             android:name=".Setting"
             android:theme="@style/MyDialog" />
-        <activity android:name=".Rabbit01" />
+        <activity android:name=".rabbit.activity.Rabbit01" />
         <activity
             android:name=".Voice"
             android:theme="@style/Transparent" />
@@ -64,9 +64,9 @@
             android:name=".Book"
             android:theme="@style/Transparent" />
         <activity
-            android:name=".Register"
+            android:name=".start.Register"
             android:theme="@style/MyDialog" />
-        <activity android:name=".Start">
+        <activity android:name=".start.Start">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -74,19 +74,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Login"
+            android:name=".start.Login"
             android:theme="@style/MyDialog" />
         <activity
-            android:name=".findid"
+            android:name=".start.findid"
             android:theme="@style/MyDialog" />
         <activity
-            android:name=".findidresult"
+            android:name=".start.findidresult"
             android:theme="@style/MyDialog" />
         <activity
-            android:name=".findpw"
+            android:name=".start.findpw"
             android:theme="@style/MyDialog" />
         <activity
-            android:name=".findpwresult"
+            android:name=".start.findpwresult"
             android:theme="@style/MyDialog" />
         <activity android:name=".MainActivity" />
         <activity

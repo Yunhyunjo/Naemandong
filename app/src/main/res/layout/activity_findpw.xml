@@ -5,7 +5,7 @@
     android:layout_width="556.67dp"
     android:layout_height="470dp"
     android:background="@drawable/findpw_bg"
-    tools:context=".findpw">
+    tools:context=".start.findpw">
 
     <ImageButton
         android:id="@+id/check"

@@ -5,7 +5,7 @@
     android:layout_width="556.67dp"
     android:layout_height="470dp"
     android:background="@drawable/findid_bg"
-    tools:context=".findid"
+    tools:context=".start.findid"
     >
 
     <ImageButton
