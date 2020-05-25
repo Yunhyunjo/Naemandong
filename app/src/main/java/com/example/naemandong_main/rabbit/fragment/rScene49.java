@@ -55,7 +55,7 @@ public class rScene49 extends Fragment {
         rabbit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Rabbit18)getActivity()).setMylist(1);
+                ((Rabbit18)getActivity()).setMylist(0);
                 Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit02.class);
                 startActivity(intent);
                 getActivity().finish();
@@ -64,7 +64,7 @@ public class rScene49 extends Fragment {
 //        lion.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                ((Rabbit17)getActivity()).setMylist(0);
+//                ((Rabbit17)getActivity()).setMylist(1);
 //                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit10.class);
 //                startActivity(intent);
 //                getActivity().finish();

@@ -29,7 +29,7 @@ public class rFinal03 extends Fragment {
     private TextView subtitles;
     private ArrayList<Integer> myList;
     private String subs [] = {"거북이 “와 내가 이겼다, 이겼어!”","그렇게 거북이가 이기게 되었고, 아무도 거북이를 느림보라 놀리지 않았답니다."};
-    private ImageButton save;
+    private ImageButton save, exit;
     boolean play = false;
     Handler delayHandler = new Handler();
 
@@ -43,6 +43,7 @@ public class rFinal03 extends Fragment {
         turtle = view.findViewById(R.id.turtle);
         subtitles = view.findViewById(R.id.subTitle);
         save = view.findViewById(R.id.save);
+        exit = view.findViewById(R.id.exit);
 
         if (getArguments() != null){
             myList = getArguments().getIntegerArrayList("myList");
@@ -77,6 +78,7 @@ public class rFinal03 extends Fragment {
                 if (!play) {
                     save.setVisibility(View.VISIBLE);
                 }
+                exit.setVisibility(View.VISIBLE);
             }
         }, 8000);
 
@@ -85,6 +87,12 @@ public class rFinal03 extends Fragment {
             public void onClick(View v) {
                 saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList,"http://49.50.174.179:9000/images/cover/rabbit_ending03.png");
                 saveDialog.show();
+            }
+        });
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
             }
         });
 

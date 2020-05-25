@@ -2,6 +2,7 @@ package com.example.naemandong_main.rabbit.fragment;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -20,95 +21,98 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
-import com.example.naemandong_main.rabbit.activity.Rabbit10;
-import com.example.naemandong_main.rabbit.activity.Rabbit11;
-import com.example.naemandong_main.rabbit.activity.Rabbit14;
+import com.example.naemandong_main.rabbit.activity.Rabbit23;
+import com.example.naemandong_main.rabbit.activity.Rabbit24;
+import com.example.naemandong_main.rabbit.activity.Rabbit25;
 
-public class rScene32 extends Fragment {
+import java.io.IOException;
 
+public class rScene60 extends Fragment {
+
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
     private AnimationDrawable frameAnimation1;
     private View view;
-    private ImageView background, box, rabbit_sleep, turtle, bush1, bush2;
+    private ImageView background, box, sloth;
     private TextView subtitles;
-    private String subs [] = {"토끼가 잠든 사이 거북이는 어느새 토끼가 있는 곳에 도착했어요.", "그리고 거북이는 토끼의 자는 모습을 바라보았어요."};
+    private String subs [] = {"지도를 따라 걷던 나무늘보의 앞에 갈림길이 나타났어요.", "나무늘보 \" 지도에 없는 길인데…\""};
     private ImageButton next;
     Handler delayHandler = new Handler();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.rscene32, container,false);
+        view = inflater.inflate(R.layout.rscene11, container,false);
 
         background = view.findViewById(R.id.background);
         box = view.findViewById(R.id.subtitlebox);
-        rabbit_sleep = view.findViewById(R.id.rabbit_sleep);
-        bush1 = view.findViewById(R.id.bush1);
-        bush2 = view.findViewById(R.id.bush2);
-        turtle = view.findViewById(R.id.turtle);
+        sloth = view.findViewById(R.id.rabbit);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
 
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/5/35_back.png")
+                .load("http://49.50.174.179:9000/images/rabbit/5/11_back.png")
                 .into(background);
-        Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/5/35_sleep.png")
-                .into(rabbit_sleep);
-        Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/5/35_01.png")
-                .into(bush1);
-        Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/5/35_2.png")
-                .into(bush2);
 
-        turtle.setBackgroundResource(R.drawable.turtle_rightgo);
-        frameAnimation1 = (AnimationDrawable) turtle.getBackground();
+//        try {
+//            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene11_1.mp3");
+//            mp1.prepare();
+//            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene11_2.mp3");
+//            mp2.prepare();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-        Animation turtlego = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene32);
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
+
+        sloth.setBackgroundResource(R.drawable.sloth_60);
+        frameAnimation1 = (AnimationDrawable) sloth.getBackground();
+
+        Animation rabbitgo = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene60);
 
         frameAnimation1.start();
-        turtle.startAnimation(turtlego);
+        sloth.startAnimation(rabbitgo);
         subtitles.setText(subs[0]);
+        //mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                turtle.setBackgroundResource(0);
-                Glide.with(getActivity())
-                        .load("http://49.50.174.179:9000/images/rabbit/5/35_t_front.png")
-                        .into(turtle);
+                //mp2.start();
             }
-        }, 2000);
+        }, 4000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                frameAnimation1.stop();
                 next.setVisibility(View.VISIBLE);
             }
-        }, 11000);
+        }, 10000);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((Rabbit10)getActivity()).play){
-                    if(((Rabbit10)getActivity()).getData() == 0){
-                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit11.class);
+                if (((Rabbit23)getActivity()).play){
+                    if(((Rabbit23)getActivity()).getData() == 0){
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit24.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();
                     }
                     else {
-                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit14.class);
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit25.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();
                     }
                 }
-                else {
+                else{
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    rScene33 rscene33 = new rScene33();
-                    transaction.replace(R.id.frame, rscene33);
+                    rScene61 rscene61 = new rScene61();
+                    transaction.replace(R.id.frame,rscene61);
                     transaction.commit();  //저장
                 }
             }

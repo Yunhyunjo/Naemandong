@@ -37,7 +37,7 @@ public class rFinal02 extends Fragment {
     private ArrayList<Integer> myList;
     boolean play = false;
     private String subs [] = {"토끼 “와 내가 이겼다!! 역시 난 빨라~”","토끼는 결국 경주에서 이겼어요.", "그 후로 거북이는 계속 느림보로 불렸답니다."};
-    private ImageButton save;
+    private ImageButton save, exit;
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -50,6 +50,7 @@ public class rFinal02 extends Fragment {
         rabbit = view.findViewById(R.id.rabbit);
         subtitles = view.findViewById(R.id.subTitle);
         save = view.findViewById(R.id.save);
+        exit = view.findViewById(R.id.exit);
 
         if (getArguments() != null){
             myList = getArguments().getIntegerArrayList("myList");
@@ -91,6 +92,7 @@ public class rFinal02 extends Fragment {
                 if (!play) {
                     save.setVisibility(View.VISIBLE);
                 }
+                exit.setVisibility(View.VISIBLE);
             }
         }, 7000);
 
@@ -99,6 +101,12 @@ public class rFinal02 extends Fragment {
             public void onClick(View v) {
                 saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList,"http://49.50.174.179:9000/images/cover/rabbit_ending02.png");
                 saveDialog.show();
+            }
+        });
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
             }
         });
 
