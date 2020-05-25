@@ -26,7 +26,7 @@ public class pFinal02 extends Fragment {
     private View view;
     private ImageView background, box, pigs;
     private TextView subtitles;
-    private ImageButton save;
+    private ImageButton save, exit;
     private ArrayList<Integer> myList;
     boolean play = false;
     private String subs [] = {"첫째, 둘째 돼지 \"휴~ 늑대가 갔어. 정말 다행이다.\"", "늑대가 가고 위기에서 벗어난 첫째 돼지와 둘째 돼지는 행복하게 살았답니다."};
@@ -76,6 +76,7 @@ public class pFinal02 extends Fragment {
                 subtitles.setVisibility(View.INVISIBLE);
                 if (!play) {
                     save.setVisibility(View.VISIBLE);
+                    exit.setVisibility(View.VISIBLE);
                 }
             }
         }, 10000);
@@ -85,6 +86,13 @@ public class pFinal02 extends Fragment {
             public void onClick(View v) {
                 saveDialog = new Save_Dialog(getActivity(), "아기돼지 삼형제",2,myList,"http://49.50.174.179:9000/images/cover/pigcover.png");
                 saveDialog.show();
+            }
+        });
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
             }
         });
 

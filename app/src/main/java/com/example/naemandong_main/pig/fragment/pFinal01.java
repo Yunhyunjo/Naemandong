@@ -38,7 +38,7 @@ public class pFinal01 extends Fragment {
     private View view;
     private ImageView background, box;
     private TextView subtitles;
-    private ImageButton save;
+    private ImageButton save, exit;
     private ArrayList<Integer> myList;
     boolean play = false;
     private String subs [] = {"막내 돼지는 용감하게 나쁜 늑대를 물리치고 불을 껐어요.", "그 뒤로 막내 돼지는 소방관이 되어 숲 속 마을의 안전을 지켰답니다."};
@@ -97,6 +97,7 @@ public class pFinal01 extends Fragment {
                 subtitles.setVisibility(View.INVISIBLE);
                 if (!play) {
                     save.setVisibility(View.VISIBLE);
+                    exit.setVisibility(View.VISIBLE);
                 }
             }
         }, b);
@@ -106,6 +107,13 @@ public class pFinal01 extends Fragment {
             public void onClick(View v) {
                 saveDialog = new Save_Dialog(getActivity(), "아기돼지 삼형제",2,myList,"http://49.50.174.179:9000/images/cover/pig_btn.png");
                 saveDialog.show();
+            }
+        });
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
             }
         });
 

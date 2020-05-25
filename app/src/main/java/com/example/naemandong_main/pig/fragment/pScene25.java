@@ -17,7 +17,10 @@ import com.example.naemandong_main.R;
 import com.example.naemandong_main.pig.activity.Pig06;
 import com.example.naemandong_main.pig.activity.Pig07;
 import com.example.naemandong_main.pig.activity.Pig08;
+import com.example.naemandong_main.pig.activity.Pig14;
 
+// 선택지
+// 첫둘 돼지 도망 -> 엄마집? 막돼집?
 public class pScene25 extends Fragment {
 
     private View view;
@@ -56,8 +59,10 @@ public class pScene25 extends Fragment {
         pig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), Pig08.class);
+                ((Pig06)getActivity()).setMylist(1);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Pig14.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 

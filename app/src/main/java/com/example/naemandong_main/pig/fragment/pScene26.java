@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 
+// 선택지 후
 public class pScene26 extends Fragment {
 
     private View view;

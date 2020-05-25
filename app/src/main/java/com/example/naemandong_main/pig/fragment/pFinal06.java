@@ -27,7 +27,7 @@ public class pFinal06 extends Fragment {
     private View view;
     private ImageView background, box, wolf;
     private TextView subtitles;
-    private ImageButton save;
+    private ImageButton save, exit;
     private ArrayList<Integer> myList;
     boolean play = false;
     private String subs [] = {"막내돼지는 깊은 잠에 빠진 늑대를 강으로 휙 하고 던졌어요.", "막내 돼지 \"늑대야! 앞으로 나를 괴롭힐 생각은 하지도마!\""};
@@ -73,6 +73,7 @@ public class pFinal06 extends Fragment {
                 subtitles.setVisibility(View.INVISIBLE);
                 if (!play) {
                     save.setVisibility(View.VISIBLE);
+                    exit.setVisibility(View.VISIBLE);
                 }
             }
         }, 10000);
@@ -82,6 +83,13 @@ public class pFinal06 extends Fragment {
             public void onClick(View v) {
                 saveDialog = new Save_Dialog(getActivity(), "아기돼지 삼형제",2,myList,"http://49.50.174.179:9000/images/cover/pigcover.png");
                 saveDialog.show();
+            }
+        });
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
             }
         });
 

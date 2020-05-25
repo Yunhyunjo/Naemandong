@@ -23,6 +23,7 @@ import com.example.naemandong_main.R;
 import com.example.naemandong_main.pig.activity.Pig06;
 import com.example.naemandong_main.pig.activity.Pig07;
 
+// 선택지 전
 public class pScene24 extends Fragment {
 
     AnimationDrawable frameAnimation;

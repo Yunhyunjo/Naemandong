@@ -29,7 +29,7 @@ public class pFinal03 extends Fragment {
     private View view;
     private ImageView background, box, pig, house, house_inside;
     private TextView subtitles;
-    private ImageButton save;
+    private ImageButton save, exit;
     private ArrayList<Integer> myList;
     boolean play = false;
     private String subs [] = {"막내 돼지가 문을 열어주지 않자 늑대는 아쉬워하며 마을을 떠났어요.", "늑대가 떠나고 난 평화로운 마을에서 막내돼지는 오래오래 행복하게 살았답니다."};
@@ -89,6 +89,7 @@ public class pFinal03 extends Fragment {
                 subtitles.setVisibility(View.INVISIBLE);
                 if (!play) {
                     save.setVisibility(View.VISIBLE);
+                    exit.setVisibility(View.VISIBLE);
                 }
             }
         }, 10000);
@@ -98,6 +99,13 @@ public class pFinal03 extends Fragment {
             public void onClick(View v) {
                 saveDialog = new Save_Dialog(getActivity(), "아기돼지 삼형제",2,myList,"http://49.50.174.179:9000/images/cover/pigcover.png");
                 saveDialog.show();
+            }
+        });
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
             }
         });
 

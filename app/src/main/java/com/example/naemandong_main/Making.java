@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.naemandong_main.pig.activity.Pig01;
+import com.example.naemandong_main.pig.activity.Pig14;
+import com.example.naemandong_main.pig.activity.Pig15;
+import com.example.naemandong_main.pig.activity.Pig16;
+import com.example.naemandong_main.pig.activity.Pig17;
 import com.example.naemandong_main.rabbit.activity.Rabbit01;
 
 public class Making extends AppCompatActivity {

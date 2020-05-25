@@ -17,6 +17,7 @@ import com.example.naemandong_main.R;
 import com.example.naemandong_main.pig.activity.Pig07;
 import com.example.naemandong_main.pig.activity.Pig08;
 
+// 막돼 재료 선택
 public class pScene28 extends Fragment {
 
     private View view;

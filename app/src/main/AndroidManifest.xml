@@ -16,6 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".pig.activity.Pig18"/>
+        <activity android:name=".pig.activity.Pig17"/>
+        <activity android:name=".pig.activity.Pig16"/>
+        <activity android:name=".pig.activity.Pig15"/>
+        <activity android:name=".pig.activity.Pig14"/>
         <activity android:name=".pig.activity.Pig13"/>
         <activity android:name=".pig.activity.Pig12"/>
         <activity android:name=".pig.activity.Pig11"/>
