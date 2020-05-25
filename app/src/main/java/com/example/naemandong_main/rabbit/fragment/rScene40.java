@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.rabbit.activity.Rabbit14;
 import com.example.naemandong_main.rabbit.activity.Rabbit15;
+import com.example.naemandong_main.rabbit.activity.Rabbit16;
 
 public class rScene40 extends Fragment {
 
@@ -82,17 +83,19 @@ public class rScene40 extends Fragment {
             public void onClick(View v) {
                 if (((Rabbit14)getActivity()).play){
                     if(((Rabbit14)getActivity()).getData() == 0){
+                        ((Rabbit14)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit15.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();
                     }
-//                    else {
-//                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit14.class);
-//                        intent.putExtra("play",true);
-//                        startActivity(intent);
-//                        getActivity().finish();
-//                    }
+                    else {
+                        ((Rabbit14)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit16.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
                 }
                 else {
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();

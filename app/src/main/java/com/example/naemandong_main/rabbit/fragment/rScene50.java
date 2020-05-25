@@ -127,12 +127,14 @@ public class rScene50 extends Fragment {
             public void onClick(View v) {
                 if (((Rabbit19)getActivity()).play){
                     if(((Rabbit19)getActivity()).getData() == 0){
+                        ((Rabbit19)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit20.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();
                     }
                     else{
+                        ((Rabbit19)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit23.class);
                         intent.putExtra("play",true);
                         startActivity(intent);

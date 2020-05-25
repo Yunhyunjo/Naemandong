@@ -21,9 +21,9 @@ public class Rabbit01 extends AppCompatActivity {
 
     public boolean play = false;
     Button setting;
-    public ArrayList<Integer> mySelect;
-    boolean sound;
-    boolean subtitle;
+    public ArrayList<Integer> mySelect = new ArrayList<Integer>();
+    public boolean sound;
+    public boolean subtitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class Rabbit01 extends AppCompatActivity {
         Intent intent = getIntent();
         mySelect = intent.getIntegerArrayListExtra("select");
         play = intent.getBooleanExtra("play",false);
+        Toast.makeText(this,String.valueOf(mySelect),Toast.LENGTH_LONG).show();
 
         if (play){
             ((Setting_data)this.getApplication()).myList = mySelect;
@@ -76,8 +77,10 @@ public class Rabbit01 extends AppCompatActivity {
     }
     public int getData() {
         int data = ((Setting_data)this.getApplication()).myList.get(0);
-        ((Setting_data)this.getApplication()).myList.remove(0);
-        Toast.makeText(this,String.valueOf(((Setting_data)this.getApplication()).myList),Toast.LENGTH_SHORT).show();
         return data;
+    }
+    public void removeData() {
+        ((Setting_data)this.getApplication()).myList.remove(0);
+        Toast.makeText(this,String.valueOf(((Setting_data)this.getApplication()).myList),Toast.LENGTH_LONG).show();
     }
 }

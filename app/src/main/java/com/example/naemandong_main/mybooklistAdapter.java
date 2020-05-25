@@ -68,6 +68,7 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
                         transaction.commit();  //저장
                     }
                     else {
+                        mySelect.clear();
                         readStory(new storybookData(book_no));
                     }
                 }
