@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.rabbit.activity.Rabbit01;
 
 import java.io.IOException;
 

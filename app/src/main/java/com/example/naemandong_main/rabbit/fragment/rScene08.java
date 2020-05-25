@@ -24,6 +24,7 @@ import com.example.naemandong_main.R;
 import com.example.naemandong_main.rabbit.activity.Rabbit02;
 import com.example.naemandong_main.rabbit.activity.Rabbit03;
 import com.example.naemandong_main.rabbit.activity.Rabbit10;
+import com.google.gson.internal.$Gson$Preconditions;
 
 import java.io.IOException;
 
@@ -123,12 +124,14 @@ public class rScene08 extends Fragment {
             public void onClick(View v) {
                 if (((Rabbit02)getActivity()).play){
                     if(((Rabbit02)getActivity()).getData() == 0){
+                        ((Rabbit02)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit03.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();
                     }
                     else {
+                        ((Rabbit02)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit10.class);
                         intent.putExtra("play",true);
                         startActivity(intent);

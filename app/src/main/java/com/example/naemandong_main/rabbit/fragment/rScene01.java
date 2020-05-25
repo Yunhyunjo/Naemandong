@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.rabbit.activity.Rabbit01;
 
 import java.io.IOException;
 
@@ -54,10 +55,10 @@ public class rScene01 extends Fragment {
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
 
-//        if (getArguments() != null){
-//            sound = getArguments().getBoolean("sound");
-//            subtitle = getArguments().getBoolean("subtitle");
-//        }
+        if (getArguments() != null){
+            sound = getArguments().getBoolean("sound");
+            subtitle = getArguments().getBoolean("subtitle");
+        }
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/1/1_fin.jpg")
