@@ -42,30 +42,33 @@ public class PercentView extends View {
 
         switch(order) {
             case 0 :
-                pigpercent(new bookListData(2));
-                rabbitpercent(new bookListData(1));
+               /* pcount = pigpercent(new bookListData(2));
+                rcount = rabbitpercent(new bookListData(1));*/
                 order++;
             case 1 :
                 RectF rect = new RectF();
                 rect.set(218, 188, 408, 378);
-                canvas.drawArc(rect, (270), (float)pcount/3, false, pnt);
-                Log.d("그리기시작 : ", " "+pcount+" "+order);
+                canvas.drawArc(rect, (270), (float)pigpercent(new bookListData(2))/3, false, pnt);
+                Log.d("그리기시작 : ", " "+pigpercent(new bookListData(2))+" "+order);
 
                 rect = new RectF();
                 rect.set(570, 188, 760, 378);
-                canvas.drawArc(rect, (270), (float)rcount/21, false, pnt);
+                canvas.drawArc(rect, (270), (float)rabbitpercent(new bookListData(1))/21, false, pnt);
                 break;
         }
 
 
     }
 
-    private void pigpercent(bookListData data) {
+    public int pigpercent(bookListData data) {
+        final int[] c = new int[1];
+
         service.getPercent(data).enqueue(new Callback<percentResponse>() {
             @Override
             public void onResponse(Call<percentResponse> call, Response<percentResponse> response) {
                 percentResponse resource = response.body();
                 pcount = resource.getCount();
+                c[0] = pcount;
 
                 Log.d("ppercent함수 : ", " "+pcount);
             }
@@ -76,16 +79,20 @@ public class PercentView extends View {
                 //               Log.e("회원가입에 실패했습니다.", t.getMessage());
             }
         });
+        return c[0];
     }
 
-    private void rabbitpercent(bookListData data) {
+    private int rabbitpercent(bookListData data) {
+        final int[] a = new int[1];
+
         service.getPercent(data).enqueue(new Callback<percentResponse>() {
             @Override
             public void onResponse(Call<percentResponse> call, Response<percentResponse> response) {
                 percentResponse resource = response.body();
                 rcount = resource.getCount();
+                a[0] = rcount;
 
-                Log.d("rpercent함수 : ", " "+rcount);
+                Log.d("rpercent함수 : ", " " + rcount);
             }
 
             @Override
@@ -94,7 +101,11 @@ public class PercentView extends View {
                 //               Log.e("회원가입에 실패했습니다.", t.getMessage());
             }
         });
+
+        return a[0];
     }
+
+
 
 
 }

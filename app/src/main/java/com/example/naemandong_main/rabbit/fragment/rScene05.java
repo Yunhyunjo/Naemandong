@@ -18,6 +18,7 @@ import com.example.naemandong_main.R;
 import com.example.naemandong_main.rabbit.activity.Rabbit01;
 import com.example.naemandong_main.rabbit.activity.Rabbit02;
 import com.example.naemandong_main.rabbit.activity.Rabbit17;
+import com.example.naemandong_main.rabbit.activity.Rabbit26;
 
 import java.io.IOException;
 
@@ -68,13 +69,15 @@ public class rScene05 extends Fragment {
                 getActivity().finish();
             }
         });
-//        lion.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit02.class);
-//                startActivity(intent);
-//            }
-//        });
+        lion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((Rabbit01)getActivity()).setMylist(1);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit26.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
         sloth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

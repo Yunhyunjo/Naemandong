@@ -53,6 +53,8 @@
         <activity android:name=".rabbit.activity.Rabbit04" />
         <activity android:name=".rabbit.activity.Rabbit03" />
         <activity android:name=".rabbit.activity.Rabbit02" />
+        <activity android:name=".rabbit.activity.Rabbit26" />
+        <activity android:name=".rabbit.activity.Rabbit27" />
         <activity
             android:name=".Setting"
             android:theme="@style/MyDialog" />

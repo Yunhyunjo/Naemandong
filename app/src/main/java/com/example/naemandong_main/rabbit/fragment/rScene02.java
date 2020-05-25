@@ -89,14 +89,21 @@ public class rScene02 extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Bundle bundle = new Bundle();
+/*//                Bundle bundle = new Bundle();
 //                bundle.putBoolean("sound",sound);
 //                bundle.putBoolean("subtitle",subtitle);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 rScene03 rscene03 = new rScene03();
 //                rscene03.setArguments(bundle);
                 transaction.replace(R.id.frame,rscene03);
+                transaction.commit();  //저장*/
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                rScene70 rscene70 = new rScene70();
+                transaction.replace(R.id.frame,rscene70);
                 transaction.commit();  //저장
+
+
+
             }
         });
 
