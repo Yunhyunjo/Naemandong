@@ -26,7 +26,7 @@ public class rFinal05 extends Fragment {
     private TextView subtitles;
     private ArrayList<Integer> myList;
     private String subs [] = {"자동차가 너무 재미있던 거북이는 카레이서가 되고 싶다고 생각했어요.","결국 거북이는 카레이서의 꿈을 이루었답니다."};
-    private ImageButton save;
+    private ImageButton save, exit;
     boolean play = false;
     Handler delayHandler = new Handler();
 
@@ -41,6 +41,7 @@ public class rFinal05 extends Fragment {
         turtle = view.findViewById(R.id.rabbit);
         subtitles = view.findViewById(R.id.subTitle);
         save = view.findViewById(R.id.save);
+        exit = view.findViewById(R.id.exit);
 
         if (getArguments() != null){
             myList = getArguments().getIntegerArrayList("myList");
@@ -72,14 +73,21 @@ public class rFinal05 extends Fragment {
                 if (!play) {
                     save.setVisibility(View.VISIBLE);
                 }
+                exit.setVisibility(View.VISIBLE);
             }
         }, 8000);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList, "http://49.50.174.179:9000/images/cover/rabbit_ending04.png");
+                saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList, "http://49.50.174.179:9000/images/rabbit/5/53_fin.png");
                 saveDialog.show();
+            }
+        });
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
             }
         });
 

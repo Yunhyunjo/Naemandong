@@ -1,6 +1,5 @@
 package com.example.naemandong_main.rabbit.fragment;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -18,70 +17,53 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Save_Dialog;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class rfinal01 extends Fragment {
+public class rFinal07 extends Fragment {
+
     private Save_Dialog saveDialog;
 
-    MediaPlayer mp1 = new MediaPlayer();
-    MediaPlayer mp2 = new MediaPlayer();
     private View view;
     private ImageView background, box;
     private TextView subtitles;
-    private ImageButton save, exit;
     private ArrayList<Integer> myList;
+    private String subs [] = {"길을 찾지 못한 나무늘보는 원래 있던 곳으로 돌아가려고 했어요.","하지만 나무늘보는 왔던 길을 까먹고 결국 길을 잃고 말았답니다."};
+    private ImageButton save, exit;
     boolean play = false;
-    private String subs [] = {"토끼는 자신을 도와준 거북이에게 반해 고백을 했어요.", "그렇게 토끼와 거북이는 결혼을 해서 오래오래 행복하게 살았답니다."};
     Handler delayHandler = new Handler();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.rfinal01, container,false);
+        view = inflater.inflate(R.layout.rfinal05, container,false);
 
         background = view.findViewById(R.id.background);
         box = view.findViewById(R.id.subtitlebox);
         subtitles = view.findViewById(R.id.subTitle);
         save = view.findViewById(R.id.save);
-        exit = view.findViewById(R.id.exit);
+        exit.setVisibility(View.VISIBLE);
 
         if (getArguments() != null){
             myList = getArguments().getIntegerArrayList("myList");
             play = getArguments().getBoolean("play");
             if(!play){
-            while(myList.size() < 7)
-                myList.add(3);
+                while(myList.size() < 7)
+                    myList.add(3);
             }
         }
 
-
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/5/22_fin1.png")
+                .load("http://49.50.174.179:9000/images/rabbit/6/76_fin.png")
                 .into(background);
 
-        try {
-            mp1.setDataSource("http://49.50.174.179:9000/voice/rfinal01_1.mp3");
-            mp1.prepare();
-            mp2.setDataSource("http://49.50.174.179:9000/voice/rfinal01_2.mp3");
-            mp2.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        int a = mp1.getDuration();
-        int b = mp1.getDuration() + mp2.getDuration();
-
         subtitles.setText(subs[0]);
-        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                mp2.start();
             }
-        }, a);
+        }, 3000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -93,12 +75,12 @@ public class rfinal01 extends Fragment {
                 }
                 exit.setVisibility(View.VISIBLE);
             }
-        }, b);
+        }, 8000);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList,"http://49.50.174.179:9000/images/cover/rabbit_ending01.png");
+                saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList,"http://49.50.174.179:9000/images/rabbit/6/76_fin.png");
                 saveDialog.show();
             }
         });
