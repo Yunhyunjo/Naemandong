@@ -100,8 +100,8 @@ public class rScene02 extends Fragment {
                 transaction.commit();  //저장*/
 
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                rScene74 rscene74 = new rScene74();
-                transaction.replace(R.id.frame,rscene74);
+                rScene75 rscene75 = new rScene75();
+                transaction.replace(R.id.frame,rscene75);
                 transaction.commit();  //저장
 
             }
