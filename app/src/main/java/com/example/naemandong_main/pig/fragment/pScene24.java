@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.pig.activity.Pig06;
 import com.example.naemandong_main.pig.activity.Pig07;
+import com.example.naemandong_main.pig.activity.Pig14;
 
 // 선택지 전
 public class pScene24 extends Fragment {
@@ -105,10 +106,11 @@ public class pScene24 extends Fragment {
                         getActivity().finish();
                     }
                     else {
-//                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig02.class);
-//                        intent.putExtra("play",true);
-//                        startActivity(intent);
-//                        getActivity().finish();
+                        ((Pig06)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig14.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
                     }
                 }
                 else{

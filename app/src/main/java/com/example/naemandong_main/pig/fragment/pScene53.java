@@ -84,6 +84,7 @@ public class pScene53 extends Fragment {
                     else {
                         ((Pig16)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig18.class);
+                        intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();
                     }

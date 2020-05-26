@@ -20,6 +20,8 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.pig.activity.Pig10;
 import com.example.naemandong_main.pig.activity.Pig11;
+import com.example.naemandong_main.pig.activity.Pig12;
+import com.example.naemandong_main.pig.activity.Pig13;
 
 public class pScene38 extends Fragment {
 
@@ -78,12 +80,19 @@ public class pScene38 extends Fragment {
                         startActivity(intent);
                         getActivity().finish();
                     }
-//                    else {
-//                        Intent intent = new Intent(getActivity().getApplicationContext(),Pig05.class);
-//                        intent.putExtra("play",true);
-//                        startActivity(intent);
-//                        getActivity().finish();
-//                    }
+                    else if(((Pig10)getActivity()).getData() == 2) {
+                        ((Pig10)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig12.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
+                    else {
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig13.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
                 }
                 else{
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
