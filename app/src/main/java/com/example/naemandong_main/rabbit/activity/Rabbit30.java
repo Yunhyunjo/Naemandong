@@ -12,11 +12,10 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Setting;
 import com.example.naemandong_main.Setting_data;
-import com.example.naemandong_main.rabbit.fragment.rScene65;
-import com.example.naemandong_main.rabbit.fragment.rScene68;
 import com.example.naemandong_main.rabbit.fragment.rScene69;
+import com.example.naemandong_main.rabbit.fragment.rScene77;
 
-public class Rabbit27 extends AppCompatActivity {
+public class Rabbit30 extends AppCompatActivity {
 
     public boolean play = false;
     Button setting;
@@ -32,8 +31,8 @@ public class Rabbit27 extends AppCompatActivity {
         play = intent.getBooleanExtra("play",false);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        rScene69 rscene69 = new rScene69();
-        transaction.replace(R.id.frame, rscene69);
+        rScene77 rscene77 = new rScene77();
+        transaction.replace(R.id.frame, rscene77);
         transaction.commit();  //저장
 
         setting.setOnClickListener(new View.OnClickListener() {

@@ -12,28 +12,29 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Setting;
 import com.example.naemandong_main.Setting_data;
-import com.example.naemandong_main.rabbit.fragment.rScene65;
-import com.example.naemandong_main.rabbit.fragment.rScene68;
-import com.example.naemandong_main.rabbit.fragment.rScene69;
+import com.example.naemandong_main.rabbit.fragment.rScene80;
 
-public class Rabbit27 extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class Rabbit31 extends AppCompatActivity {
+
+    Button setting;
 
     public boolean play = false;
-    Button setting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rabbit18);
-
-        setting = (Button)findViewById(R.id.btn_setting);
+        setContentView(R.layout.activity_rabbit16);
 
         Intent intent = getIntent();
+        setting = (Button)findViewById(R.id.btn_setting);
+
         play = intent.getBooleanExtra("play",false);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        rScene69 rscene69 = new rScene69();
-        transaction.replace(R.id.frame, rscene69);
+        rScene80 rscene80 = new rScene80();
+        transaction.replace(R.id.frame, rscene80);
         transaction.commit();  //저장
 
         setting.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +46,6 @@ public class Rabbit27 extends AppCompatActivity {
         });
     }
 
-    @Override
     public void onBackPressed(){
     }
 

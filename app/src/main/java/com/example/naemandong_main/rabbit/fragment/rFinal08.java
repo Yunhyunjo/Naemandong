@@ -19,7 +19,7 @@ import com.example.naemandong_main.Save_Dialog;
 
 import java.util.ArrayList;
 
-public class rFinal07 extends Fragment {
+public class rFinal08 extends Fragment {
 
     private Save_Dialog saveDialog;
 
@@ -27,7 +27,7 @@ public class rFinal07 extends Fragment {
     private ImageView background, box;
     private TextView subtitles;
     private ArrayList<Integer> myList;
-    private String subs [] = {"길을 찾지 못한 나무늘보는 원래 있던 곳으로 돌아가려고 했어요.","하지만 나무늘보는 왔던 길을 까먹고 결국 길을 잃고 말았답니다."};
+    private String subs [] = {"그렇게 함께 산꼭대기에 올라간 사자와 거북이는 결국 무승부가 되었어요.","사자와 거북이는 다시는 싸우지 않고 행복하게 지냈답니다."};
     private ImageButton save, exit;
     boolean play = false;
     Handler delayHandler = new Handler();
@@ -53,7 +53,7 @@ public class rFinal07 extends Fragment {
         }
 
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/6/76_fin.png")
+                .load("http://49.50.174.179:9000/images/rabbit/7/96_fin.png")
                 .into(background);
 
         subtitles.setText(subs[0]);
@@ -80,7 +80,7 @@ public class rFinal07 extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList,"http://49.50.174.179:9000/images/rabbit/6/76_fin.png");
+                saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList,"http://49.50.174.179:9000/images/rabbit/7/96_fin.png");
                 saveDialog.show();
             }
         });

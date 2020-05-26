@@ -23,6 +23,7 @@ import com.example.naemandong_main.R;
 import com.example.naemandong_main.rabbit.activity.Rabbit01;
 import com.example.naemandong_main.rabbit.activity.Rabbit02;
 import com.example.naemandong_main.rabbit.activity.Rabbit17;
+import com.example.naemandong_main.rabbit.activity.Rabbit26;
 
 import java.io.IOException;
 
@@ -101,6 +102,10 @@ public class rScene04 extends Fragment {
                     }
                     else if(((Rabbit01)getActivity()).getData() == 1){
                         ((Rabbit01)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit26.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
                     }
                     else {
                         ((Rabbit01)getActivity()).removeData();

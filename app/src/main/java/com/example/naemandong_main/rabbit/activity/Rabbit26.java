@@ -53,8 +53,10 @@ public class Rabbit26 extends AppCompatActivity {
     }
     public int getData() {
         int data = ((Setting_data)this.getApplication()).myList.get(0);
+        return data;
+    }
+    public void removeData() {
         ((Setting_data)this.getApplication()).myList.remove(0);
         Toast.makeText(this,String.valueOf(((Setting_data)this.getApplication()).myList),Toast.LENGTH_SHORT).show();
-        return data;
     }
 }

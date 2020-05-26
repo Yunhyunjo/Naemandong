@@ -1,6 +1,6 @@
 package com.example.naemandong_main.rabbit.fragment;
 
-import android.media.MediaPlayer;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -18,83 +18,78 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 
-import java.io.IOException;
+public class rScene77 extends Fragment {
 
-public class rScene65 extends Fragment {
-
-    MediaPlayer mp1 = new MediaPlayer();
-    MediaPlayer mp2 = new MediaPlayer();
-    MediaPlayer mp3 = new MediaPlayer();
+    private AnimationDrawable frameLion;
     private View view;
-    private ImageView background, box;
+    private ImageView background, box, lion, front, light, bone;
     private TextView subtitles;
-    private String subs [] = {"어흥~ 거북아, 나랑 경주를 하자는 거니?", "그래! 누가 더 빠른지 해보자!", "사자와 거북이는 산 꼭대기까지 경주하기로 했어요. "};
+    private String subs [] = {"\"어, 여기 고기가 있네? 냠냠 이 고기 정말 맛있는데?\"", "배가 고팠던 사자는 허겁지겁 고기를 먹기 시작했어요."};
     private ImageButton next;
     Handler delayHandler = new Handler();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.rscene06, container,false);
+        view = inflater.inflate(R.layout.rscene77, container,false);
 
         background = view.findViewById(R.id.background);
+        front = view.findViewById(R.id.front);
         box = view.findViewById(R.id.subtitlebox);
+        lion = view.findViewById(R.id.lion);
+        bone = view.findViewById(R.id.bone);
+        light = view.findViewById(R.id.light);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
 
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/7/77_fin.png")
+                .load("http://49.50.174.179:9000/images/rabbit/5/10_back.png")
                 .into(background);
-
-        /*try {
-            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene06_1.mp3");
-            mp1.prepare();
-            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene06_2.mp3");
-            mp2.prepare();
-            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene06_3.mp3");
-            mp3.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        int a = mp1.getDuration();
-        int b = mp1.getDuration() + mp2.getDuration();
-        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
-*/
+        Glide.with(this)
+                .load("http://49.50.174.179:9000/images/rabbit/7/88_aa.png")
+                .into(lion);
+        Glide.with(this)
+                .load("http://49.50.174.179:9000/images/rabbit/5/23_light.png")
+                .into(light);
+        Glide.with(this)
+                .load("http://49.50.174.179:9000/images/rabbit/7/87_meat.png")
+                .into(bone);
 
 
         subtitles.setText(subs[0]);
- //       mp1.start();
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                bone.setImageResource(0);
+                light.setImageResource(0);
+                lion.setImageResource(0);
+                lion.setBackgroundResource(R.drawable.lion_eat77);
+                frameLion = (AnimationDrawable) lion.getBackground();
+                frameLion.start();
+            }
+        }, 2000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
- //               mp2.start();
             }
-        }, 5000);
-        delayHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // TODO
-                subtitles.setText(subs[2]);
- //               mp3.start();
-            }
-        }, 8000);
+        }, 6000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 next.setVisibility(View.VISIBLE);
             }
-        }, 10000);
+        }, 11000);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                rScene66 rscene66 = new rScene66();
-                transaction.replace(R.id.frame,rscene66);
+                rScene78 rscene78 = new rScene78();
+                transaction.replace(R.id.frame,rscene78);
                 transaction.commit();  //저장
             }
         });

@@ -15,40 +15,35 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
-import com.example.naemandong_main.rabbit.activity.Rabbit02;
-import com.example.naemandong_main.rabbit.activity.Rabbit03;
-import com.example.naemandong_main.rabbit.activity.Rabbit10;
-import com.example.naemandong_main.rabbit.activity.Rabbit26;
-import com.example.naemandong_main.rabbit.activity.Rabbit27;
-import com.example.naemandong_main.rabbit.activity.Rabbit30;
+import com.example.naemandong_main.rabbit.activity.Rabbit34;
+import com.example.naemandong_main.rabbit.activity.Rabbit32;
+import com.example.naemandong_main.rabbit.activity.Rabbit33;
 
-import java.io.IOException;
-
-public class rScene68 extends Fragment {
+public class rScene84 extends Fragment {
 
     MediaPlayer mp1 = new MediaPlayer();
     private View view;
     private ImageView background;
-    private ImageButton bone, fish;
+    private ImageButton one, two;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.rscene68, container,false);
+        view = inflater.inflate(R.layout.rscene84, container,false);
 
         background = view.findViewById(R.id.background);
-        bone = view.findViewById(R.id.bone);
-        fish = view.findViewById(R.id.fish);
+        one = view.findViewById(R.id.one);
+        two = view.findViewById(R.id.two);
 
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/7/80_back.png")
+                .load("http://49.50.174.179:9000/images/rabbit/7/94_back.png")
                 .into(background);
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/7/80_bone.png")
-                .into(bone);
+                .load("http://49.50.174.179:9000/images/rabbit/7/94_one.png")
+                .into(one);
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/7/80_fish.png")
-                .into(fish);
+                .load("http://49.50.174.179:9000/images/rabbit/7/94_two.png")
+                .into(two);
 
         /*try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene09.mp3");
@@ -58,20 +53,20 @@ public class rScene68 extends Fragment {
             e.printStackTrace();
         }*/
 
-        fish.setOnClickListener(new View.OnClickListener() {
+        one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Rabbit26)getActivity()).setMylist(0);
-                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit27.class);
+                ((Rabbit32)getActivity()).setMylist(0);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit34.class);
                 startActivity(intent);
                 getActivity().finish();
             }
         });
-        bone.setOnClickListener(new View.OnClickListener() {
+        two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Rabbit26)getActivity()).setMylist(1);
-                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit30.class);
+                ((Rabbit32)getActivity()).setMylist(1);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit33.class);
                 startActivity(intent);
                 getActivity().finish();
             }

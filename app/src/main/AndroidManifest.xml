@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Original_story"/>
         <activity android:name=".pig.activity.Pig13" />
         <activity android:name=".pig.activity.Pig12" />
         <activity android:name=".pig.activity.Pig11" />
@@ -29,6 +30,13 @@
         <activity android:name=".pig.activity.Pig03" />
         <activity android:name=".pig.activity.Pig02" />
         <activity android:name=".pig.activity.Pig01" />
+        <activity android:name=".original.pig.Pig_original" />
+        <activity android:name=".original.rabbit.Rabbit_original" />
+        <activity android:name=".rabbit.activity.Rabbit34" />
+        <activity android:name=".rabbit.activity.Rabbit33" />
+        <activity android:name=".rabbit.activity.Rabbit32" />
+        <activity android:name=".rabbit.activity.Rabbit31" />
+        <activity android:name=".rabbit.activity.Rabbit30" />
         <activity android:name=".rabbit.activity.Rabbit25" />
         <activity android:name=".rabbit.activity.Rabbit24" />
         <activity android:name=".rabbit.activity.Rabbit23" />

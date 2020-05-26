@@ -24,6 +24,7 @@ import com.example.naemandong_main.R;
 import com.example.naemandong_main.rabbit.activity.Rabbit02;
 import com.example.naemandong_main.rabbit.activity.Rabbit18;
 import com.example.naemandong_main.rabbit.activity.Rabbit19;
+import com.example.naemandong_main.rabbit.activity.Rabbit26;
 
 public class rScene48 extends Fragment {
 
@@ -111,11 +112,11 @@ public class rScene48 extends Fragment {
                         getActivity().finish();
                     }
                     else{
-//                        ((Rabbit18) getActivity()).removeData();
-//                        Intent intent = new Intent(getActivity(), Rabbit26.class);
-//                        intent.putExtra("play", true);
-//                        startActivity(intent);
-//                        getActivity().finish();
+                        ((Rabbit18) getActivity()).removeData();
+                        Intent intent = new Intent(getActivity(), Rabbit26.class);
+                        intent.putExtra("play", true);
+                        startActivity(intent);
+                        getActivity().finish();
                     }
                 }
                 else {

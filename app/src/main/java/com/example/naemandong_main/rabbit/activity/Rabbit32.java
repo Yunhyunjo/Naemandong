@@ -12,28 +12,29 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Setting;
 import com.example.naemandong_main.Setting_data;
-import com.example.naemandong_main.rabbit.fragment.rScene65;
-import com.example.naemandong_main.rabbit.fragment.rScene68;
-import com.example.naemandong_main.rabbit.fragment.rScene69;
+import com.example.naemandong_main.rabbit.fragment.rScene83;
 
-public class Rabbit27 extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class Rabbit32 extends AppCompatActivity {
+
+    Button setting;
 
     public boolean play = false;
-    Button setting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rabbit18);
-
-        setting = (Button)findViewById(R.id.btn_setting);
+        setContentView(R.layout.activity_rabbit16);
 
         Intent intent = getIntent();
+        setting = (Button)findViewById(R.id.btn_setting);
+
         play = intent.getBooleanExtra("play",false);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        rScene69 rscene69 = new rScene69();
-        transaction.replace(R.id.frame, rscene69);
+        rScene83 rscene83 = new rScene83();
+        transaction.replace(R.id.frame, rscene83);
         transaction.commit();  //저장
 
         setting.setOnClickListener(new View.OnClickListener() {
@@ -45,17 +46,18 @@ public class Rabbit27 extends AppCompatActivity {
         });
     }
 
-    @Override
     public void onBackPressed(){
     }
 
     public void setMylist(int a){
         ((Setting_data)this.getApplication()).addMyList(a);
     }
+
     public int getData() {
         int data = ((Setting_data)this.getApplication()).myList.get(0);
         return data;
     }
+
     public void removeData() {
         ((Setting_data)this.getApplication()).myList.remove(0);
         Toast.makeText(this,String.valueOf(((Setting_data)this.getApplication()).myList),Toast.LENGTH_SHORT).show();

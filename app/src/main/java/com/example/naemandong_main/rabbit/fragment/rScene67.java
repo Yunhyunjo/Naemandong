@@ -26,6 +26,7 @@ import com.example.naemandong_main.rabbit.activity.Rabbit03;
 import com.example.naemandong_main.rabbit.activity.Rabbit10;
 import com.example.naemandong_main.rabbit.activity.Rabbit26;
 import com.example.naemandong_main.rabbit.activity.Rabbit27;
+import com.example.naemandong_main.rabbit.activity.Rabbit30;
 
 import java.io.IOException;
 
@@ -117,13 +118,15 @@ public class rScene67 extends Fragment {
             public void onClick(View v) {
                 if (((Rabbit26)getActivity()).play){
                     if(((Rabbit26)getActivity()).getData() == 0){
+                        ((Rabbit26)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit27.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();
                     }
                     else {
-                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit10.class);
+                        ((Rabbit26)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit30.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();

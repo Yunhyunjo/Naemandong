@@ -1,6 +1,5 @@
 package com.example.naemandong_main.rabbit.fragment;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -18,69 +17,48 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 
-import java.io.IOException;
+public class rScene80 extends Fragment {
 
-public class rScene65 extends Fragment {
-
-    MediaPlayer mp1 = new MediaPlayer();
-    MediaPlayer mp2 = new MediaPlayer();
-    MediaPlayer mp3 = new MediaPlayer();
     private View view;
-    private ImageView background, box;
+    private ImageView background, box, lion, lion2, front;
     private TextView subtitles;
-    private String subs [] = {"어흥~ 거북아, 나랑 경주를 하자는 거니?", "그래! 누가 더 빠른지 해보자!", "사자와 거북이는 산 꼭대기까지 경주하기로 했어요. "};
+    private String subs [] = {"\"거북이는 아직 오려면 멀었으니 한숨 자고 갈까?\"", "사자는 한숨 자기로 하고 쿨쿨 잠에 들었어요."};
     private ImageButton next;
     Handler delayHandler = new Handler();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.rscene06, container,false);
+        view = inflater.inflate(R.layout.rscene80, container,false);
 
         background = view.findViewById(R.id.background);
+        front = view.findViewById(R.id.front);
         box = view.findViewById(R.id.subtitlebox);
+        lion = view.findViewById(R.id.lion);
+        lion2 = view.findViewById(R.id.lion2);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
 
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/7/77_fin.png")
+                .load("http://49.50.174.179:9000/images/rabbit/5/10_back.png")
                 .into(background);
-
-        /*try {
-            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene06_1.mp3");
-            mp1.prepare();
-            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene06_2.mp3");
-            mp2.prepare();
-            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene06_3.mp3");
-            mp3.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        int a = mp1.getDuration();
-        int b = mp1.getDuration() + mp2.getDuration();
-        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
-*/
+        Glide.with(this)
+                .load("http://49.50.174.179:9000/images/rabbit/7/90_1.png")
+                .into(lion);
 
 
         subtitles.setText(subs[0]);
- //       mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                lion.setImageResource(0);
+                Glide.with(view)
+                        .load("http://49.50.174.179:9000/images/rabbit/7/90_2.png")
+                        .into(lion2);
                 subtitles.setText(subs[1]);
- //               mp2.start();
             }
         }, 5000);
-        delayHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // TODO
-                subtitles.setText(subs[2]);
- //               mp3.start();
-            }
-        }, 8000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -93,8 +71,8 @@ public class rScene65 extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                rScene66 rscene66 = new rScene66();
-                transaction.replace(R.id.frame,rscene66);
+                rScene81 rscene81 = new rScene81();
+                transaction.replace(R.id.frame,rscene81);
                 transaction.commit();  //저장
             }
         });
