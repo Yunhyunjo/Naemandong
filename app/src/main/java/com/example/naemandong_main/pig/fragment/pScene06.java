@@ -37,7 +37,7 @@ public class pScene06 extends Fragment {
     private ImageView background, wolf, pig, grass;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"늑대 \"아이고 못 참겠다\"", "늑대가 첫째 돼지의 집을 후~ 하고 불자 가벼운 지푸라기 집이 날아가 버렸어요.","집이 사라진 첫째 돼지는 결국 둘째 돼지네 집으로 도망쳤어요." };
+    private String subs [] = {"\"아이고 못 참겠다\"", "늑대가 첫째 돼지의 집을 후~ 하고 불자 가벼운 지푸라기 집이 날아가 버렸어요.","집이 사라진 첫째 돼지는 결국 둘째 돼지네 집으로 도망쳤어요." };
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -119,12 +119,14 @@ public class pScene06 extends Fragment {
             public void onClick(View v) {
                 if (((Pig02)getActivity()).play){
                     if(((Pig02)getActivity()).getData() == 0){
+                        ((Pig02)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig03.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();
                     }
                     else if (((Pig02)getActivity()).getData() == 1){
+                        ((Pig02)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig06.class);
                         intent.putExtra("play",true);
                         startActivity(intent);

@@ -32,7 +32,7 @@ public class pScene20 extends Fragment {
     private ImageButton next;
     private TextView subtitles;
     private ArrayList<Integer> myList;
-    private String subs [] = {"늑대 엄마 \"늑대야 너 어디니! 저녁 먹기 전에 얼른 집에 들어와라!\"", "늑대 \"헉 시간이 벌써 이렇게.. 빨리 갈게요.\"","엄마에게 혼쭐이 난 늑대는 집으로 달려갔어요."};
+    private String subs [] = {"\"늑대야 너 어디니! 저녁 먹기 전에 얼른 집에 들어와라!\"", "\"헉 시간이 벌써 이렇게.. 빨리 갈게요.\"","엄마에게 혼쭐이 난 늑대는 집으로 달려갔어요."};
     Handler delayHandler = new Handler();
 
     @Nullable

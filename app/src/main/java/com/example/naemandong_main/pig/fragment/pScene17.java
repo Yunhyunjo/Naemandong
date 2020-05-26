@@ -29,7 +29,7 @@ public class pScene17 extends Fragment {
     private ImageView background;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"한편, 막내 돼지는 둘째 돼지 집에서 불이 나는걸 봤어요.", "막내 돼지 \"어? 둘째 형 집에 불이 났나봐! 어서 가봐야겠다!\""};
+    private String subs [] = {"한편, 막내 돼지는 둘째 돼지 집에서 불이 나는걸 봤어요.", "\"어? 둘째 형 집에 불이 났나봐! 어서 가봐야겠다!\""};
     Handler delayHandler = new Handler();
 
     @Nullable

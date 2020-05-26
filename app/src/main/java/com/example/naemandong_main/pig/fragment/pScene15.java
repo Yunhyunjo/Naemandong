@@ -31,7 +31,7 @@ public class pScene15 extends Fragment {
     private ImageView background;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"늑대는 빨간 상자를 열어봤어요.", "그 상자 안에는 성냥이 들어있었어요.", "늑대 \"좋은 생각이 났다! 불을 질러서 돼지들이 나오도록 해야겠다!\"" };
+    private String subs [] = {"늑대는 빨간 상자를 열어봤어요.", "그 상자 안에는 성냥이 들어있었어요.", "\"좋은 생각이 났다! 불을 질러서 돼지들이 나오도록 해야겠다!\"" };
     Handler delayHandler = new Handler();
 
     @Nullable

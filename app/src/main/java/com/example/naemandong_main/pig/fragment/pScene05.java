@@ -33,7 +33,7 @@ public class pScene05 extends Fragment {
     private ImageView background, wolf;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"그런데 이때! 어슬렁 어슬렁거리며 배가 고픈 늑대가 나타났어요!", "늑대 \"아이고 배고파.. 돼지야!! 돼지야!! 이리 좀 나와봐.\"","첫째 돼지 \"나.. 나 지금 바빠서.. 나중에 보자!!\"" };
+    private String subs [] = {"그런데 이때! 어슬렁 어슬렁거리며 배가 고픈 늑대가 나타났어요!", "\"아이고 배고파.. 돼지야!! 돼지야!! 이리 좀 나와봐.\"","\"나.. 나 지금 바빠서.. 나중에 보자!!\"" };
     Handler delayHandler = new Handler();
 
     @Nullable

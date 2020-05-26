@@ -24,6 +24,7 @@ import com.example.naemandong_main.pig.activity.Pig06;
 import com.example.naemandong_main.pig.activity.Pig07;
 import com.example.naemandong_main.pig.activity.Pig15;
 import com.example.naemandong_main.pig.activity.Pig16;
+import com.example.naemandong_main.pig.activity.Pig19;
 
 // 선택지 전
 public class pScene51 extends Fragment {
@@ -84,16 +85,18 @@ public class pScene51 extends Fragment {
             public void onClick(View v) {
                 if(((Pig15)getActivity()).play){
                     if(((Pig15)getActivity()).getData() == 0){
-                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig16.class);
+                        ((Pig15)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig19.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();
                     }
                     else {
-//                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig02.class);
-//                        intent.putExtra("play",true);
-//                        startActivity(intent);
-//                        getActivity().finish();
+                        ((Pig15)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig16.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
                     }
                 }
                 else{

@@ -30,7 +30,7 @@ public class pScene12 extends Fragment {
     private ImageView background, wolf;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"늑대 \"아이고 내 몸이야!! 이게 어떻게 된 일이지?\"", "자신 있게 둘째 돼지의 집에 부딪힌 늑대는 오히려 혹을 얻고 말았어요." };
+    private String subs [] = {"\"아이고 내 몸이야!! 이게 어떻게 된 일이지?\"", "자신 있게 둘째 돼지의 집에 부딪힌 늑대는 오히려 혹을 얻고 말았어요." };
     Handler delayHandler = new Handler();
 
     @Nullable

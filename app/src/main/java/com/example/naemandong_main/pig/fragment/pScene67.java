@@ -22,6 +22,7 @@ import com.example.naemandong_main.pig.activity.Pig16;
 import com.example.naemandong_main.pig.activity.Pig17;
 import com.example.naemandong_main.pig.activity.Pig21;
 import com.example.naemandong_main.pig.activity.Pig22;
+import com.example.naemandong_main.pig.activity.Pig23;
 
 public class pScene67 extends Fragment {
 
@@ -74,17 +75,19 @@ public class pScene67 extends Fragment {
             public void onClick(View v) {
                 if (((Pig21)getActivity()).play){
                     if(((Pig21)getActivity()).getData() == 0){
+                        ((Pig21)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig22.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();
                     }
-//                    else {
-//                        Intent intent = new Intent(getActivity().getApplicationContext(),Pig05.class);
-//                        intent.putExtra("play",true);
-//                        startActivity(intent);
-//                        getActivity().finish();
-//                    }
+                    else {
+                        ((Pig21)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig23.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
                 }
                 else{
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
