@@ -107,33 +107,43 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.693" />
 
-    <ProgressBar
-        android:id="@+id/pig_progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:indeterminateTint="@color/colorPro"
-        android:progress="25"
+    <ImageView
+        android:id="@+id/p_percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.134" />
+        app:layout_constraintVertical_bias="0.147"
+        app:srcCompat="@drawable/bar_circle01" />
 
-    <ProgressBar
-        android:id="@+id/bunny_progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:indeterminateTint="@color/colorPro"
-        android:progress="75"
+
+    <ImageView
+        android:id="@+id/r_percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintHorizontal_bias="0.31"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.134" />
+        app:layout_constraintVertical_bias="0.147"
+        app:srcCompat="@drawable/rabbitcircle" />
+
+
+    <com.example.naemandong_main.PercentView
+        android:id="@+id/percentView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.134"
+        />
 
     <Button
         android:id="@+id/btn_setting"

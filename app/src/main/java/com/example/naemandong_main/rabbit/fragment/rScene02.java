@@ -98,6 +98,9 @@ public class rScene02 extends Fragment {
 //                rscene03.setArguments(bundle);
                 transaction.replace(R.id.frame,rscene03);
                 transaction.commit();  //저장
+
+
+
             }
         });
 

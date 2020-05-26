@@ -7,7 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
+
+import com.example.naemandong_main.Data.bookListData;
+import com.example.naemandong_main.Data.percentResponse;
+import com.example.naemandong_main.Network.RetrofitClient;
+import com.example.naemandong_main.Network.ServiceApi;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
     Button voice_btn;
 
     ImageView imageView1;
-    ProgressBar pig_progressBar;
-    ProgressBar bunny_progressBar;
+    PercentView percentView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +57,7 @@ public class MainActivity extends AppCompatActivity {
         voice_btn = (Button) findViewById(R.id.voice_btn);
 
         imageView1 = (ImageView)findViewById(R.id.image1);
-        pig_progressBar = (ProgressBar)findViewById(R.id.pig_progressBar);
-        bunny_progressBar = (ProgressBar)findViewById(R.id.bunny_progressBar);
+        percentView = (PercentView)findViewById(R.id.percentView);
     }
 
     public void SetListener() {
@@ -115,4 +122,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
