@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.naemandong_main.original.pig.Pig_original;
@@ -16,7 +16,7 @@ import com.example.naemandong_main.rabbit.activity.Rabbit01;
 public class Original_story extends AppCompatActivity {
 
     private ImageView background;
-    private Button original, skip;
+    private ImageButton original, skip;
     private int story;
 
     @Override
@@ -25,11 +25,15 @@ public class Original_story extends AppCompatActivity {
         setContentView(R.layout.activity_original_story);
 
         background = (ImageView) findViewById(R.id.background);
-        original = (Button) findViewById(R.id.original);
-        skip = (Button) findViewById(R.id.skip);
+        original = (ImageButton) findViewById(R.id.original);
+        skip = (ImageButton) findViewById(R.id.skip);
 
         Intent intent = getIntent();
         story = intent.getIntExtra("story",0);
+
+        if (story == 1){
+            background.setImageResource(R.drawable.nmdrabbit_cover);
+        }
 
         original.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -43,7 +43,7 @@ public class ori_rabbit08 extends Fragment {
         box = view.findViewById(R.id.subtitlebox);
         rabbit = view.findViewById(R.id.rabbit);
         subtitles = view.findViewById(R.id.subTitle);
-        next = view.findViewById(R.id.next);
+        next = view.findViewById(R.id.nmd);
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/original/7_fin.png")
