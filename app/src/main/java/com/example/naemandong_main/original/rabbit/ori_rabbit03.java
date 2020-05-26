@@ -1,4 +1,4 @@
-package com.example.naemandong_main.rabbit.fragment;
+package com.example.naemandong_main.original.rabbit;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,54 +20,51 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 
-import java.io.IOException;
+public class ori_rabbit03 extends Fragment {
 
-public class rScene19 extends Fragment {
-
+    private View view;
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
-    private AnimationDrawable frameturtle;
-    private View view;
     private ImageView background, box, rabbit, turtle;
     private TextView subtitles;
-    private String subs [] = {"그런데 이때 거북이가 개울가로 다가오고 있었어요.", "토끼 “거북아 나 좀 살려줘!”"};
-    private ImageButton next;
+    boolean sound, subtitle;
+    private String subs [] = {"토끼 “좋아. 하지만 날 이길 수는 없을 껄?”", "거북이 “경주는 끝까지 해봐야 아는 거야”","토끼와 거북이는 산 꼭대기까지 경주하기로 했어요. "};
     Handler delayHandler = new Handler();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.rscene19, container,false);
+        view = inflater.inflate(R.layout.ori_rabbit02, container,false);
 
         background = view.findViewById(R.id.background);
         box = view.findViewById(R.id.subtitlebox);
+        rabbit = view.findViewById(R.id.rabbit);
         turtle = view.findViewById(R.id.turtle);
         subtitles = view.findViewById(R.id.subTitle);
-        next = view.findViewById(R.id.next);
 
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/5/19_back.png")
+                .load("http://49.50.174.179:9000/images/rabbit/original/1_back.jpg")
                 .into(background);
+        Glide.with(this)
+                .load("http://49.50.174.179:9000/images/rabbit/original/3_ok.png")
+                .into(rabbit);
 
-        try {
-            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene19_1.mp3");
-            mp1.prepare();
-            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene19_2.mp3");
-            mp2.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        turtle.setBackgroundResource(R.drawable.angry_tur);
+
+//        try {
+//            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene06_1.mp3");
+//            mp1.prepare();
+//            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene06_2.mp3");
+//            mp2.prepare();
+//            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene06_3.mp3");
+//            mp3.prepare();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
-
-        turtle.setBackgroundResource(R.drawable.turtle_backgo);
-        frameturtle = (AnimationDrawable) turtle.getBackground();
-
-        Animation turtlego = AnimationUtils.loadAnimation(getActivity(), R.anim.turtle_backgo);
-
-        frameturtle.start();
-        turtle.startAnimation(turtlego);
+//        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
 
         subtitles.setText(subs[0]);
         mp1.start();
@@ -79,25 +75,26 @@ public class rScene19 extends Fragment {
                 subtitles.setText(subs[1]);
                 mp2.start();
             }
-        }, a);
+        }, 4000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
-                next.setVisibility(View.VISIBLE);
+                subtitles.setText(subs[2]);
+                //mp3.start();
             }
-        }, b);
-
-        next.setOnClickListener(new View.OnClickListener() {
+        }, 7000);
+        delayHandler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
+            public void run() {
+                // TODO
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                rScene20 rscene20 = new rScene20();
-                transaction.replace(R.id.frame,rscene20);
+                ori_rabbit04 ori_rabbit04 = new ori_rabbit04();
+                transaction.replace(R.id.frame, ori_rabbit04);
                 transaction.commit();  //저장
             }
-        });
-
+        }, 12000);
         return view;
     }
+
 }

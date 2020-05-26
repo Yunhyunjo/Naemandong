@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.naemandong_main.original.rabbit.Rabbit_original;
 import com.example.naemandong_main.pig.activity.Pig01;
 import com.example.naemandong_main.rabbit.activity.Rabbit01;
 
@@ -38,7 +39,9 @@ public class Making extends AppCompatActivity {
         rabbit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Making.this, Rabbit01.class));
+                Intent intent = new Intent(Making.this, Original_story.class);
+                intent.putExtra("story", 1);
+                startActivity(intent);
                 finish();
             }
         });
@@ -46,7 +49,9 @@ public class Making extends AppCompatActivity {
         pig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Making.this, Pig01.class));
+                Intent intent = new Intent(Making.this, Original_story.class);
+                intent.putExtra("story", 2);
+                startActivity(intent);
                 finish();
             }
         });

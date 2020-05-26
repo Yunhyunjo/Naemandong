@@ -1,4 +1,4 @@
-package com.example.naemandong_main.rabbit.fragment;
+package com.example.naemandong_main.original.rabbit;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,17 +22,15 @@ import com.example.naemandong_main.R;
 
 import java.io.IOException;
 
-public class rScene07 extends Fragment {
+public class ori_rabbit04 extends Fragment {
 
+    private View view;
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
-    MediaPlayer mp3 = new MediaPlayer();
     private AnimationDrawable frameTurtle, frameRabbit;
-    private View view;
     private ImageView background, box, rabbit, turtle;
     private TextView subtitles;
     private String subs [] = {"탕 소리와 함께 토끼는 깡총깡총, 거북이는 엉금엉금 달려가기 시작했어요.","토끼 “토끼님이 나가신다 길을 비켜라~”", "토끼는 시작과 동시에 거북이보다 훌쩍 앞서기 시작했어요."};
-    private ImageButton next;
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -46,26 +43,25 @@ public class rScene07 extends Fragment {
         rabbit = view.findViewById(R.id.rabbit);
         turtle = view.findViewById(R.id.turtle);
         subtitles = view.findViewById(R.id.subTitle);
-        next = view.findViewById(R.id.next);
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/5/7_back.jpg")
                 .into(background);
 
-        try {
-            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene07_1.mp3");
-            mp1.prepare();
-            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene07_2.mp3");
-            mp2.prepare();
-            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene07_3.mp3");
-            mp3.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene07_1.mp3");
+//            mp1.prepare();
+//            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene07_2.mp3");
+//            mp2.prepare();
+//            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene07_3.mp3");
+//            mp3.prepare();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
-        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
+//        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
 
         turtle.setBackgroundResource(R.drawable.turtle_rightgo);
         frameTurtle = (AnimationDrawable) turtle.getBackground();
@@ -86,35 +82,27 @@ public class rScene07 extends Fragment {
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                mp2.start();
+                //mp2.start();
             }
-        }, a);
+        }, 6000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[2]);
-                mp3.start();
+                //mp3.start();
             }
-        }, b);
+        }, 9000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
-                next.setVisibility(View.VISIBLE);
-            }
-        }, c);
-
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                rScene08 rscene08 = new rScene08();
-                transaction.replace(R.id.frame,rscene08);
+                ori_rabbit05 ori_rabbit05 = new ori_rabbit05();
+                transaction.replace(R.id.frame, ori_rabbit05);
                 transaction.commit();  //저장
             }
-        });
-
+        }, 14000);
         return view;
     }
 }

@@ -24,7 +24,7 @@ public class rScene42 extends Fragment {
     private View view;
     private ImageView background, box, bush, rabbit, turtle, bulb, bike_turtle, rabbit_bed, bike;
     private TextView subtitles;
-    private String subs [] = {"거북이“여기 오토바이가 있네?”", "거북이는 오토바이를 타고 달리기 시작했어요.", "부아아아앙!!", " 토끼“이게 무슨 소리지?”"};
+    private String subs [] = {"거북이 “여기 오토바이가 있네?”", "거북이는 오토바이를 타고 달리기 시작했어요.", "부아아아앙!!", " 토끼 “이게 무슨 소리지?”"};
     private ImageButton next;
     Handler delayHandler = new Handler();
 
@@ -80,7 +80,7 @@ public class rScene42 extends Fragment {
 
                 subtitles.setText(subs[1]);
             }
-        }, 5000);
+        }, 4000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -92,7 +92,7 @@ public class rScene42 extends Fragment {
 
                 subtitles.setText(subs[2]);
             }
-        }, 5000);
+        }, 9000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -107,14 +107,14 @@ public class rScene42 extends Fragment {
                         .load("http://49.50.174.179:9000/images/rabbit/5/47_bed.png")
                         .into(rabbit_bed);
             }
-        }, 5000);
+        }, 11000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 next.setVisibility(View.VISIBLE);
             }
-        }, 8300);
+        }, 13000);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -29,7 +29,7 @@ public class rScene02 extends Fragment {
     private ImageView background, rabbit, lion, sloth, box, next;
     private TextView subtitles;
     boolean sound, subtitle;
-    private String subs [] = {"토끼“내가 이 숲 속에서 제일 빨라. 아무도 나를 이길 수 없을껄?”", "사자“아니야. 내가 이 숲 속의 왕이니까 달리기도 내가 제일 빨라.”","나무늘보“나......도.....달...리...기....”"};
+    private String subs [] = {"토끼 “내가 이 숲 속에서 제일 빨라. 아무도 나를 이길 수 없을껄?”", "사자 “아니야. 내가 이 숲 속의 왕이니까 달리기도 내가 제일 빨라.”","나무늘보 “나......도.....달...리...기....”"};
     Handler delayHandler = new Handler();
 
     @Nullable
