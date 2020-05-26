@@ -32,6 +32,9 @@
         <activity android:name=".pig.activity.Pig01" />
         <activity android:name=".original.pig.Pig_original" />
         <activity android:name=".original.rabbit.Rabbit_original" />
+        <activity android:name=".rabbit.activity.Rabbit37" />
+        <activity android:name=".rabbit.activity.Rabbit36" />
+        <activity android:name=".rabbit.activity.Rabbit35" />
         <activity android:name=".rabbit.activity.Rabbit34" />
         <activity android:name=".rabbit.activity.Rabbit33" />
         <activity android:name=".rabbit.activity.Rabbit32" />

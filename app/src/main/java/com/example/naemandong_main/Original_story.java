@@ -12,6 +12,7 @@ import com.example.naemandong_main.original.pig.Pig_original;
 import com.example.naemandong_main.original.rabbit.Rabbit_original;
 import com.example.naemandong_main.pig.activity.Pig01;
 import com.example.naemandong_main.rabbit.activity.Rabbit01;
+import com.example.naemandong_main.rabbit.activity.Rabbit37;
 
 public class Original_story extends AppCompatActivity {
 

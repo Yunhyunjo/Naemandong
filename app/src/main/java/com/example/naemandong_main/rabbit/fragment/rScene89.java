@@ -15,35 +15,36 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
-import com.example.naemandong_main.rabbit.activity.Rabbit31;
-import com.example.naemandong_main.rabbit.activity.Rabbit32;
-import com.example.naemandong_main.rabbit.activity.Rabbit35;
 
-public class rScene82 extends Fragment {
+import com.example.naemandong_main.rabbit.activity.Rabbit35;
+import com.example.naemandong_main.rabbit.activity.Rabbit36;
+import com.example.naemandong_main.rabbit.activity.Rabbit37;
+
+public class rScene89 extends Fragment {
 
     MediaPlayer mp1 = new MediaPlayer();
     private View view;
     private ImageView background;
-    private ImageButton yes, no;
+    private ImageButton skate, bike;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.rscene82, container,false);
+        view = inflater.inflate(R.layout.rscene89, container,false);
 
         background = view.findViewById(R.id.background);
-        yes = view.findViewById(R.id.yes);
-        no = view.findViewById(R.id.no);
+        skate = view.findViewById(R.id.skate);
+        bike = view.findViewById(R.id.bike);
 
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/7/92_back.png")
+                .load("http://49.50.174.179:9000/images/rabbit/7/94_back.png")
                 .into(background);
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/7/92_wake.png")
-                .into(yes);
+                .load("http://49.50.174.179:9000/images/rabbit/7/101_s.png")
+                .into(skate);
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/7/92_no.png")
-                .into(no);
+                .load("http://49.50.174.179:9000/images/rabbit/7/101_b.png")
+                .into(bike);
 
         /*try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene09.mp3");
@@ -53,20 +54,20 @@ public class rScene82 extends Fragment {
             e.printStackTrace();
         }*/
 
-        yes.setOnClickListener(new View.OnClickListener() {
+        skate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Rabbit31)getActivity()).setMylist(0);
-                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit32.class);
+                ((Rabbit35)getActivity()).setMylist(0);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit36.class);
                 startActivity(intent);
                 getActivity().finish();
             }
         });
-        no.setOnClickListener(new View.OnClickListener() {
+        bike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Rabbit31)getActivity()).setMylist(1);
-                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit35.class);
+                ((Rabbit35)getActivity()).setMylist(1);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit37.class);
                 startActivity(intent);
                 getActivity().finish();
             }
