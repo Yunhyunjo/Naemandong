@@ -19,79 +19,108 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.rabbit.activity.Rabbit15;
+import com.example.naemandong_main.rabbit.activity.Rabbit28;
+import com.example.naemandong_main.rabbit.activity.Rabbit29;
 
-public class rScene70 extends Fragment {
+import java.util.ArrayList;
+
+public class rScene76 extends Fragment {
 
     private AnimationDrawable frameLion;
     private View view;
-    private ImageView background, box, lion, front, front2;
+    private ImageView background, box, lion, turtle, front, front2, effect;
     private TextView subtitles;
-    private String subs [] = {"그런데 갑자기 사자는 배가 아프기 시작했어요.", "“윽, 갑자기 배가 왜 이렇게 아프지? 거북이가 오기 전에 얼른 싸야지.”"};
+    private String subs[] = {"그런데 갑자기 거북이가 타고 가던 자동차가 고장이 나고 말았어요.", "“뭐야? 이게 왜 이러지.. 자동차가 이상해!”", "“흥, 나 먼저 간다 거북아!”"};
     private ImageButton next;
+    private ArrayList<Integer> myList;
     Handler delayHandler = new Handler();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.rscene69, container,false);
+        view = inflater.inflate(R.layout.rscene76, container, false);
 
         background = view.findViewById(R.id.background);
-//        front = view.findViewById(R.id.front);
+        front = view.findViewById(R.id.front);
         front2 = view.findViewById(R.id.front2);
+        effect = view.findViewById(R.id.effect);
         box = view.findViewById(R.id.subtitlebox);
         lion = view.findViewById(R.id.lion);
+        turtle = view.findViewById(R.id.turtle);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
 
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/7/82_fin1.png")
+                .load("http://49.50.174.179:9000/images/rabbit/7/86_back.png")
                 .into(background);
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/7/79_ffront.png")
+                .load("http://49.50.174.179:9000/images/rabbit/7/86_right.png")
                 .into(front2);
+        Glide.with(this)
+                .load("http://49.50.174.179:9000/images/rabbit/7/86_left.png")
+                .into(front);
+        turtle.setBackgroundResource(R.drawable.driving_turtle);
+
+        lion.setBackgroundResource(R.drawable.lion_backgo);
+        frameLion = (AnimationDrawable) lion.getBackground();
+
+        Animation turtlego = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene76);
+        turtle.startAnimation(turtlego);
 
 
+        frameLion.start();
 
         subtitles.setText(subs[0]);
 
+        myList = (ArrayList<Integer>) ((Rabbit29) getActivity()).getMylist().clone();
+        ((Rabbit29) getActivity()).clearList();
+
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 Glide.with(getActivity())
-                        .load("http://49.50.174.179:9000/images/rabbit/7/82_fin2.png")
-                        .into(background);
-            }
-        }, 2000);
-        delayHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // TODO
-                Glide.with(getActivity())
-                        .load("http://49.50.174.179:9000/images/rabbit/5/10_back.png")
-                        .into(background);
-                lion.setBackgroundResource(R.drawable.lion_ddonggo);
-                frameLion = (AnimationDrawable) lion.getBackground();
-                frameLion.start();
-                Animation liongo = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene70_lion);
-                lion.startAnimation(liongo);
+                        .load("http://49.50.174.179:9000/images/rabbit/7/115_broken.png")
+                        .into(effect);
                 subtitles.setText(subs[1]);
             }
-        }, 4000);
+        }, 3000);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                lion.setBackgroundResource(R.drawable.lion_rightgo67);
+                frameLion = (AnimationDrawable) lion.getBackground();
+                frameLion.start();
+
+                Animation liongo = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene76_2);
+                lion.startAnimation(liongo);
+
+                subtitles.setText(subs[2]);
+            }
+        }, 5000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 next.setVisibility(View.VISIBLE);
             }
-        }, 7000);
+        }, 8000);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                if (((Rabbit29) getActivity()).play) {
+                    bundle.putBoolean("play", true);
+                } else {
+                    bundle.putIntegerArrayList("myList", myList);
+                }
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                rScene71 rscene71 = new rScene71();
-                transaction.replace(R.id.frame,rscene71);
+                rFinal10 rfinal10 = new rFinal10();
+                rfinal10.setArguments(bundle);
+                transaction.replace(R.id.frame, rfinal10);
                 transaction.commit();  //저장
             }
         });
