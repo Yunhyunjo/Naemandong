@@ -61,7 +61,6 @@ public class pFinal08 extends Fragment {
         wolfig.setBackgroundResource(R.drawable.pig_s62);
         frameAnimation = (AnimationDrawable) wolfig.getBackground();
 
-        subtitles.setText(subs[0]);
         frameAnimation.start();
 
         if (getArguments() != null){
