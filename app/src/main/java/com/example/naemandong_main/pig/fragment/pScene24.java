@@ -31,7 +31,7 @@ public class pScene24 extends Fragment {
     private ImageView background, wolf, pig, grass;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"첫째, 둘째 돼지 \"저리 가! 이 나쁜 늑대야!!\"", "늑대 \"흥, 이쯤이야 내 몸통 박치기 한 번이면 무너지지!\"", "쿵!!", "늑대는 튼튼한 몸으로 둘째 돼지의 집을 무너뜨렸어요." };
+    private String subs [] = {"\"저리 가! 이 나쁜 늑대야!!\"", "\"흥, 이쯤이야 내 몸통 박치기 한 번이면 무너지지!\"", "쿵!!", "늑대는 튼튼한 몸으로 둘째 돼지의 집을 무너뜨렸어요." };
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -98,6 +98,7 @@ public class pScene24 extends Fragment {
             public void onClick(View v) {
                 if(((Pig06)getActivity()).play){
                     if(((Pig06)getActivity()).getData() == 0){
+                        ((Pig06)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig07.class);
                         intent.putExtra("play",true);
                         startActivity(intent);

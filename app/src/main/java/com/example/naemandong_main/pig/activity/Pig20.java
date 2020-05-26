@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -51,7 +52,10 @@ public class Pig20 extends AppCompatActivity {
     }
     public int getData() {
         int data = ((Setting_data)this.getApplication()).myList.get(0);
-        ((Setting_data)this.getApplication()).myList.remove(0);
         return data;
+    }
+    public void removeData() {
+        ((Setting_data)this.getApplication()).myList.remove(0);
+        Toast.makeText(this,String.valueOf(((Setting_data)this.getApplication()).myList),Toast.LENGTH_LONG).show();
     }
 }

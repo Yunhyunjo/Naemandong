@@ -35,7 +35,7 @@ public class pScene01 extends Fragment {
     private ImageView background, pig;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"어느날 숲속에 사는 아기 돼지 삼형제에게 엄마돼지가 말했어요", "엄마 돼지 \"이제 너희도 다 컷으니 혼자 살아보렴.\"","집에서 나오게 된 삼형제는 어떤 집을 짓고 살 것인지 고민하게 되었어요."};
+    private String subs [] = {"어느날 숲속에 사는 아기 돼지 삼형제에게 엄마돼지가 말했어요", "\"이제 너희도 다 컷으니 혼자 살아보렴.\"","집에서 나오게 된 삼형제는 어떤 집을 짓고 살 것인지 고민하게 되었어요."};
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -103,6 +103,7 @@ public class pScene01 extends Fragment {
 
                 if (((Pig01)getActivity()).play){
                     if(((Pig01)getActivity()).getData() == 0){
+                        ((Pig01)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig02.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
@@ -110,6 +111,7 @@ public class pScene01 extends Fragment {
                     }
                 }
                 else {
+                    ((Pig01)getActivity()).removeData();
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     pScene02 pscene02 = new pScene02();
                     transaction.replace(R.id.frame, pscene02);

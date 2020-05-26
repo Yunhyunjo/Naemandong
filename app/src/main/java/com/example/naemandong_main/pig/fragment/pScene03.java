@@ -32,7 +32,7 @@ public class pScene03 extends Fragment {
     private ImageView background, pig;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"첫째 돼지는 지푸라기로 집을 짓기로 결정했어요.", "첫째 돼지 \"지푸라기로 집을 지으면 얼마나 간단한지~\"" };
+    private String subs [] = {"첫째 돼지는 지푸라기로 집을 짓기로 결정했어요.", "\"지푸라기로 집을 지으면 얼마나 간단한지~\"" };
     Handler delayHandler = new Handler();
 
     @Nullable

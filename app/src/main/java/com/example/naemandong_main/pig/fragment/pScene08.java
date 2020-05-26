@@ -28,7 +28,7 @@ public class pScene08 extends Fragment {
     private ImageView background;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"한편, 그 사실을 모르고 있는 둘째 돼지는 튼튼한 철로 집을 지었어요.", "둘째 돼지 \"튼튼한 철로 만든 집은 절대 무너지지 않지!\"" };
+    private String subs [] = {"한편, 그 사실을 모르고 있는 둘째 돼지는 튼튼한 철로 집을 지었어요.", "\"튼튼한 철로 만든 집은 절대 무너지지 않지!\"" };
     Handler delayHandler = new Handler();
 
     @Nullable

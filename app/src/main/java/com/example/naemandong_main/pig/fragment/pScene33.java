@@ -28,7 +28,7 @@ public class pScene33 extends Fragment {
     private ImageView background, wolf;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"우리집은 단단해서 나쁜 늑대 너는 무너뜨릴 수 없어!", "저 튼튼한 막내 돼지 집에 어떻게 하면 들어갈 수 있을까" };
+    private String subs [] = {"\"우리집은 단단해서 나쁜 늑대 너는 무너뜨릴 수 없어!\"", "저 튼튼한 막내 돼지 집에 어떻게 하면 들어갈 수 있을까" };
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -66,6 +66,7 @@ public class pScene33 extends Fragment {
             public void onClick(View v) {
                 if (((Pig08)getActivity()).play){
                     if(((Pig08)getActivity()).getData() == 0){
+                        ((Pig08)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig09.class);
                         intent.putExtra("play",true);
                         startActivity(intent);

@@ -24,6 +24,7 @@ import com.example.naemandong_main.pig.activity.Pig06;
 import com.example.naemandong_main.pig.activity.Pig07;
 import com.example.naemandong_main.pig.activity.Pig14;
 import com.example.naemandong_main.pig.activity.Pig15;
+import com.example.naemandong_main.pig.activity.Pig20;
 
 // 첫둘 돼지 막돼집으로 가기로함
 public class pScene46 extends Fragment {
@@ -87,17 +88,18 @@ public class pScene46 extends Fragment {
             @Override
             public void onClick(View v) {
                 if(((Pig14)getActivity()).play){
-                    if(((Pig14)getActivity()).getData() == 1){
+                    if(((Pig14)getActivity()).getData() == 0){
+                        ((Pig14)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig15.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();
                     }
                     else {
-//                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig02.class);
-//                        intent.putExtra("play",true);
-//                        startActivity(intent);
-//                        getActivity().finish();
+                        ((Pig14)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig20.class);
+                        startActivity(intent);
+                        getActivity().finish();
                     }
                 }
                 else{

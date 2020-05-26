@@ -25,7 +25,7 @@ public class pScene35 extends Fragment {
     private ImageView background;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"그래 엄마 돼지로 변장하자!", "늑대는 엄마 돼지로 변장을 했어요." };
+    private String subs [] = {"\"그래 엄마 돼지로 변장하자!\"", "늑대는 엄마 돼지로 변장을 했어요." };
     Handler delayHandler = new Handler();
 
     @Nullable

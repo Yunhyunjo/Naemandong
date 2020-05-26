@@ -72,6 +72,7 @@ public class pScene38 extends Fragment {
             public void onClick(View v) {
                 if (((Pig10)getActivity()).play){
                     if(((Pig10)getActivity()).getData() == 0){
+                        ((Pig10)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig11.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
