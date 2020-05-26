@@ -30,7 +30,7 @@ public class rScene43 extends Fragment {
     private View view;
     private ImageView background, box, rabbit, bike_turtle, bush1, bush2;
     private TextView subtitles;
-    private String subs [] = {"놀란 토끼는 바로 일어나 거북이를 쫓아가기 시작했어요.", "토끼“거북이가 벌써 저기까지 갔잖아? 거북아 기다려라~!!”", "하지만 토끼는 거북이를 따라잡지 못했어요."};
+    private String subs [] = {"놀란 토끼는 바로 일어나 거북이를 쫓아가기 시작했어요.", "토끼 “거북이가 벌써 저기까지 갔잖아? 거북아 기다려라~!!”", "하지만 토끼는 거북이를 따라잡지 못했어요."};
     private ImageButton next;
     private ArrayList<Integer> myList;
     Handler delayHandler = new Handler();
@@ -81,6 +81,7 @@ public class rScene43 extends Fragment {
                 subtitles.setText(subs[1]);
 
                 bike_turtle.setBackgroundResource(R.drawable.bike_tur_small);
+                frameRabbit.stop();
 
                 Animation turtlego = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene42);
                 bike_turtle.startAnimation(turtlego);

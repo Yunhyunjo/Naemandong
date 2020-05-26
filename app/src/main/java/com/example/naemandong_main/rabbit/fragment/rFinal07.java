@@ -41,7 +41,7 @@ public class rFinal07 extends Fragment {
         box = view.findViewById(R.id.subtitlebox);
         subtitles = view.findViewById(R.id.subTitle);
         save = view.findViewById(R.id.save);
-        exit.setVisibility(View.VISIBLE);
+        exit = view.findViewById(R.id.exit);
 
         if (getArguments() != null){
             myList = getArguments().getIntegerArrayList("myList");

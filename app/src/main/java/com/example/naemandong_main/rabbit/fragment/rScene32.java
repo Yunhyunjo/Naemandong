@@ -79,7 +79,7 @@ public class rScene32 extends Fragment {
                         .load("http://49.50.174.179:9000/images/rabbit/5/35_t_front.png")
                         .into(turtle);
             }
-        }, 2000);
+        }, 6000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {

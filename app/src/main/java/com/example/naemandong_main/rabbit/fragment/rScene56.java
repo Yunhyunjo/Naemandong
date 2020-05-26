@@ -98,7 +98,6 @@ public class rScene56 extends Fragment {
             public void run() {
                 // TODO
                 subtitles.setText(subs[2]);
-                next.setVisibility(View.VISIBLE);
             }
         }, 8500);
         delayHandler.postDelayed(new Runnable() {

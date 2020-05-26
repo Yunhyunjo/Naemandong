@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.rabbit.activity.Rabbit02;
 import com.example.naemandong_main.rabbit.activity.Rabbit18;
+import com.example.naemandong_main.rabbit.activity.Rabbit26;
 
 public class rScene49 extends Fragment {
 
@@ -61,15 +62,15 @@ public class rScene49 extends Fragment {
                 getActivity().finish();
             }
         });
-//        lion.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ((Rabbit17)getActivity()).setMylist(1);
-//                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit10.class);
-//                startActivity(intent);
-//                getActivity().finish();
-//            }
-//        });
+        lion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((Rabbit18)getActivity()).setMylist(1);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit26.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
 
         return view;
     }
