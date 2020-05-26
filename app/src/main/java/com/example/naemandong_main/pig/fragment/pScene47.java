@@ -18,6 +18,7 @@ import com.example.naemandong_main.pig.activity.Pig07;
 import com.example.naemandong_main.pig.activity.Pig08;
 import com.example.naemandong_main.pig.activity.Pig14;
 import com.example.naemandong_main.pig.activity.Pig15;
+import com.example.naemandong_main.pig.activity.Pig20;
 
 // 막돼 재료 선택
 public class pScene47 extends Fragment {
@@ -58,13 +59,15 @@ public class pScene47 extends Fragment {
                 getActivity().finish();
             }
         });
-//        lion.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit02.class);
-//                startActivity(intent);
-//            }
-//        });
+        brick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((Pig14)getActivity()).setMylist(1);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Pig20.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
 //        sloth.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

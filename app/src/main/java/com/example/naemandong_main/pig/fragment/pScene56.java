@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -45,12 +47,19 @@ public class pScene56 extends Fragment {
         next = view.findViewById(R.id.next);
 
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/pig/1/27.png")
+                .load("http://49.50.174.179:9000/images/pig/1/19_bg-01.png")
                 .into(background);
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/27_house-01-01.png")
                 .into(pigs);
+
+        wolf.setBackgroundResource(R.drawable.wolf_s41);
+        frameAnimation = (AnimationDrawable) wolf.getBackground();
+        Animation wolfgo = AnimationUtils.loadAnimation(getActivity(), R.anim.pscene41);
+
+        frameAnimation.start();
+        wolf.startAnimation(wolfgo);
 
         myList = (ArrayList<Integer>) ((Pig17)getActivity()).getMylist().clone();
         ((Pig17)getActivity()).clearList();

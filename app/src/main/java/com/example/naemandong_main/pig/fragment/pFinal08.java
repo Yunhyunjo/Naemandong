@@ -46,6 +46,7 @@ public class pFinal08 extends Fragment {
         pigs = view.findViewById(R.id.pigs);
         wolfig = view.findViewById(R.id.wolfig);
         subtitles = view.findViewById(R.id.subTitle);
+        box = view.findViewById(R.id.subtitlebox);
         save = view.findViewById(R.id.save);
         exit = view.findViewById(R.id.exit);
 
@@ -59,11 +60,9 @@ public class pFinal08 extends Fragment {
 
         wolfig.setBackgroundResource(R.drawable.pig_s62);
         frameAnimation = (AnimationDrawable) wolfig.getBackground();
-        Animation wolfgo = AnimationUtils.loadAnimation(getActivity(), R.anim.pscene05);
 
         subtitles.setText(subs[0]);
         frameAnimation.start();
-        wolfig.startAnimation(wolfgo);
 
         if (getArguments() != null){
             myList = getArguments().getIntegerArrayList("myList");
@@ -89,10 +88,8 @@ public class pFinal08 extends Fragment {
                 box.setVisibility(View.INVISIBLE);
                 subtitles.setVisibility(View.INVISIBLE);
                 if (!play) {
-                    //save.setVisibility(View.VISIBLE);
-                    //exit.setVisibility(View.VISIBLE);
-                    String a = myList.toString();
-                    Toast.makeText(getContext(), a, Toast.LENGTH_SHORT).show();
+                    save.setVisibility(View.VISIBLE);
+                    exit.setVisibility(View.VISIBLE);
                 }
             }
         }, 10000);

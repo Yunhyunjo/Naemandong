@@ -47,6 +47,7 @@ public class pFinal03 extends Fragment {
         house_inside = view.findViewById(R.id.house_inside);
         subtitles = view.findViewById(R.id.subTitle);
         save = view.findViewById(R.id.save);
+        exit = view.findViewById(R.id.exit);
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/19_bg-01.png")

@@ -24,7 +24,7 @@ import java.util.ArrayList;
 // 땅파기
 public class pScene61 extends Fragment {
 
-    AnimationDrawable frameAnimation;
+    AnimationDrawable frameAnimation1, frameAnimation2;
     private View view;
     private ImageView background, pig, wolf;
     private ImageButton next;
@@ -48,14 +48,15 @@ public class pScene61 extends Fragment {
                 .load("http://49.50.174.179:9000/images/pig/1/24_bg-012.png")
                 .into(background);
 
-        Glide.with(this)
-                .load("http://49.50.174.179:9000/images/pig/1/24_24_wolf1-01.png")
-                .into(wolf);
-
         pig.setBackgroundResource(R.drawable.pig_s61);
-        frameAnimation = (AnimationDrawable) pig.getBackground();
+        frameAnimation1 = (AnimationDrawable) pig.getBackground();
 
-        frameAnimation.start();
+        wolf.setBackgroundResource(R.drawable.wolf_s61);
+        frameAnimation2 = (AnimationDrawable) wolf.getBackground();
+
+        frameAnimation1.start();
+        frameAnimation2.start();
+
         subtitles.setText(subs[0]);
 
         myList = (ArrayList<Integer>) ((Pig19)getActivity()).getMylist().clone();

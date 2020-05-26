@@ -46,6 +46,7 @@ public class pFinal05 extends Fragment {
         box = view.findViewById(R.id.subtitlebox);
         subtitles = view.findViewById(R.id.subTitle);
         save = view.findViewById(R.id.save);
+        exit = view.findViewById(R.id.exit);
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/19_example.png")
@@ -60,19 +61,18 @@ public class pFinal05 extends Fragment {
             }
         }
 
+        wolf.setBackgroundResource(R.drawable.wolf_f5);
+        frameAnimation = (AnimationDrawable) wolf.getBackground();
+        Animation wolfgo = AnimationUtils.loadAnimation(getActivity(),R.anim.pscene41);
+        frameAnimation.start();
+        wolf.startAnimation(wolfgo);
+
         subtitles.setText(subs[0]);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-
-                wolf.setBackgroundResource(R.drawable.wolf_f5);
-                frameAnimation = (AnimationDrawable) wolf.getBackground();
-                Animation wolfgo = AnimationUtils.loadAnimation(getActivity(),R.anim.pscene41);
-                frameAnimation.start();
-                wolf.startAnimation(wolfgo);
-
             }
         }, 3100);
         delayHandler.postDelayed(new Runnable() {

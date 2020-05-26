@@ -30,7 +30,7 @@ public class pScene46 extends Fragment {
 
     AnimationDrawable frameAnimation;
     private View view;
-    private ImageView background, pigs;
+    private ImageView background, pigs, wolf, tree;
     private ImageButton next;
     private TextView subtitles;
     private String subs [] = {"첫째 돼지와 둘째 돼지는 막내 돼지의 집으로 도망쳤어요."};
@@ -42,13 +42,23 @@ public class pScene46 extends Fragment {
         view = inflater.inflate(R.layout.pscene46, container,false);
 
         background = view.findViewById(R.id.background);
+        tree = view.findViewById(R.id.tree);
+        wolf = view.findViewById(R.id.wolf);
         pigs = view.findViewById(R.id.pigs);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
 
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/pig/1/19_example.png")
+                .load("http://49.50.174.179:9000/images/pig/1/19_bg-01.png")
                 .into(background);
+
+        Glide.with(this)
+                .load("http://49.50.174.179:9000/images/pig/1/treecollapse.png")
+                .into(tree);
+
+        Glide.with(this)
+                .load("http://49.50.174.179:9000/images/pig/1/20_wolf1 (1).png")
+                .into(wolf);
 
         pigs.setBackgroundResource(R.drawable.pig_s46);
         frameAnimation = (AnimationDrawable) pigs.getBackground();

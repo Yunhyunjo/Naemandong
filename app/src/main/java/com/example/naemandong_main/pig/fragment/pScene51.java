@@ -48,7 +48,7 @@ public class pScene51 extends Fragment {
         next = view.findViewById(R.id.next);
 
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/pig/1/19_example.png")
+                .load("http://49.50.174.179:9000/images/pig/1/19_bg-01.png")
                 .into(background);
 
         Glide.with(this)

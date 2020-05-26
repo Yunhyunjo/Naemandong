@@ -60,7 +60,7 @@ public class pScene39 extends Fragment {
         tack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Pig10)getActivity()).setMylist(0);
+                ((Pig10)getActivity()).setMylist(1);
                 Intent intent = new Intent(getActivity().getApplicationContext(), Pig12.class);
                 startActivity(intent);
                 getActivity().finish();
@@ -69,7 +69,7 @@ public class pScene39 extends Fragment {
         bed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Pig10)getActivity()).setMylist(0);
+                ((Pig10)getActivity()).setMylist(2);
                 Intent intent = new Intent(getActivity().getApplicationContext(), Pig13.class);
                 startActivity(intent);
                 getActivity().finish();

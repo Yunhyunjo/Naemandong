@@ -21,7 +21,7 @@ import com.example.naemandong_main.Save_Dialog;
 
 import java.util.ArrayList;
 
-// 돼지 셋 엔딩
+// 돼지 셋 돌집 엔딩
 public class pFinal07 extends Fragment {
     private Save_Dialog saveDialog;
     AnimationDrawable frameAnimation;

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,7 +31,7 @@ public class pFinal06 extends Fragment {
     private ImageButton save, exit;
     private ArrayList<Integer> myList;
     boolean play = false;
-    private String subs [] = {"막내돼지는 깊은 잠에 빠진 늑대를 강으로 휙 하고 던졌어요.", "막내 돼지 \"늑대야! 앞으로 나를 괴롭힐 생각은 하지도마!\""};
+    private String subs [] = {"막내돼지는 깊은 잠에 빠진 늑대를 강으로 휙 하고 던졌어요.", "늑대야! 앞으로 나를 괴롭힐 생각은 하지도마!"};
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -42,6 +43,7 @@ public class pFinal06 extends Fragment {
         box = view.findViewById(R.id.subtitlebox);
         subtitles = view.findViewById(R.id.subTitle);
         save = view.findViewById(R.id.save);
+        exit = view.findViewById(R.id.exit);
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/pigpig1.png")
@@ -74,6 +76,7 @@ public class pFinal06 extends Fragment {
                 if (!play) {
                     save.setVisibility(View.VISIBLE);
                     exit.setVisibility(View.VISIBLE);
+
                 }
             }
         }, 10000);
