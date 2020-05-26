@@ -91,8 +91,8 @@ public class rScene70 extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                rScene29 rscene29 = new rScene29();
-                transaction.replace(R.id.frame,rscene29);
+                rScene71 rscene71 = new rScene71();
+                transaction.replace(R.id.frame,rscene71);
                 transaction.commit();  //저장
             }
         });
