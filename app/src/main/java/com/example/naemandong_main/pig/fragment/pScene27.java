@@ -19,6 +19,8 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.pig.activity.Pig07;
 import com.example.naemandong_main.pig.activity.Pig08;
+import com.example.naemandong_main.pig.activity.Pig25;
+import com.example.naemandong_main.pig.activity.Pig28;
 
 public class pScene27 extends Fragment {
 
@@ -94,11 +96,18 @@ public class pScene27 extends Fragment {
                         intent.putExtra("play", true);
                         startActivity(intent);
                         getActivity().finish();
+                    } else if (((Pig07) getActivity()).getData() == 1) {
+                        ((Pig07)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig25.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
                     } else {
-//                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig02.class);
-//                        intent.putExtra("play",true);
-//                        startActivity(intent);
-//                        getActivity().finish();
+                        ((Pig07)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig28.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
                     }
                 }
                 else{

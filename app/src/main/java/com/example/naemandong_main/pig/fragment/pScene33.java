@@ -20,6 +20,9 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.pig.activity.Pig08;
 import com.example.naemandong_main.pig.activity.Pig09;
+import com.example.naemandong_main.pig.activity.Pig11;
+import com.example.naemandong_main.pig.activity.Pig12;
+import com.example.naemandong_main.pig.activity.Pig13;
 
 public class pScene33 extends Fragment {
 
@@ -67,17 +70,25 @@ public class pScene33 extends Fragment {
                 if (((Pig08)getActivity()).play){
                     if(((Pig08)getActivity()).getData() == 0){
                         ((Pig08)getActivity()).removeData();
-                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig09.class);
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig11.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();
                     }
-//                    else {
-//                        Intent intent = new Intent(getActivity().getApplicationContext(),Pig05.class);
-//                        intent.putExtra("play",true);
-//                        startActivity(intent);
-//                        getActivity().finish();
-//                    }
+                    else if(((Pig08)getActivity()).getData() == 1) {
+                        ((Pig08)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig12.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
+                    else {
+                        ((Pig08)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig13.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
                 }
                 else{
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();

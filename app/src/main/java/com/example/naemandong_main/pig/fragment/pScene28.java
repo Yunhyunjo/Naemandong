@@ -71,7 +71,7 @@ public class pScene28 extends Fragment {
         sand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Pig07)getActivity()).setMylist(1);
+                ((Pig07)getActivity()).setMylist(2);
                 Intent intent = new Intent(getActivity().getApplicationContext(), Pig28.class);
                 startActivity(intent);
                 getActivity().finish();
