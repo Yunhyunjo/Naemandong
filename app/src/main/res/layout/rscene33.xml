@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/cat_is"
         android:gravity="center"
-        android:text="거북이의 선택! 토끼를 깨울까요?"
+        android:text="거북이는 토끼를 깨울까요?"
         android:textAllCaps="true"
         android:textColor="#FFFFFF"
         android:textSize="36sp"

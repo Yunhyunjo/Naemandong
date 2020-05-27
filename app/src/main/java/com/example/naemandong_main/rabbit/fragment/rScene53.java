@@ -34,7 +34,7 @@ public class rScene53 extends Fragment {
     private View view;
     private ImageView background, box,front, sloth;
     private TextView subtitles;
-    private String subs [] = {"나무늘보 \"ㅇ….어….어어..………\"", "신비한 물약은 빨리 달리게 도와주는 약이었어요", "하지만 그 것도 잠시, 약의 효과는 금방 떨어져서 나무늘보는 다시 느려졌어요."};
+    private String subs [] = {"\"ㅇ….어….어어..………\"", "신비한 물약은 빨리 달리게 도와주는 약이었어요", "하지만 그 것도 잠시, 약의 효과는 금방 떨어져서 나무늘보는 다시 느려졌어요."};
     private ImageButton next;
     Handler delayHandler = new Handler();
 

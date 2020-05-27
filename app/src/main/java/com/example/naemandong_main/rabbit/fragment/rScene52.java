@@ -27,7 +27,7 @@ public class rScene52 extends Fragment {
     private View view;
     private ImageView background, box, sloth, potion;
     private TextView subtitles;
-    private String subs [] = {"열심히 달리고 있던 나무늘보는 신비한 물약을 발견했어요.","나무늘보 \"뭐……지…..꿀….꺽\"", "신비의 물약을 마신 나무늘보는 갑자기 힘이 솟아 났어요."};
+    private String subs [] = {"열심히 달리고 있던 나무늘보는 신비한 물약을 발견했어요.","\"뭐……지…..꿀….꺽\"", "신비의 물약을 마신 나무늘보는 갑자기 힘이 솟아 났어요."};
     private ImageButton next;
     Handler delayHandler = new Handler();
 

@@ -30,7 +30,7 @@ public class rScene66 extends Fragment {
     private View view;
     private ImageView background, box, lion, turtle;
     private TextView subtitles;
-    private String subs [] = {"탕 소리와 함께 사자와 거북이는 달려가기 시작했어요.", "동물의 왕 사자가 나가신다 길을 비켜라~","사자는 시작과 동시에 거북이 보다 훌쩍 앞서기 시작했어요."};
+    private String subs [] = {"탕 소리와 함께 사자와 거북이는 달려가기 시작했어요.", "\"동물의 왕 사자가 나가신다 길을 비켜라~\"","사자는 시작과 동시에 거북이 보다 훌쩍 앞서기 시작했어요."};
     private ImageButton next;
     Handler delayHandler = new Handler();
 

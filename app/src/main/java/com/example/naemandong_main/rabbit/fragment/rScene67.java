@@ -39,7 +39,7 @@ public class rScene67 extends Fragment {
     private View view;
     private ImageView background, box,front, lion;
     private TextView subtitles;
-    private String subs [] = {"한참을 달려나가던 사자는 너무 배가 고파서 잠시 멈추었어요.", "어휴 배고파. 뭐 먹을 것 좀 없나?"};
+    private String subs [] = {"한참을 달려나가던 사자는 너무 배가 고파서 잠시 멈추었어요.", "\"어휴 배고파. 뭐 먹을 것 좀 없나?\""};
     private ImageButton next;
     Handler delayHandler = new Handler();
 

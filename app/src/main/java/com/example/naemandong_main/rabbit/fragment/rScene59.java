@@ -27,7 +27,7 @@ public class rScene59 extends Fragment {
     private View view;
     private ImageView background, box, sloth;
     private TextView subtitles;
-    private String subs [] = {"나무늘보는 길에 떨어진 지도를 발견했어요.","지도에는 결승점까지 가는 지름길이 표시되어 있었어요!", "나무늘보 \"이…….걸………………따…………라…………………….가자…………\""};
+    private String subs [] = {"나무늘보는 길에 떨어진 지도를 발견했어요.","지도에는 결승점까지 가는 지름길이 표시되어 있었어요!", "\"이…….걸………………따…………라…………………….가자…………\""};
     private ImageButton next;
     Handler delayHandler = new Handler();
 

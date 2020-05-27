@@ -35,7 +35,7 @@ public class rScene50 extends Fragment {
     private View view;
     private ImageView background, box, sloth, turtle;
     private TextView subtitles;
-    private String subs [] = {"거북이 \"그래 그냥 한번 경주 해보자\"","거북이는 참고 나무늘보와 경주를 하기로 했어요", "하지만 나무늘보는 거북이보다 느려서 한참 뒤쳐지고 말았어요","나무늘보 \"거……….북….\""};
+    private String subs [] = {"\"그래 그냥 한번 경주 해보자\"","거북이는 참고 나무늘보와 경주를 하기로 했어요", "하지만 나무늘보는 거북이보다 느려서 한참 뒤쳐지고 말았어요","\"거……….북….\""};
     private ImageButton next;
     Handler delayHandler = new Handler();
 

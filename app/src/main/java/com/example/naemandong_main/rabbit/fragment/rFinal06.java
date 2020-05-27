@@ -27,7 +27,7 @@ public class rFinal06 extends Fragment {
     private ImageView background, box, turtle;
     private TextView subtitles;
     private ArrayList<Integer> myList;
-    private String subs [] = {"토끼/사자 “나무늘보야! 네가 이겼어! 축하해!”","느리지만 꾸준히 경주를 한 나무늘보는 결국 승리를 했답니다."};
+    private String subs [] = {"“나무늘보야! 네가 이겼어! 축하해!”","느리지만 꾸준히 경주를 한 나무늘보는 결국 승리를 했답니다."};
     private ImageButton save, exit;
     boolean play = false;
     Handler delayHandler = new Handler();

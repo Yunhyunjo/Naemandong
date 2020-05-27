@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/cat_is"
         android:gravity="center"
-        android:text="토끼의 선택! 당근을 먹고 갈까요?"
+        android:text="토끼는 제일 좋아하는 당근을 먹을까요?"
         android:textAllCaps="true"
         android:textColor="#FFFFFF"
         android:textSize="36sp"

@@ -26,7 +26,7 @@ public class rScene69 extends Fragment {
     private View view;
     private ImageView background, box, lion, front, front2;
     private TextView subtitles;
-    private String subs [] = {"어, 여기 생선이 있네?", "냠냠 이 생선 정말 맛있는데?","배가 고팠던 사자는 허겁지겁 생선을 먹기 시작했어요."};
+    private String subs [] = {"\"어, 여기 생선이 있네?\"", "\"냠냠 이 생선 정말 맛있는데?\"","배가 고팠던 사자는 허겁지겁 생선을 먹기 시작했어요."};
     private ImageButton next;
     Handler delayHandler = new Handler();
 
