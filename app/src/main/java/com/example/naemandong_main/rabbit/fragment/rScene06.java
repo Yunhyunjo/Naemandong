@@ -28,7 +28,7 @@ public class rScene06 extends Fragment {
     private View view;
     private ImageView background, box;
     private TextView subtitles;
-    private String subs [] = {"토끼 “좋아. 하지만 날 이길 수는 없을 껄?”", "거북이 “경주는 끝까지 해봐야 아는 거야”","토끼와 거북이는 산 꼭대기까지 경주하기로 했어요. "};
+    private String subs [] = {"“좋아. 하지만 날 이길 수는 없을 껄?”", "“경주는 끝까지 해봐야 아는 거야”","토끼와 거북이는 산 꼭대기까지 경주하기로 했어요."};
     private ImageButton next;
     Handler delayHandler = new Handler();
 

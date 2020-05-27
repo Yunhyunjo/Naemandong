@@ -24,7 +24,7 @@ public class rScene44 extends Fragment {
     private View view;
     private ImageView background, box, bush, turtle, car_turtle, car;
     private TextView subtitles;
-    private String subs [] = {"거북이“여기 자동차가 있네?”", "자동차를 찾은 거북이는 자동차에 올라탔어요.", "거북이“한번 가볼까!”"};
+    private String subs [] = {"“여기 자동차가 있네?”", "자동차를 찾은 거북이는 자동차에 올라탔어요.", "“한번 가볼까!”"};
     private ImageButton next;
     Handler delayHandler = new Handler();
 

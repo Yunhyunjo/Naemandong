@@ -28,7 +28,7 @@ public class rFinal03 extends Fragment {
     private ImageView background, box, turtle;
     private TextView subtitles;
     private ArrayList<Integer> myList;
-    private String subs [] = {"거북이 “와 내가 이겼다, 이겼어!”","그렇게 거북이가 이기게 되었고, 아무도 거북이를 느림보라 놀리지 않았답니다."};
+    private String subs [] = {"“와 내가 이겼다, 이겼어!”","그렇게 거북이가 이기게 되었고, 아무도 거북이를 느림보라 놀리지 않았답니다."};
     private ImageButton save, exit;
     boolean play = false;
     Handler delayHandler = new Handler();

@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.rabbit.activity.Rabbit33;
+import com.example.naemandong_main.rabbit.activity.Rabbit34;
 
 import java.util.ArrayList;
 
@@ -90,8 +91,12 @@ public class rScene86 extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("fromwhere", 86);
+
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 rScene87 rscene87 = new rScene87();
+                rscene87.setArguments(bundle);
                 transaction.replace(R.id.frame,rscene87);
                 transaction.commit();  //저장
             }

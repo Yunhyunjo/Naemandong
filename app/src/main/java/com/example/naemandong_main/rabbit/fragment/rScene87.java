@@ -20,6 +20,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.rabbit.activity.Rabbit34;
+import com.example.naemandong_main.rabbit.activity.Rabbit39;
+import com.example.naemandong_main.rabbit.activity.Rabbit40;
 
 import java.util.ArrayList;
 
@@ -32,6 +34,7 @@ public class rScene87 extends Fragment {
     private TextView subtitles;
     private String subs [] = {"그런데 달려가던 사자 앞에 거미가 나타났어요.","\"으아아악! 거미다! 거미 너무 무서워!\""};
     private ImageButton next;
+    private int scene;
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -47,8 +50,20 @@ public class rScene87 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
 
-        myList = (ArrayList<Integer>) ((Rabbit34)getActivity()).getMylist().clone();
-        ((Rabbit34)getActivity()).clearList();
+        if (getArguments() != null) {
+            scene = getArguments().getInt("fromwhere");
+            if (scene == 86) {
+                myList = (ArrayList<Integer>) ((Rabbit34) getActivity()).getMylist().clone();
+                ((Rabbit34) getActivity()).clearList();
+            } else if (scene == 98) {
+                myList = (ArrayList<Integer>) ((Rabbit39) getActivity()).getMylist().clone();
+                ((Rabbit39) getActivity()).clearList();
+            }
+        }
+
+
+      /*  myList = (ArrayList<Integer>) ((Rabbit34)getActivity()).getMylist().clone();
+        ((Rabbit34)getActivity()).clearList();*/
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/7/98_back.png")
@@ -94,11 +109,19 @@ public class rScene87 extends Fragment {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                if (((Rabbit34)getActivity()).play){
-                    bundle.putBoolean("play",true);
-                }
-                else {
-                    bundle.putIntegerArrayList("myList", myList);
+
+                if (scene == 86) {
+                    if (((Rabbit34) getActivity()).play) {
+                        bundle.putBoolean("play", true);
+                    } else {
+                        bundle.putIntegerArrayList("myList", myList);
+                    }
+                } else {
+                    if (((Rabbit39) getActivity()).play) {
+                        bundle.putBoolean("play", true);
+                    } else {
+                        bundle.putIntegerArrayList("myList", myList);
+                    }
                 }
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 rFinal09 rfinal09 = new rFinal09();

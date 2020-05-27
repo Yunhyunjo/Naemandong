@@ -26,7 +26,7 @@ public class rScene39 extends Fragment {
     private View view;
     private ImageView background, box;
     private TextView subtitles;
-    private String subs [] = {"잠에서 깬 토끼는 깨워준 거북이에게 인사를 했어요.", "토끼 ”깨워줘서 고마워 거북아! 우리 같이 갈까?”"};
+    private String subs [] = {"잠에서 깬 토끼는 깨워준 거북이에게 인사를 했어요.", "”깨워줘서 고마워 거북아! 우리 같이 갈까?”"};
     private ImageButton next;
     private ArrayList<Integer> myList;
     Handler delayHandler = new Handler();

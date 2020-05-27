@@ -33,7 +33,7 @@ public class rScene64 extends Fragment {
     private View view;
     private ImageView background, box,front, sloth;
     private TextView subtitles;
-    private String subs [] = {"하지만 아무리 앞으로 가도 끝이 보이지 않았어요.", "나무늘보 \"아……니………………이…………게…………뭐………야…\""};
+    private String subs [] = {"하지만 아무리 앞으로 가도 끝이 보이지 않았어요.", "\"아……니………………이…………게…………뭐………야…\""};
     private ImageButton next;
     private ArrayList<Integer> myList;
     Handler delayHandler = new Handler();

@@ -31,7 +31,7 @@ public class ori_rabbit02 extends Fragment {
     private ImageView background, box, rabbit, turtle;
     private TextView subtitles;
     boolean sound, subtitle;
-    private String subs [] = {"토끼 “이 느림보 거북아! 느림보래요 느림보래요!”", "토끼가 놀려 대자 거북이는 화가났어요.","거북이 “그럼 너 나랑 달리기 경주할래?”"};
+    private String subs [] = {"“이 느림보 거북아! 느림보래요 느림보래요!”", "토끼가 놀려 대자 거북이는 화가났어요.","“그럼 너 나랑 달리기 경주할래?”"};
     Handler delayHandler = new Handler();
 
     @Nullable

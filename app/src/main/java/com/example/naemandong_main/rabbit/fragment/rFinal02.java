@@ -36,7 +36,7 @@ public class rFinal02 extends Fragment {
     private TextView subtitles;
     private ArrayList<Integer> myList;
     boolean play = false;
-    private String subs [] = {"토끼 “와 내가 이겼다!! 역시 난 빨라~”","토끼는 결국 경주에서 이겼어요.", "그 후로 거북이는 계속 느림보로 불렸답니다."};
+    private String subs [] = {"“와 내가 이겼다!! 역시 난 빨라~”","토끼는 결국 경주에서 이겼어요.", "그 후로 거북이는 계속 느림보로 불렸답니다."};
     private ImageButton save, exit;
     Handler delayHandler = new Handler();
 

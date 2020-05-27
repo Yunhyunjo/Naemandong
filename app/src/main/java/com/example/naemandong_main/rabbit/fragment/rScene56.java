@@ -33,7 +33,7 @@ public class rScene56 extends Fragment {
     private View view;
     private ImageView background, box, front, sloth, rabbit;
     private TextView subtitles;
-    private String subs [] = {"토끼가 달려와 나무늘보에게 말했어요.", "토끼 \"나무늘보야! 방금 거북이가 결승선을 통과했어!\"", "나무늘보가 신비의 물약을 찾았을 때에는 이미 거북이가 결승선을 통과한 뒤였어요."};
+    private String subs [] = {"토끼가 달려와 나무늘보에게 말했어요.", "\"나무늘보야! 방금 거북이가 결승선을 통과했어!\"", "나무늘보가 신비의 물약을 찾았을 때에는 이미 거북이가 결승선을 통과한 뒤였어요."};
     private ImageButton next;
     Handler delayHandler = new Handler();
     private ArrayList<Integer> myList;

@@ -27,7 +27,7 @@ public class ori_rabbit06 extends Fragment {
     private AnimationDrawable frameAnimation1;
     private ImageView background, box,front,front2, turtle, rabbit2;
     private TextView subtitles;
-    private String subs [] = {"하지만 거북이는 포기하지 않고 엉금엉금 열심히 달렸어요.", "거북이 “아휴 힘들어”", "거북이는 쿨쿨 자는 토끼를 지나 산꼭대기로 올라갔어요."};
+    private String subs [] = {"하지만 거북이는 포기하지 않고 엉금엉금 열심히 달렸어요.", "“아휴 힘들어”", "거북이는 쿨쿨 자는 토끼를 지나 산꼭대기로 올라갔어요."};
     Handler delayHandler = new Handler();
 
     @Nullable

@@ -31,7 +31,7 @@ public class rScene10 extends Fragment {
     private View view;
     private ImageView background, box, rabbit;
     private TextView subtitles;
-    private String subs [] = {"토끼는 자지 않고 경주를 계속 이어나가기로 결정했어요.", "토끼 “그래 일단 경주를 마저 다 해야지!”"};
+    private String subs [] = {"토끼는 자지 않고 경주를 계속 이어나가기로 결정했어요.", "“그래 일단 경주를 마저 다 해야지!”"};
     private ImageButton next;
     Handler delayHandler = new Handler();
 
