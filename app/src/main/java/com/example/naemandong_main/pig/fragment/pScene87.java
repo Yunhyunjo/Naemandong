@@ -76,9 +76,6 @@ public class pScene87 extends Fragment {
             @Override
             public void run() {
                 // TODO
-//                pig.setBackgroundResource(R.drawable.pig_s3_2);
-//                frameAnimation = (AnimationDrawable) pig.getBackground();
-//                frameAnimation.start();
                 subtitles.setText(subs[1]);
 //                mp2.start();
             }

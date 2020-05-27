@@ -59,20 +59,23 @@ public class pScene79 extends Fragment {
 
         wolf.setBackgroundResource(R.drawable.wolf_s32);
         frameAnimation = (AnimationDrawable) wolf.getBackground();
-//        Animation wolfgo = AnimationUtils.loadAnimation(getActivity(), R.anim.pscene05);
 
         subtitles.setText(subs[0]);
         frameAnimation.start();
-  //      wolf.startAnimation(wolfgo);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
-                //              frameAnimation.stop();
                 subtitles.setText(subs[1]);
-                next.setVisibility(View.VISIBLE);
             }
         }, 3100);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                next.setVisibility(View.VISIBLE);
+            }
+        }, 6000);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

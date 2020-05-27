@@ -82,7 +82,7 @@ public class pScene104 extends Fragment {
         blanket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Pig29)getActivity()).setMylist(2);
+                ((Pig30)getActivity()).setMylist(2);
                 Intent intent = new Intent(getActivity().getApplicationContext(), Pig36.class);
                 startActivity(intent);
                 getActivity().finish();

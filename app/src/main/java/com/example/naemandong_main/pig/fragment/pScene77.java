@@ -27,7 +27,7 @@ public class pScene77 extends Fragment {
     private ImageView background, wolf, pig, house, house_inside;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"그런데 이때! 어슬렁 어슬렁거리며 배가 고픈 늑대가 나타났어요!", "늑대는 군침을 다시며 막내 돼지네 문을 두드렸어요.", "아이고 배고파.. 돼지야!! 돼지야!! 이리 좀 나와봐." };
+    private String subs [] = {"그런데 이때! 어슬렁 어슬렁거리며 배가 고픈 늑대가 나타났어요!", "늑대는 군침을 다시며 막내 돼지네 문을 두드렸어요.", "\"아이고 배고파.. 돼지야!! 돼지야!! 이리 좀 나와봐.\"" };
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -81,9 +81,15 @@ public class pScene77 extends Fragment {
             public void run() {
                 // TODO
                 subtitles.setText(subs[2]);
-                next.setVisibility(View.VISIBLE);
             }
         }, 5100);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                next.setVisibility(View.VISIBLE);
+            }
+        }, 700);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -52,9 +52,15 @@ public class pScene86 extends Fragment {
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                next.setVisibility(View.VISIBLE);
             }
         }, 3100);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                next.setVisibility(View.VISIBLE);
+            }
+        }, 5100);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

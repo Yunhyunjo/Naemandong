@@ -28,7 +28,7 @@ public class pScene72 extends Fragment {
     private ImageButton next;
     private TextView subtitles;
     private ArrayList<Integer> myList;
-    private String subs [] = {"어 뭐야 이 푹신한 침대는.. 누우니까 잠이 솔솔 오는데..", "하루 종일 돼지 삼형제를 쫓느라 힘들었던 늑대는 푹신한 침대에 눕자 잠이 들었어요."};
+    private String subs [] = {"\"어 뭐야 이 푹신한 침대는.. 누우니까 잠이 솔솔 오는데..\"", "하루 종일 돼지 삼형제를 쫓느라 힘들었던 늑대는 푹신한 침대에 눕자 잠이 들었어요."};
     Handler delayHandler = new Handler();
 
     @Nullable

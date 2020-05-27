@@ -29,7 +29,7 @@ public class pScene60 extends Fragment {
     private ImageView background;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"어떻게 막내 돼지의 집으로 들어갈지 고민하던 늑대는 땅을 파기로 했어요.", "이 땅파기 대장 늑대님의 실력을 보여줄 때가 왔군.", "흐흐흐, 얼른 땅을 파고 막내 돼지의 집으로 들어가서 다 잡아 먹어버리겠어."};
+    private String subs [] = {"어떻게 막내 돼지의 집으로 들어갈지 고민하던 늑대는 땅을 파기로 했어요.", "\"이 땅파기 대장 늑대님의 실력을 보여줄 때가 왔군.\"", "\"흐흐흐, 얼른 땅을 파고 막내 돼지의 집으로 들어가서 다 잡아 먹어버리겠어.\""};
     Handler delayHandler = new Handler();
 
     @Nullable

@@ -32,7 +32,7 @@ public class pScene65 extends Fragment {
     private ImageView background, wolf, pigs;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"막내 돼지가 문을 열어주지 않자 늑대는 막내 돼지의 집을 발로 뻥하고 찼어요.", "하지만 딱딱한 막내 돼지의 벽돌집은 무너지지 않았어요.", "우리집은 딱딱해서 나쁜 늑대 네가 무너뜨릴 수 없어!" };
+    private String subs [] = {"막내 돼지가 문을 열어주지 않자 늑대는 막내 돼지의 집을 발로 뻥하고 찼어요.", "\"하지만 딱딱한 막내 돼지의 벽돌집은 무너지지 않았어요.\"", "\"우리집은 딱딱해서 나쁜 늑대 네가 무너뜨릴 수 없어!\"" };
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -74,9 +74,15 @@ public class pScene65 extends Fragment {
             public void run() {
                 // TODO
                 subtitles.setText(subs[2]);
-                next.setVisibility(View.VISIBLE);
             }
         }, 5100);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                next.setVisibility(View.VISIBLE);
+            }
+        }, 7000);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -25,7 +25,7 @@ public class pScene96 extends Fragment {
     private ImageView background, wolf, pig, house, house_inside;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"막내 돼지는 무서웠지만 침착하게 말했어요.", "싫어! 날 잡아먹으려는 거잖아!" };
+    private String subs [] = {"막내 돼지는 무서웠지만 침착하게 말했어요.", "\"싫어! 날 잡아먹으려는 거잖아!\"" };
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -52,11 +52,16 @@ public class pScene96 extends Fragment {
             @Override
             public void run() {
                 // TODO
-  //              frameAnimation.stop();
                 subtitles.setText(subs[1]);
-                next.setVisibility(View.VISIBLE);
             }
         }, 3100);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                next.setVisibility(View.VISIBLE);
+            }
+        }, 6000);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
