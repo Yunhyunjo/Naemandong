@@ -92,11 +92,11 @@ public class rScene86 extends Fragment {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putString("scene", "scene86");
+                bundle.putInt("fromwhere", 86);
 
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 rScene87 rscene87 = new rScene87();
-//                rScene87.setArguments(bundle);
+                rscene87.setArguments(bundle);
                 transaction.replace(R.id.frame,rscene87);
                 transaction.commit();  //저장
             }

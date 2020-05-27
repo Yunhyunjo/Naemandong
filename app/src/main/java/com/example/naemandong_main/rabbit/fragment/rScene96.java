@@ -1,5 +1,6 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,6 +20,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.rabbit.activity.Rabbit38;
+import com.example.naemandong_main.rabbit.activity.Rabbit39;
+import com.example.naemandong_main.rabbit.activity.Rabbit40;
 
 public class rScene96 extends Fragment {
 
@@ -79,10 +83,27 @@ public class rScene96 extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                rScene97 rscene97 = new rScene97();
-                transaction.replace(R.id.frame, rscene97);
-                transaction.commit();  //저장
+
+                if (((Rabbit38) getActivity()).play) {
+                    if (((Rabbit38) getActivity()).getData() == 0) {
+                        ((Rabbit38) getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit40.class);
+                        intent.putExtra("play", true);
+                        startActivity(intent);
+                        getActivity().finish();
+                    } else {
+                        ((Rabbit38) getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit39.class);
+                        intent.putExtra("play", true);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
+                } else {
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    rScene97 rscene97 = new rScene97();
+                    transaction.replace(R.id.frame, rscene97);
+                    transaction.commit();  //저장
+                }
             }
         });
 

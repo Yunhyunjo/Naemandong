@@ -28,7 +28,7 @@ public class rScene99 extends Fragment {
 
     private AnimationDrawable frameLion;
     private View view;
-    private ImageView background, box, lion, lion2, front;
+    private ImageView background, box, lion, lion2, front2;
     private TextView subtitles;
     private String subs[] = {"“그래! 왼쪽으로 가야지!”", "사자는 열심히 풀 숲을 헤치며 가자 멀리 결승선이 보이기 시작했어요."};
     private ImageButton next;
@@ -43,7 +43,7 @@ public class rScene99 extends Fragment {
         background = view.findViewById(R.id.background);
         box = view.findViewById(R.id.subtitlebox);
         lion2 = view.findViewById(R.id.lion2);
-        front = view.findViewById(R.id.front);
+        front2 = view.findViewById(R.id.front2);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
 
@@ -51,8 +51,8 @@ public class rScene99 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/13_back.png")
                 .into(background);
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/7/110_backright.png")
-                .into(front);
+                .load("http://49.50.174.179:9000/images/rabbit/7/110_backleft.png")
+                .into(front2);
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/7/109_lion_front.png")
                 .into(lion2);
@@ -74,7 +74,7 @@ public class rScene99 extends Fragment {
                 frameLion = (AnimationDrawable) lion2.getBackground();
                 frameLion.start();
 
-                Animation liongo = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene74);
+                Animation liongo = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene99);
                 lion2.startAnimation(liongo);
 
                 subtitles.setText(subs[1]);

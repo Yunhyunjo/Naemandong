@@ -94,6 +94,7 @@ public class rScene98 extends Fragment {
                 bundle.putInt("fromwhere", 98);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 rScene87 rscene87 = new rScene87();
+                rscene87.setArguments(bundle);
                 transaction.replace(R.id.frame, rscene87);
                 transaction.commit();  //저장
             }
