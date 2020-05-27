@@ -1,13 +1,10 @@
 package com.example.naemandong_main.rabbit.fragment;
 
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,7 +26,7 @@ public class rFinal10 extends Fragment {
     private ImageView background, box;
     private TextView subtitles;
     private ArrayList<Integer> myList;
-    private String subs[] = {"그렇게 사자가 경주에서 이기게 되었어요.", "“으하하 역시 느림보 거북이는 내 상대가 안돼!!”"};
+    private String subs [] = {"그렇게 사자가 경주에서 이기게 되었어요.","\"으하하 역시 느림보 거북이는 내 상대가 안돼!!\""};
     private ImageButton save, exit;
     boolean play = false;
     Handler delayHandler = new Handler();
@@ -37,7 +34,7 @@ public class rFinal10 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.rfinal05, container, false);
+        view = inflater.inflate(R.layout.rfinal04, container,false);
 
         background = view.findViewById(R.id.background);
         box = view.findViewById(R.id.subtitlebox);
@@ -45,38 +42,25 @@ public class rFinal10 extends Fragment {
         save = view.findViewById(R.id.save);
         exit = view.findViewById(R.id.exit);
 
-        Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/7/116_fin.png")
-                .into(background);
-
-        if (getArguments() != null) {
+        if (getArguments() != null){
             myList = getArguments().getIntegerArrayList("myList");
             play = getArguments().getBoolean("play");
-            if (!play) {
-                while (myList.size() < 7)
+            if(!play){
+                while(myList.size() < 7)
                     myList.add(3);
             }
         }
 
-
-//        try {
-//            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene10_1.mp3");
-//            mp1.prepare();
-//            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene10_2.mp3");
-//            mp2.prepare();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
+        Glide.with(this)
+                .load("http://49.50.174.179:9000/images/rabbit/7/105_fin.png")
+                .into(background);
 
         subtitles.setText(subs[0]);
-        //mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                //mp2.start();
             }
         }, 3000);
         delayHandler.postDelayed(new Runnable() {
@@ -95,7 +79,7 @@ public class rFinal10 extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이", 1, myList, "http://49.50.174.179:9000/images/rabbit/7/116_fin.png");
+                saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList,"http://49.50.174.179:9000/images/cover/rabbit_ending04.png");
                 saveDialog.show();
             }
         });

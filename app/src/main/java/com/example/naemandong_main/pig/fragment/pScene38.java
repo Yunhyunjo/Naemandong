@@ -20,6 +20,8 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.pig.activity.Pig10;
 import com.example.naemandong_main.pig.activity.Pig11;
+import com.example.naemandong_main.pig.activity.Pig12;
+import com.example.naemandong_main.pig.activity.Pig13;
 
 public class pScene38 extends Fragment {
 
@@ -28,7 +30,7 @@ public class pScene38 extends Fragment {
     private ImageView background;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"그때 늑대의 눈에 굴뚝이 들어왔어요.", "늑대 \"좋아, 저 굴뚝을 통해 집으로 들어가면 돼! 기다려라 막내 돼지야!\"", "막내 돼지 \"어떡하지? 늑대가 굴뚝을 통해 집으로 들어오려고 하잖아!\""};
+    private String subs [] = {"그때 늑대의 눈에 굴뚝이 들어왔어요.", "좋아, 저 굴뚝을 통해 집으로 들어가면 돼! 기다려라 막내 돼지야!", "어떡하지? 늑대가 굴뚝을 통해 집으로 들어오려고 하잖아!"};
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -72,17 +74,25 @@ public class pScene38 extends Fragment {
             public void onClick(View v) {
                 if (((Pig10)getActivity()).play){
                     if(((Pig10)getActivity()).getData() == 0){
+                        ((Pig10)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig11.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();
                     }
-//                    else {
-//                        Intent intent = new Intent(getActivity().getApplicationContext(),Pig05.class);
-//                        intent.putExtra("play",true);
-//                        startActivity(intent);
-//                        getActivity().finish();
-//                    }
+                    else if(((Pig10)getActivity()).getData() == 2) {
+                        ((Pig10)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig12.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
+                    else {
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig13.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
                 }
                 else{
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();

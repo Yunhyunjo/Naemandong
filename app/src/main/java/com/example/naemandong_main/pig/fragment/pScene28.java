@@ -16,7 +16,10 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.pig.activity.Pig07;
 import com.example.naemandong_main.pig.activity.Pig08;
+import com.example.naemandong_main.pig.activity.Pig25;
+import com.example.naemandong_main.pig.activity.Pig28;
 
+// 막돼 재료 선택
 public class pScene28 extends Fragment {
 
     private View view;
@@ -55,20 +58,25 @@ public class pScene28 extends Fragment {
                 getActivity().finish();
             }
         });
-//        lion.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit02.class);
-//                startActivity(intent);
-//            }
-//        });
-//        sloth.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit02.class);
-//                startActivity(intent);
-//            }
-//        });
+        brick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((Pig07)getActivity()).setMylist(1);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Pig25.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+
+        sand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((Pig07)getActivity()).setMylist(2);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Pig28.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
 
         return view;
     }

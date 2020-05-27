@@ -22,6 +22,7 @@ import com.example.naemandong_main.Data.storybookData;
 import com.example.naemandong_main.Data.storybookResponse;
 import com.example.naemandong_main.Network.RetrofitClient;
 import com.example.naemandong_main.Network.ServiceApi;
+import com.example.naemandong_main.pig.activity.Pig01;
 import com.example.naemandong_main.rabbit.activity.Rabbit01;
 
 import java.util.ArrayList;
@@ -133,10 +134,18 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
                 mySelect.add(result.getSelect5());
                 mySelect.add(result.getSelect6());
 
-                Intent intent = new Intent(context, Rabbit01.class);
-                intent.putExtra("select",mySelect);
-                intent.putExtra("play",true);
-                context.startActivity(intent);
+                if (storynum ==1) {
+                    Intent intent = new Intent(context, Rabbit01.class);
+                    intent.putExtra("select", mySelect);
+                    intent.putExtra("play", true);
+                    context.startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(context, Pig01.class);
+                    intent.putExtra("select", mySelect);
+                    intent.putExtra("play", true);
+                    context.startActivity(intent);
+                }
             }
 
             @Override

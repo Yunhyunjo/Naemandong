@@ -29,7 +29,7 @@ public class pScene16 extends Fragment {
     private ImageView background;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"활활 둘째 돼지의 집에 불이 붙고 말았어요.", "첫째 돼지 \"어? 점점 뜨거워지고 있어! 불이다!\"", "둘째 돼지 \"밖으로 나가면 늑대가 있고 집은 너무 뜨거워. 어떡하지?\"" };
+    private String subs [] = {"활활 둘째 돼지의 집에 불이 붙고 말았어요.", "\"어? 점점 뜨거워지고 있어! 불이다!\"", "\"밖으로 나가면 늑대가 있고 집은 너무 뜨거워. 어떡하지?\"" };
     Handler delayHandler = new Handler();
 
     @Nullable

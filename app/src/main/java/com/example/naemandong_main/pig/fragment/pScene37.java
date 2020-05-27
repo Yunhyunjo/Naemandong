@@ -32,7 +32,7 @@ public class pScene37 extends Fragment {
     private ImageButton next;
     private TextView subtitles;
     private ArrayList<Integer> myList;
-    private String subs [] = {"막내 돼지는 늑대의 거짓말을 알아챘어요.", "막내 돼지 \"이 나쁜 늑대! 엄마 목소리를 흉내내서 날 잡아먹으려고 하다니! 난 속지 않아!\"","늑대 \"에잇 아까워! 막내 돼지도 잡아먹을 수 있었는데!\""};
+    private String subs [] = {"막내 돼지는 늑대의 거짓말을 알아챘어요.", "이 나쁜 늑대! 엄마 목소리를 흉내내서 날 잡아먹으려고 하다니! 난 속지 않아!","에잇 아까워! 막내 돼지도 잡아먹을 수 있었는데!"};
     Handler delayHandler = new Handler();
 
     @Nullable

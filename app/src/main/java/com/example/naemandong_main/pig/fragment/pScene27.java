@@ -19,6 +19,8 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.pig.activity.Pig07;
 import com.example.naemandong_main.pig.activity.Pig08;
+import com.example.naemandong_main.pig.activity.Pig25;
+import com.example.naemandong_main.pig.activity.Pig28;
 
 public class pScene27 extends Fragment {
 
@@ -26,7 +28,7 @@ public class pScene27 extends Fragment {
     private ImageView background, pig, wolf, bg2, wolf2;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"늑대 \"드디어 배를 채울 수 있게 되었구나!! 으하하!!\"", "“으악!!!” 첫째 돼지와 둘째 돼지는 늑대에게 잡아먹히고 말았어요.", "하지만 여전히 배가 차지 않은 늑대는 셋째 돼지의 집으로 향했어요." };
+    private String subs [] = {"\"드디어 배를 채울 수 있게 되었구나!! 으하하!!\"", "“으악!!!” 첫째 돼지와 둘째 돼지는 늑대에게 잡아먹히고 말았어요.", "하지만 여전히 배가 차지 않은 늑대는 셋째 돼지의 집으로 향했어요." };
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -89,15 +91,23 @@ public class pScene27 extends Fragment {
             public void onClick(View v) {
                 if(((Pig07)getActivity()).play) {
                     if (((Pig07) getActivity()).getData() == 0) {
+                        ((Pig07)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig08.class);
                         intent.putExtra("play", true);
                         startActivity(intent);
                         getActivity().finish();
+                    } else if (((Pig07) getActivity()).getData() == 1) {
+                        ((Pig07)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig25.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
                     } else {
-//                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig02.class);
-//                        intent.putExtra("play",true);
-//                        startActivity(intent);
-//                        getActivity().finish();
+                        ((Pig07)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig28.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
                     }
                 }
                 else{

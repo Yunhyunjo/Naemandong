@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.rabbit.activity.Rabbit31;
 import com.example.naemandong_main.rabbit.activity.Rabbit32;
+import com.example.naemandong_main.rabbit.activity.Rabbit35;
 
 public class rScene82 extends Fragment {
 
@@ -64,10 +65,10 @@ public class rScene82 extends Fragment {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ((Rabbit26)getActivity()).setMylist(1);
-//                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit10.class);
-//                startActivity(intent);
-//                getActivity().finish();
+                ((Rabbit31)getActivity()).setMylist(1);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit35.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
 

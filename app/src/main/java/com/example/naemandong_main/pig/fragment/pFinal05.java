@@ -30,7 +30,7 @@ public class pFinal05 extends Fragment {
     private View view;
     private ImageView background, box, wolf;
     private TextView subtitles;
-    private ImageButton save;
+    private ImageButton save, exit;
     private ArrayList<Integer> myList;
     boolean play = false;
     private String subs [] = {"늑대 \"아이고 늑대 살려! 늑대 죽네 죽어!\"", "그 후 늑대는 마을에 얼씬도 하지 않았고 막내 돼지는 오래오래 행복하게 살았답니다."};
@@ -46,6 +46,7 @@ public class pFinal05 extends Fragment {
         box = view.findViewById(R.id.subtitlebox);
         subtitles = view.findViewById(R.id.subTitle);
         save = view.findViewById(R.id.save);
+        exit = view.findViewById(R.id.exit);
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/19_example.png")
@@ -60,19 +61,18 @@ public class pFinal05 extends Fragment {
             }
         }
 
+        wolf.setBackgroundResource(R.drawable.wolf_f5);
+        frameAnimation = (AnimationDrawable) wolf.getBackground();
+        Animation wolfgo = AnimationUtils.loadAnimation(getActivity(),R.anim.pscene41);
+        frameAnimation.start();
+        wolf.startAnimation(wolfgo);
+
         subtitles.setText(subs[0]);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-
-                wolf.setBackgroundResource(R.drawable.wolf_f5);
-                frameAnimation = (AnimationDrawable) wolf.getBackground();
-                Animation wolfgo = AnimationUtils.loadAnimation(getActivity(),R.anim.pscene41);
-                frameAnimation.start();
-                wolf.startAnimation(wolfgo);
-
             }
         }, 3100);
         delayHandler.postDelayed(new Runnable() {
@@ -83,6 +83,7 @@ public class pFinal05 extends Fragment {
                 subtitles.setVisibility(View.INVISIBLE);
                 if (!play) {
                     save.setVisibility(View.VISIBLE);
+                    exit.setVisibility(View.VISIBLE);
                 }
             }
         }, 10000);
@@ -92,6 +93,13 @@ public class pFinal05 extends Fragment {
             public void onClick(View v) {
                 saveDialog = new Save_Dialog(getActivity(), "아기돼지 삼형제",2,myList,"http://49.50.174.179:9000/images/cover/pigcover.png");
                 saveDialog.show();
+            }
+        });
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
             }
         });
 

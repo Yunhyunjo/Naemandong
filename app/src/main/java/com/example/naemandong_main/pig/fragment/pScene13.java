@@ -36,7 +36,7 @@ public class pScene13 extends Fragment {
     private ImageView background, wolf;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"늑대 \"아잇 너무 튼튼하잖아? 뭐 좋은 방법 없을까?\"", "주위를 두리번거리던 늑대는 상자 두 개를 발견했어요." };
+    private String subs [] = {"\"아잇 너무 튼튼하잖아? 뭐 좋은 방법 없을까?\"", "주위를 두리번거리던 늑대는 상자 두 개를 발견했어요." };
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -97,12 +97,14 @@ public class pScene13 extends Fragment {
             public void onClick(View v) {
                 if (((Pig03)getActivity()).play){
                     if(((Pig03)getActivity()).getData() == 0){
+                        ((Pig03)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig04.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();
                     }
                     else {
+                        ((Pig03)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig05.class);
                         intent.putExtra("play",true);
                         startActivity(intent);

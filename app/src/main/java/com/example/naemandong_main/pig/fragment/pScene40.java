@@ -25,7 +25,7 @@ public class pScene40 extends Fragment {
     private ImageView background;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"늑대 \"크크크. 기다려라 막내 돼지야! 늑대님이 내려가신다!\"", "막내 돼지는 굴뚝 아래에 불을 피우기 시작했어요.", "늑대 \"어? 뭐야 어디서 타는 냄새가 나는데?\""};
+    private String subs [] = {"크크크. 기다려라 막내 돼지야! 늑대님이 내려가신다!", "막내 돼지는 굴뚝 아래에 불을 피우기 시작했어요.", "어? 뭐야 어디서 타는 냄새가 나는데?"};
     Handler delayHandler = new Handler();
 
     @Nullable

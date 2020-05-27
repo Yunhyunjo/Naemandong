@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.rabbit.activity.Rabbit31;
 import com.example.naemandong_main.rabbit.activity.Rabbit32;
+import com.example.naemandong_main.rabbit.activity.Rabbit35;
 
 public class rScene81 extends Fragment {
 
@@ -96,11 +97,11 @@ public class rScene81 extends Fragment {
                         getActivity().finish();
                     }
                     else {
-//                        ((Rabbit30)getActivity()).removeData();
-//                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit25.class);
-//                        intent.putExtra("play",true);
-//                        startActivity(intent);
-//                        getActivity().finish();
+                        ((Rabbit31)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit35.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
                     }
                 }
                 else{
