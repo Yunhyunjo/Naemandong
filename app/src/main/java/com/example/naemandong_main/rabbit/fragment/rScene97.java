@@ -18,6 +18,9 @@ import com.example.naemandong_main.R;
 import com.example.naemandong_main.rabbit.activity.Rabbit23;
 import com.example.naemandong_main.rabbit.activity.Rabbit24;
 import com.example.naemandong_main.rabbit.activity.Rabbit25;
+import com.example.naemandong_main.rabbit.activity.Rabbit38;
+import com.example.naemandong_main.rabbit.activity.Rabbit39;
+import com.example.naemandong_main.rabbit.activity.Rabbit40;
 
 import java.io.IOException;
 
@@ -62,8 +65,8 @@ public class rScene97 extends Fragment {
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Rabbit23) getActivity()).setMylist(0);
-                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit24.class);
+                ((Rabbit38) getActivity()).setMylist(0);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit40.class);
                 startActivity(intent);
                 getActivity().finish();
             }
@@ -71,8 +74,8 @@ public class rScene97 extends Fragment {
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Rabbit23) getActivity()).setMylist(1);
-                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit25.class);
+                ((Rabbit38) getActivity()).setMylist(1);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit39.class);
                 startActivity(intent);
                 getActivity().finish();
             }

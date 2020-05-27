@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.rabbit.activity.Rabbit34;
+import com.example.naemandong_main.rabbit.activity.Rabbit39;
 
 import java.util.ArrayList;
 
@@ -46,6 +47,7 @@ public class rScene87 extends Fragment {
         lion = view.findViewById(R.id.lion);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
+
 
         myList = (ArrayList<Integer>) ((Rabbit34)getActivity()).getMylist().clone();
         ((Rabbit34)getActivity()).clearList();

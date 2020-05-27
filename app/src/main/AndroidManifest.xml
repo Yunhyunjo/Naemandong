@@ -69,6 +69,8 @@
         <activity android:name=".rabbit.activity.Rabbit28" />
         <activity android:name=".rabbit.activity.Rabbit29" />
         <activity android:name=".rabbit.activity.Rabbit38" />
+        <activity android:name=".rabbit.activity.Rabbit39" />
+        <activity android:name=".rabbit.activity.Rabbit40" />
 
         <activity
             android:name=".Setting"
