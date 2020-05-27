@@ -92,7 +92,7 @@ public class rScene67 extends Fragment {
                 // TODO
                 lion.setBackgroundResource(0);
                 Glide.with(getActivity())
-                        .load("http://49.50.174.179:9000/images/rabbit/5/8_run_r05.png")
+                        .load("http://49.50.174.179:9000/images/rabbit/7/97_front.png")
                         .into(lion);
 
             }

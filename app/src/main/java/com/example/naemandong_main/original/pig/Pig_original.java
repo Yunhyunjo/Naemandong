@@ -30,9 +30,9 @@ public class Pig_original extends AppCompatActivity {
         bundle.putBoolean("sound", sound);
         bundle.putBoolean("subtitle", subtitle);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        ori_rabbit01 rscene01 = new ori_rabbit01();
-        transaction.replace(R.id.frame, rscene01);
-        rscene01.setArguments(bundle);
+        ori_pig01 pig01 = new ori_pig01();
+        transaction.replace(R.id.frame, pig01);
+        pig01.setArguments(bundle);
         transaction.commit();  //저장
 
         setting.setOnClickListener(new View.OnClickListener() {

@@ -100,7 +100,6 @@ public class rScene02 extends Fragment {
                 transaction.commit();  //저장
 
 
-
             }
         });
 
