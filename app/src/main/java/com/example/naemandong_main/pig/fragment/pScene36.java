@@ -25,7 +25,7 @@ public class pScene36 extends Fragment {
     private ImageView background;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"호호, 막내야~ 엄마가 왔어~ 문 좀 열어보겠니~?", "엄마? 잠시만요~ 엥? 저 목소리는 우리 엄마 목소리와는 다른데?!" };
+    private String subs[] = {"\"호호, 막내야~ 엄마가 왔어~ 문 좀 열어보겠니~?\"", "\"엄마? 잠시만요~ 엥? 저 목소리는 우리 엄마 목소리와는 다른데?!\""};
     Handler delayHandler = new Handler();
 
     @Nullable

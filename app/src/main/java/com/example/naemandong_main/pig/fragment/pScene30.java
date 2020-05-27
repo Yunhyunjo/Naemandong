@@ -63,9 +63,15 @@ public class pScene30 extends Fragment {
             public void run() {
                 // TODO
                 subtitles.setText(subs[2]);
-                next.setVisibility(View.VISIBLE);
             }
         }, 6100);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                next.setVisibility(View.VISIBLE);
+            }
+        }, 8100);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

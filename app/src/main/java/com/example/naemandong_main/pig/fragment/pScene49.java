@@ -31,7 +31,7 @@ public class pScene49 extends Fragment {
     private ImageView background, pigs;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"그 때 완성된 집에서 쉬고 있던 막내 돼지의 집을 첫째, 둘째 돼지가 두드렸어요.", "막내야! 형들이야 우리 좀 들여보내줘!! 늑대가 우리 집을 무너뜨리고 잡아먹으려고 해!", "형들 괜찮아? 어서 들어와!!"};
+    private String subs[] = {"그 때 완성된 집에서 쉬고 있던 막내 돼지의 집을 첫째, 둘째 돼지가 두드렸어요.", "\"막내야! 형들이야 우리 좀 들여보내줘!! 늑대가 우리 집을 무너뜨리고 잡아먹으려고 해!\"", "\"형들 괜찮아? 어서 들어와!!\""};
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -69,9 +69,15 @@ public class pScene49 extends Fragment {
                 // TODO
                 frameAnimation.stop();
                 subtitles.setText(subs[2]);
-                next.setVisibility(View.VISIBLE);
             }
         }, 5100);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                next.setVisibility(View.VISIBLE);
+            }
+        }, 8100);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

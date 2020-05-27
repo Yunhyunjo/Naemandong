@@ -32,7 +32,7 @@ public class pScene37 extends Fragment {
     private ImageButton next;
     private TextView subtitles;
     private ArrayList<Integer> myList;
-    private String subs [] = {"막내 돼지는 늑대의 거짓말을 알아챘어요.", "이 나쁜 늑대! 엄마 목소리를 흉내내서 날 잡아먹으려고 하다니! 난 속지 않아!","에잇 아까워! 막내 돼지도 잡아먹을 수 있었는데!"};
+    private String subs[] = {"막내 돼지는 늑대의 거짓말을 알아챘어요.", "\"이 나쁜 늑대! 엄마 목소리를 흉내내서 날 잡아먹으려고 하다니! 난 속지 않아!\"", "\"에잇 아까워! 막내 돼지도 잡아먹을 수 있었는데!\""};
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -75,9 +75,15 @@ public class pScene37 extends Fragment {
                 Animation wolfgo = AnimationUtils.loadAnimation(getActivity(),R.anim.pscene37);
                 frameAnimation.start();
                 wolf.startAnimation(wolfgo);
-                next.setVisibility(View.VISIBLE);
             }
         }, 6100);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                next.setVisibility(View.VISIBLE);
+            }
+        }, 8100);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

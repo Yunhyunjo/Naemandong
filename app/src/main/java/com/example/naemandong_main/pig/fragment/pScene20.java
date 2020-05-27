@@ -73,9 +73,15 @@ public class pScene20 extends Fragment {
                 Animation wolfgo = AnimationUtils.loadAnimation(getActivity(),R.anim.pscene20);
                 frameAnimation.start();
                 wolf.startAnimation(wolfgo);
-                next.setVisibility(View.VISIBLE);
             }
         }, 6100);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                next.setVisibility(View.VISIBLE);
+            }
+        }, 8100);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -63,9 +63,15 @@ public class pScene19 extends Fragment {
                 Glide.with(view)
                         .load("http://49.50.174.179:9000/images/pig/15_wolf-01.png")
                         .into(wolf);
-                next.setVisibility(View.VISIBLE);
             }
         }, 6100);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                next.setVisibility(View.VISIBLE);
+            }
+        }, 8100);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

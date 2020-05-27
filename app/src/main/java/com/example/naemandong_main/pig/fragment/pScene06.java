@@ -24,6 +24,7 @@ import com.example.naemandong_main.R;
 import com.example.naemandong_main.pig.activity.Pig02;
 import com.example.naemandong_main.pig.activity.Pig03;
 import com.example.naemandong_main.pig.activity.Pig06;
+import com.example.naemandong_main.pig.activity.Pig36;
 
 import java.io.IOException;
 
@@ -133,10 +134,11 @@ public class pScene06 extends Fragment {
                         getActivity().finish();
                     }
                     else {
-//                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig06.class);
-//                        intent.putExtra("play",true);
-//                        startActivity(intent);
-//                        getActivity().finish();
+                        ((Pig02) getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig36.class);
+                        intent.putExtra("play", true);
+                        startActivity(intent);
+                        getActivity().finish();
                     }
                 }
                 else{

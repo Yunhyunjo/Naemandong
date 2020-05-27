@@ -29,7 +29,7 @@ public class pFinal02 extends Fragment {
     private ImageButton save, exit;
     private ArrayList<Integer> myList;
     boolean play = false;
-    private String subs [] = {"첫째, 둘째 돼지 \"휴~ 늑대가 갔어. 정말 다행이다.\"", "늑대가 가고 위기에서 벗어난 첫째 돼지와 둘째 돼지는 행복하게 살았답니다."};
+    private String subs[] = {"\"휴~ 늑대가 갔어. 정말 다행이다.\"", "늑대가 가고 위기에서 벗어난 첫째 돼지와 둘째 돼지는 행복하게 살았답니다."};
     Handler delayHandler = new Handler();
 
     @Nullable
