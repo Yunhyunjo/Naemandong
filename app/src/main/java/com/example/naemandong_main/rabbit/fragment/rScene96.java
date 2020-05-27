@@ -1,11 +1,14 @@
 package com.example.naemandong_main.rabbit.fragment;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,82 +20,88 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
-import com.example.naemandong_main.rabbit.activity.Rabbit30;
-import com.example.naemandong_main.rabbit.activity.Rabbit31;
 import com.example.naemandong_main.rabbit.activity.Rabbit38;
+import com.example.naemandong_main.rabbit.activity.Rabbit39;
+import com.example.naemandong_main.rabbit.activity.Rabbit40;
 
-public class rScene78 extends Fragment {
+public class rScene96 extends Fragment {
 
+    private AnimationDrawable frameLion;
     private View view;
-    private ImageView background, box, lion, front;
+    private ImageView background, box, lion, lion2;
     private TextView subtitles;
-    private String subs [] = {"\"꺼억~ 배부르다. 배부르니까 갑자기 졸린걸?\"", "배부른 사자는 잠이 솔솔 오기 시작했어요."};
+    private String subs[] = {"우다다다 얼마나 뛰었을까 갈림길이 나왔어요.", "“으음? 어디로 가야 하지?”"};
     private ImageButton next;
     Handler delayHandler = new Handler();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.rscene77, container,false);
+        view = inflater.inflate(R.layout.rscene96, container, false);
 
         background = view.findViewById(R.id.background);
-        front = view.findViewById(R.id.front);
         box = view.findViewById(R.id.subtitlebox);
         lion = view.findViewById(R.id.lion);
+        lion2 = view.findViewById(R.id.lion2);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
 
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/5/10_back.png")
+                .load("http://49.50.174.179:9000/images/rabbit/5/13_back.png")
                 .into(background);
-        Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/7/88_cc.png")
-                .into(lion);
+
+        lion.setBackgroundResource(R.drawable.lion_backgo);
+        frameLion = (AnimationDrawable) lion.getBackground();
+
+        frameLion.start();
 
 
         subtitles.setText(subs[0]);
+
 
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
-                Glide.with(view)
-                        .load("http://49.50.174.179:9000/images/rabbit/7/88_sleep.png")
-                        .into(lion);
+                lion.setBackgroundResource(0);
+
+                lion2.setBackgroundResource(R.drawable.lion_ggauddung);
+                frameLion = (AnimationDrawable) lion2.getBackground();
+
+                frameLion.start();
                 subtitles.setText(subs[1]);
             }
-        }, 5000);
+        }, 3000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 next.setVisibility(View.VISIBLE);
             }
-        }, 10000);
+        }, 6000);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((Rabbit30)getActivity()).play){
-                    if(((Rabbit30)getActivity()).getData() == 0){
-                        ((Rabbit30)getActivity()).removeData();
-                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit31.class);
-                        intent.putExtra("play",true);
+
+                if (((Rabbit38) getActivity()).play) {
+                    if (((Rabbit38) getActivity()).getData() == 0) {
+                        ((Rabbit38) getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit40.class);
+                        intent.putExtra("play", true);
                         startActivity(intent);
                         getActivity().finish();
-                    }
-                    else {
-                        ((Rabbit30) getActivity()).removeData();
-                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit38.class);
+                    } else {
+                        ((Rabbit38) getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit39.class);
                         intent.putExtra("play", true);
                         startActivity(intent);
                         getActivity().finish();
                     }
-                }
-                else{
+                } else {
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    rScene79 rscene79 = new rScene79();
-                    transaction.replace(R.id.frame,rscene79);
+                    rScene97 rscene97 = new rScene97();
+                    transaction.replace(R.id.frame, rscene97);
                     transaction.commit();  //저장
                 }
             }
