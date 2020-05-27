@@ -84,9 +84,15 @@ public class pScene125 extends Fragment {
                         .load("http://49.50.174.179:9000/images/pig/1/12_example-02.png")
                         .into(background);
                 subtitles.setText(subs[3]);
-                next.setVisibility(View.VISIBLE);
             }
         }, 7100);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                next.setVisibility(View.VISIBLE);
+            }
+        }, 9100);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

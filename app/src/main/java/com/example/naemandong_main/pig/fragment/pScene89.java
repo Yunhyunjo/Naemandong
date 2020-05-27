@@ -64,7 +64,7 @@ public class pScene89 extends Fragment {
                 // TODO
                 frameAnimation.stop();
                 subtitles.setText(subs[1]);
-                mp2.start();
+                //mp2.start();
             }
         }, 3000);
         delayHandler.postDelayed(new Runnable() {
@@ -72,7 +72,7 @@ public class pScene89 extends Fragment {
             public void run() {
                 // TODO
                 subtitles.setText(subs[2]);
-                mp3.start();
+                //mp3.start();
             }
         }, 4000);
         delayHandler.postDelayed(new Runnable() {

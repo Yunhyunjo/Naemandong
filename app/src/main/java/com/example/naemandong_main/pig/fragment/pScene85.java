@@ -32,7 +32,7 @@ public class pScene85 extends Fragment {
     private ImageButton next;
     private TextView subtitles;
     private ArrayList<Integer> myList;
-    private String subs [] = {"어 뭐야 이 푹신한 침대는…푹신한 침대에 누우니까 잠이 솔솔 오는데…", "하루종일 돼지들을 쫓느라 힘들었던 늑대는 푹신한 침대에 눕자 잠이 들고 말았어요."};
+    private String subs [] = {"\"어 뭐야 이 푹신한 침대는…푹신한 침대에 누우니까 잠이 솔솔 오는데…\"", "하루종일 돼지들을 쫓느라 힘들었던 늑대는 푹신한 침대에 눕자 잠이 들고 말았어요."};
     Handler delayHandler = new Handler();
 
     @Nullable

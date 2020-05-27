@@ -25,7 +25,7 @@ public class pScene62 extends Fragment {
     private ImageView background, pig;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"한편, 그 사실을 모르고 있는 셋째 돼지는 단단한 벽돌로 집을 짓고 있었어요.", "단단한 벽돌로 만든 집은 절대 무너지지 않지!" };
+    private String subs [] = {"한편, 그 사실을 모르고 있는 셋째 돼지는 단단한 벽돌로 집을 짓고 있었어요.", "\"단단한 벽돌로 만든 집은 절대 무너지지 않지!\"" };
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -52,9 +52,15 @@ public class pScene62 extends Fragment {
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                next.setVisibility(View.VISIBLE);
             }
         }, 3100);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                next.setVisibility(View.VISIBLE);
+            }
+        }, 6000);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

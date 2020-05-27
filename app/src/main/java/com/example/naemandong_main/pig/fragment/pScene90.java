@@ -26,6 +26,7 @@ import com.example.naemandong_main.pig.activity.Pig03;
 import com.example.naemandong_main.pig.activity.Pig06;
 import com.example.naemandong_main.pig.activity.Pig29;
 import com.example.naemandong_main.pig.activity.Pig30;
+import com.example.naemandong_main.pig.activity.Pig36;
 
 import java.io.IOException;
 
@@ -85,7 +86,7 @@ public class pScene90 extends Fragment {
                 Animation piggo = AnimationUtils.loadAnimation(getActivity(), R.anim.pscene06);
                 pig.startAnimation(piggo);
                 subtitles.setText(subs[2]);
-                mp3.start();
+                //mp3.start();
             }
         }, 4000);
         delayHandler.postDelayed(new Runnable() {
@@ -115,10 +116,11 @@ public class pScene90 extends Fragment {
                         getActivity().finish();
                     }
                     else {
-//                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig06.class);
-//                        intent.putExtra("play",true);
-//                        startActivity(intent);
-//                        getActivity().finish();
+                        ((Pig29)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig36.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
                     }
                 }
                 else{

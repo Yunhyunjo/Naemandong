@@ -25,6 +25,7 @@ import com.example.naemandong_main.pig.activity.Pig02;
 import com.example.naemandong_main.pig.activity.Pig03;
 import com.example.naemandong_main.pig.activity.Pig06;
 import com.example.naemandong_main.pig.activity.Pig30;
+import com.example.naemandong_main.pig.activity.Pig36;
 
 public class pScene94 extends Fragment {
 
@@ -112,10 +113,11 @@ public class pScene94 extends Fragment {
                         getActivity().finish();
                     }
                     else {
-//                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig06.class);
-//                        intent.putExtra("play",true);
-//                        startActivity(intent);
-//                        getActivity().finish();
+                        ((Pig30)getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig36.class);
+                        intent.putExtra("play",true);
+                        startActivity(intent);
+                        getActivity().finish();
                     }
                 }
                 else{

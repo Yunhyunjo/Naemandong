@@ -28,7 +28,7 @@ public class pScene64 extends Fragment {
     private ImageView background, wolf, pigs;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"돼지들아 이리 나와봐~ 문 좀 열어줘.", "싫어! 우리를 잡아먹으려고 하는거지!"};
+    private String subs [] = {"\"돼지들아 이리 나와봐~ 문 좀 열어줘.\"", "\"싫어! 우리를 잡아먹으려고 하는거지!\""};
     Handler delayHandler = new Handler();
 
     @Nullable
