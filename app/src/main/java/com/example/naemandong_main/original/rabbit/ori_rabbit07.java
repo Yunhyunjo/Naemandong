@@ -22,7 +22,7 @@ public class ori_rabbit07 extends Fragment {
     private View view;
     private ImageView background, box;
     private TextView subtitles;
-    private String subs [] = {"거북이 “와아 내가 이겼다! 토끼는 느림보다!!”", "열심히 달린 거북이는 결국 토끼보다 먼저 정상에 도착했어요."};
+    private String subs [] = {"“와아 내가 이겼다! 토끼는 느림보다!!”", "열심히 달린 거북이는 결국 토끼보다 먼저 정상에 도착했어요."};
     Handler delayHandler = new Handler();
 
     @Nullable
