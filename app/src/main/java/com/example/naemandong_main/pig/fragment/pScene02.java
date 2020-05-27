@@ -17,6 +17,8 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.pig.activity.Pig02;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.pig.activity.Pig01;
+import com.example.naemandong_main.pig.activity.Pig29;
+import com.example.naemandong_main.pig.activity.Pig30;
 
 import java.io.IOException;
 
@@ -67,20 +69,24 @@ public class pScene02 extends Fragment {
                 getActivity().finish();
             }
         });
-//        lion.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit02.class);
-//                startActivity(intent);
-//            }
-//        });
-//        sloth.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit02.class);
-//                startActivity(intent);
-//            }
-//        });
+        cottoncandy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((Pig01)getActivity()).setMylist(1);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Pig29.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+        cookie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((Pig01)getActivity()).setMylist(2);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Pig30.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
 
         return view;
     }

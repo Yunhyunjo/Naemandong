@@ -25,7 +25,7 @@ public class pScene86 extends Fragment {
     private ImageView background, pig;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"한편, 그 사실을 모르고 있는 셋째 돼지는 반짝이는 모래로 집을 짓고 있었어요. ", "나는 이제 집을 다 지었으니 쉬어야지!" };
+    private String subs [] = {"한편, 그 사실을 모르고 있는 셋째 돼지는 반짝이는 모래로 집을 짓고 있었어요. ", "\"반짝이는 모래로 집을 짓는건 재밌어!\"" };
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -39,10 +39,10 @@ public class pScene86 extends Fragment {
         next = view.findViewById(R.id.next);
 
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/pig/1/18_example-01.png")
+                .load("http://49.50.174.179:9000/images/pig/1/18_bg-03.png")
                 .into(background);
 
-        pig.setBackgroundResource(R.drawable.pig_s_brick);
+        pig.setBackgroundResource(R.drawable.pig_s_sand);
         frameAnimation = (AnimationDrawable) pig.getBackground();
 
         subtitles.setText(subs[0]);
@@ -60,8 +60,8 @@ public class pScene86 extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                pScene77 pscene77 = new pScene77();
-                transaction.replace(R.id.frame,pscene77);
+                pScene95 pscene95 = new pScene95();
+                transaction.replace(R.id.frame,pscene95);
                 transaction.commit();  //저장
             }
         });

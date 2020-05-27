@@ -83,8 +83,9 @@ public class pFinal05 extends Fragment {
                 subtitles.setVisibility(View.INVISIBLE);
                 if (!play) {
                     save.setVisibility(View.VISIBLE);
-                    exit.setVisibility(View.VISIBLE);
                 }
+                exit.setVisibility(View.VISIBLE);
+
             }
         }, 10000);
 

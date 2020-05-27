@@ -17,6 +17,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".Original_story"/>
+        <activity android:name=".pig.activity.Pig36" />
+        <activity android:name=".pig.activity.Pig35" />
+        <activity android:name=".pig.activity.Pig34" />
+        <activity android:name=".pig.activity.Pig33" />
+        <activity android:name=".pig.activity.Pig32" />
+        <activity android:name=".pig.activity.Pig31" />
+        <activity android:name=".pig.activity.Pig30" />
+        <activity android:name=".pig.activity.Pig29" />
         <activity android:name=".pig.activity.Pig28" />
         <activity android:name=".pig.activity.Pig27" />
         <activity android:name=".pig.activity.Pig26" />

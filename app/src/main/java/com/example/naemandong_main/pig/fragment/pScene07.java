@@ -18,6 +18,7 @@ import com.example.naemandong_main.R;
 import com.example.naemandong_main.pig.activity.Pig02;
 import com.example.naemandong_main.pig.activity.Pig03;
 import com.example.naemandong_main.pig.activity.Pig06;
+import com.example.naemandong_main.pig.activity.Pig36;
 
 import java.io.IOException;
 
@@ -77,13 +78,15 @@ public class pScene07 extends Fragment {
                 getActivity().finish();
             }
         });
-//        sloth.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit02.class);
-//                startActivity(intent);
-//            }
-//        });
+        blanket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((Pig02)getActivity()).setMylist(2);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Pig36.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
 
         return view;
     }

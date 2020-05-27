@@ -21,6 +21,10 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.pig.activity.Pig02;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.pig.activity.Pig01;
+import com.example.naemandong_main.pig.activity.Pig03;
+import com.example.naemandong_main.pig.activity.Pig06;
+import com.example.naemandong_main.pig.activity.Pig29;
+import com.example.naemandong_main.pig.activity.Pig30;
 
 import java.io.IOException;
 
@@ -100,18 +104,29 @@ public class pScene01 extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (((Pig01)getActivity()).play){
-                    if(((Pig01)getActivity()).getData() == 0){
-                        ((Pig01)getActivity()).removeData();
+                if (((Pig01)getActivity()).play) {
+                    if (((Pig01) getActivity()).getData() == 0) {
+                        //((Pig01) getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig02.class);
-                        intent.putExtra("play",true);
+                        intent.putExtra("play", true);
+                        startActivity(intent);
+                        getActivity().finish();
+                    } else if (((Pig01) getActivity()).getData() == 1) {
+                        //((Pig01) getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig29.class);
+                        intent.putExtra("play", true);
+                        startActivity(intent);
+                        getActivity().finish();
+                    } else {
+                        //((Pig01) getActivity()).removeData();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), Pig30.class);
+                        intent.putExtra("play", true);
                         startActivity(intent);
                         getActivity().finish();
                     }
                 }
                 else {
-                    ((Pig01)getActivity()).removeData();
+//                    ((Pig01)getActivity()).removeData();
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     pScene02 pscene02 = new pScene02();
                     transaction.replace(R.id.frame, pscene02);
