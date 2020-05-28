@@ -54,6 +54,10 @@ public class Bookre_select extends Fragment {
             what = getArguments().getString("what");
             storynum = getArguments().getInt("storynum");
         }
+        if (what == "Voice"){
+            basic.setVisibility(View.INVISIBLE);
+            record.setVisibility(View.INVISIBLE);
+        }
 
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         Bundle bundle = new Bundle();

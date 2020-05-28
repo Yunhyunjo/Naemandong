@@ -58,7 +58,7 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (what == "sketchbook"){
+                    if (what == "Sketchbook"){
                         FragmentTransaction transaction = ((SketchbookActivity)context).getSupportFragmentManager().beginTransaction();
                         Bundle bundle = new Bundle();
                         bundle.putInt("book_no", book_no);
@@ -67,6 +67,10 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
                         transaction.replace(R.id.framelayout, sketchbookFragment);
                         sketchbookFragment.setArguments(bundle);
                         transaction.commit();  //저장
+                    }
+                    else if (what == "Voice"){
+                        mySelect.clear();
+                        readStory(new storybookData(book_no));
                     }
                     else {
                         mySelect.clear();
@@ -136,6 +140,9 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
 
                 if (storynum ==1) {
                     Intent intent = new Intent(context, Rabbit01.class);
+                    if (what == "Voice"){
+                        intent.putExtra("record", true);
+                    }
                     intent.putExtra("select", mySelect);
                     intent.putExtra("play", true);
                     context.startActivity(intent);
