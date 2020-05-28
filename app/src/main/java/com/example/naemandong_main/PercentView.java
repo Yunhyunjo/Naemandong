@@ -14,6 +14,7 @@ import com.example.naemandong_main.Data.percentResponse;
 import com.example.naemandong_main.Network.RetrofitClient;
 import com.example.naemandong_main.Network.ServiceApi;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -26,7 +27,6 @@ public class PercentView extends View {
         super(context, attrs);
     }
     public int pcount, rcount;
-    public int order = 0;
 
     ServiceApi service = RetrofitClient.getClient().create(ServiceApi.class);
 
@@ -40,72 +40,66 @@ public class PercentView extends View {
         pnt.setColor(Color.parseColor("#FF8C00"));
         pnt.setStyle(Paint.Style.STROKE);
 
-        switch(order) {
-            case 0 :
-               /* pcount = pigpercent(new bookListData(2));
-                rcount = rabbitpercent(new bookListData(1));*/
-                order++;
-            case 1 :
-                RectF rect = new RectF();
-                rect.set(218, 188, 408, 378);
-                canvas.drawArc(rect, (270), (float)pigpercent(new bookListData(2))/3, false, pnt);
-                Log.d("그리기시작 : ", " "+pigpercent(new bookListData(2))+" "+order);
+        pcount = pigpercent(new bookListData(2));
+        rcount = rabbitpercent(new bookListData(1));
 
-                rect = new RectF();
-                rect.set(570, 188, 760, 378);
-                canvas.drawArc(rect, (270), (float)rabbitpercent(new bookListData(1))/21, false, pnt);
-                break;
-        }
+        RectF rect = new RectF();
+        rect.set(218, 188, 408, 378);
+        canvas.drawArc(rect, (270), (float) pcount / 17 * 360, false, pnt);
+        Log.d("그리기시작 : ", " " + pcount + " " + rcount);
+
+        rect = new RectF();
+        rect.set(570, 188, 760, 378);
+        canvas.drawArc(rect, (270), (float) rcount / 21 * 360, false, pnt);
 
 
-    }
-
-    public int pigpercent(bookListData data) {
-        final int[] c = new int[1];
-
-        service.getPercent(data).enqueue(new Callback<percentResponse>() {
-            @Override
-            public void onResponse(Call<percentResponse> call, Response<percentResponse> response) {
-                percentResponse resource = response.body();
-                pcount = resource.getCount();
-                c[0] = pcount;
-
-                Log.d("ppercent함수 : ", " "+pcount);
-            }
-
-            @Override
-            public void onFailure(Call<percentResponse> call, Throwable t) {
-                //               Toast.makeText(rfinal01.this, "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                //               Log.e("회원가입에 실패했습니다.", t.getMessage());
-            }
-        });
-        return c[0];
     }
 
     private int rabbitpercent(bookListData data) {
-        final int[] a = new int[1];
+        final Call<percentResponse> res = service.getPercent(data);
 
-        service.getPercent(data).enqueue(new Callback<percentResponse>() {
+        new Thread(new Runnable() {
             @Override
-            public void onResponse(Call<percentResponse> call, Response<percentResponse> response) {
-                percentResponse resource = response.body();
-                rcount = resource.getCount();
-                a[0] = rcount;
-
-                Log.d("rpercent함수 : ", " " + rcount);
+            public void run() {
+                try {
+                    rcount = res.execute().body().getCount();
+                } catch (IOException ie) {
+                    ie.printStackTrace();
+                }
             }
+        }).start();
 
-            @Override
-            public void onFailure(Call<percentResponse> call, Throwable t) {
-                //               Toast.makeText(rfinal01.this, "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                //               Log.e("회원가입에 실패했습니다.", t.getMessage());
-            }
-        });
+        try {
+            Thread.sleep(500);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        return a[0];
+        return rcount;
     }
 
+    private int pigpercent(bookListData data) {
+        final Call<percentResponse> res = service.getPercent(data);
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    pcount = res.execute().body().getCount();
+                } catch (IOException ie) {
+                    ie.printStackTrace();
+                }
+            }
+        }).start();
+
+        try {
+            Thread.sleep(500);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return pcount;
+    }
 
 
 }
