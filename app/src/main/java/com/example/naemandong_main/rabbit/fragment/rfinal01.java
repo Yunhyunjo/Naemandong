@@ -63,7 +63,7 @@ public class rfinal01 extends Fragment {
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rfinal01_1.mp3");
             mp1.prepare();
-            mp2.setDataSource("http://49.50.174.179:9000/voice/rfinal01_2.mp3");
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rFinal01_2.mp3");
             mp2.prepare();
         } catch (IOException e) {
             e.printStackTrace();
@@ -110,5 +110,12 @@ public class rfinal01 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
     }
 }

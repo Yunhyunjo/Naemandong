@@ -1,5 +1,6 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import com.example.naemandong_main.Network.ServiceApi;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Save_Dialog;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -31,6 +33,9 @@ import retrofit2.Response;
 public class rFinal02 extends Fragment {
 
     private Save_Dialog saveDialog;
+    //    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer mp3 = new MediaPlayer();
     private View view;
     private ImageView background, box, rabbit;
     private TextView subtitles;
@@ -68,11 +73,26 @@ public class rFinal02 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/24_r.png")
                 .into(rabbit);
 
+        try {
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rFinal02_2.mp3");
+            mp2.prepare();
+            mp3.setDataSource("http://49.50.174.179:9000/voice/rFinal02_3.mp3");
+            mp3.prepare();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        int a = mp1.getDuration();
+//        int b = mp1.getDuration() + mp2.getDuration();
+//        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
+
         subtitles.setText(subs[0]);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                mp2.start();
                 subtitles.setText(subs[1]);
             }
         }, 3000);
@@ -80,6 +100,7 @@ public class rFinal02 extends Fragment {
             @Override
             public void run() {
                 // TODO
+                mp3.start();
                 subtitles.setText(subs[2]);
             }
         }, 5000);
@@ -111,5 +132,13 @@ public class rFinal02 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+//        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
     }
 }
