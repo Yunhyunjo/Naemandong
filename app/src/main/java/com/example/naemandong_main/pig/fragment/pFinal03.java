@@ -32,7 +32,7 @@ public class pFinal03 extends Fragment {
     private ImageButton save, exit;
     private ArrayList<Integer> myList;
     boolean play = false;
-    private String subs [] = {"막내 돼지가 문을 열어주지 않자 늑대는 아쉬워하며 마을을 떠났어요.", "늑대가 떠나고 난 평화로운 마을에서 막내돼지는 오래오래 행복하게 살았답니다."};
+    private String subs [] = {"“아이고 늑대 살려! 늑대 죽네 죽어!”", "늑대가 떠나고 난 평화로운 마을에서 막내돼지는 오래오래 행복하게 살았답니다."};
     Handler delayHandler = new Handler();
 
     @Nullable

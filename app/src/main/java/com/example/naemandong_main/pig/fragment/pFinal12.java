@@ -31,7 +31,7 @@ public class pFinal12 extends Fragment {
     private ImageButton save, exit;
     private ArrayList<Integer> myList;
     boolean play = false;
-    private String subs [] = {"늑대가 없어지고 평화로워진 마을에서 엄마 돼지와 아기 돼지 삼형제는 행복하게 살았답니다."};
+    private String subs [] = {"늑대가 없어지고 평화로워진 마을에서", "엄마 돼지와 아기 돼지 삼형제는 행복하게 살았답니다."};
     Handler delayHandler = new Handler();
 
     @Nullable
