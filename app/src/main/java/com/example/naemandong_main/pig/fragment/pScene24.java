@@ -76,7 +76,6 @@ public class pScene24 extends Fragment {
                 frameAnimation.start();
                 wolf.startAnimation(wolfgo);
                 subtitles.setText(subs[2]);
-                next.setVisibility(View.VISIBLE);
             }
         }, 4100);
         delayHandler.postDelayed(new Runnable() {
