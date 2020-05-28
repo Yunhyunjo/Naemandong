@@ -3,6 +3,8 @@ package com.example.naemandong_main;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,6 +31,7 @@ import android.widget.ImageButton;
 
         sound = ((Setting_data)this.getApplication()).getSound();
         subtitle = ((Setting_data)this.getApplication()).getSubtitle();
+
 
         if (sound){
             sound_on.setSelected(true);
@@ -64,6 +67,12 @@ import android.widget.ImageButton;
                 sound_off.setSelected(false);
                 sound = true;
                 setSound(sound);
+                AudioManager manager=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
+                manager.setStreamMute(AudioManager.STREAM_NOTIFICATION, false);
+                manager.setStreamMute(AudioManager.STREAM_ALARM, false);
+                manager.setStreamMute(AudioManager.STREAM_MUSIC, false);
+                manager.setStreamMute(AudioManager.STREAM_RING, false);
+                manager.setStreamMute(AudioManager.STREAM_SYSTEM, false);
             }
         });
         sound_off.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +82,12 @@ import android.widget.ImageButton;
                 sound_off.setSelected(true);
                 sound = false;
                 setSound(sound);
+                AudioManager manager=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
+                manager.setStreamMute(AudioManager.STREAM_NOTIFICATION, true);
+                manager.setStreamMute(AudioManager.STREAM_ALARM, true);
+                manager.setStreamMute(AudioManager.STREAM_MUSIC, true);
+                manager.setStreamMute(AudioManager.STREAM_RING, true);
+                manager.setStreamMute(AudioManager.STREAM_SYSTEM, true);
             }
         });
         subtitle_on.setOnClickListener(new View.OnClickListener() {
