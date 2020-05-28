@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,7 +30,8 @@ public class rScene01 extends Fragment {
     private ImageView background, box;
     private ImageButton next;
     private TextView subtitles;
-    boolean sound, subtitle;
+    private LinearLayout record_box;
+    boolean sound, subtitle, record;
     private String subs [] = {"어느 숲 속에 토끼, 사자, 나무늘보, 거북이가 살고 있었어요.", "동물들은 매일같이 자신이 가장 빠르다며 싸우곤 했지요."};
     Handler delayHandler = new Handler();
 
@@ -42,6 +44,7 @@ public class rScene01 extends Fragment {
         box = view.findViewById(R.id.subtitlebox);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
+        record_box = view.findViewById(R.id.record);
 
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene01_1.mp3");
@@ -58,6 +61,7 @@ public class rScene01 extends Fragment {
         if (getArguments() != null){
             sound = getArguments().getBoolean("sound");
             subtitle = getArguments().getBoolean("subtitle");
+            record = getArguments().getBoolean("record");
         }
 
         Glide.with(this)
@@ -87,6 +91,11 @@ public class rScene01 extends Fragment {
             @Override
             public void run() {
                 // TODO
+                if(record == true){
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    record_box.setVisibility(View.VISIBLE);
+                }
                 next.setVisibility(View.VISIBLE);
             }
         }, b);

@@ -56,6 +56,9 @@ public class MybookList extends Fragment {
         if ((what == "Sketchbook")) {
             adapter.activity = this.getActivity();
         }
+        if ((what == "Voice")) {
+            adapter.activity = this.getActivity();
+        }
         startList(new bookListData(storynum));
         recyclerView.addItemDecoration(new ItemDecoration());
         recyclerView.setAdapter(adapter);

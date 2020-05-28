@@ -24,7 +24,7 @@ public class SketchbookActivity extends AppCompatActivity implements View.OnClic
         context = this;
 
         Bundle bundle = new Bundle();
-        bundle.putString("what","sketchbook");
+        bundle.putString("what","Sketchbook");
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fatale_select fatale_select = new Fatale_select();
         fatale_select.setArguments(bundle);
