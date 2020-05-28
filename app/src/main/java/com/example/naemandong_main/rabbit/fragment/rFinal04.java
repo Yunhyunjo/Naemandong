@@ -1,5 +1,6 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -18,11 +19,14 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Save_Dialog;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class rFinal04 extends Fragment {
 
     private Save_Dialog saveDialog;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
     private View view;
     private ImageView background, box;
     private TextView subtitles;
@@ -56,14 +60,29 @@ public class rFinal04 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/43_fin.png")
                 .into(background);
 
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rFinal04_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rFinal04_2.mp3");
+            mp2.prepare();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
+
         subtitles.setText(subs[0]);
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
+                mp2.start();
             }
-        }, 3000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -75,7 +94,7 @@ public class rFinal04 extends Fragment {
                 }
                 exit.setVisibility(View.VISIBLE);
             }
-        }, 8000);
+        }, b);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,5 +111,12 @@ public class rFinal04 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
     }
 }
