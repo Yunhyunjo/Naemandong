@@ -1,6 +1,7 @@
 package com.example.naemandong_main.pig.fragment;
 
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -27,6 +28,8 @@ import java.util.ArrayList;
 public class pFinal05 extends Fragment {
     private Save_Dialog saveDialog;
     AnimationDrawable frameAnimation;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
     private View view;
     private ImageView background, box, wolf;
     private TextView subtitles;

@@ -25,7 +25,7 @@ public class pScene79 extends Fragment {
     private ImageView background, wolf, pig, house, house_inside;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"막내 돼지가 문을 열어주지 않자 늑대는 벽돌집을 발로 뻥 하고 찼어요.", "하지만 튼튼한 막내 돼지의 벽돌집은 무너지지 않았어요." };
+    private String subs [] = {"막내 돼지가 문을 열어주지 않자 늑대는 벽돌집을 발로 뻥 하고 찼어요.", "하지만 단단한 막내 돼지의 벽돌집은 무너지지 않았어요." };
     Handler delayHandler = new Handler();
 
     @Nullable

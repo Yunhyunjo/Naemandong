@@ -2,6 +2,7 @@ package com.example.naemandong_main.pig.fragment;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -20,12 +21,15 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Save_Dialog;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 // 돌집 막내돼지 혼자 엔딩
 public class pFinal03 extends Fragment {
     private Save_Dialog saveDialog;
     AnimationDrawable frameAnimation;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
     private View view;
     private ImageView background, box, pig, house, house_inside;
     private TextView subtitles;
@@ -64,6 +68,18 @@ public class pFinal03 extends Fragment {
         pig.setBackgroundResource(R.drawable.pig_final03);
         frameAnimation = (AnimationDrawable) pig.getBackground();
 
+        try {
+//            mp1.setDataSource("http://49.50.174.179:9000/voice/pig/pFinal01_1.mp3");
+//            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/pig/pFinal03_2.mp3");
+            mp2.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
+
         if (getArguments() != null){
             myList = getArguments().getIntegerArrayList("myList");
             play = getArguments().getBoolean("play");
@@ -80,6 +96,7 @@ public class pFinal03 extends Fragment {
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
+                mp2.start();
             }
         }, 5000);
         delayHandler.postDelayed(new Runnable() {
@@ -112,5 +129,11 @@ public class pFinal03 extends Fragment {
         });
 
         return view;
+    }
+
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
     }
 }
