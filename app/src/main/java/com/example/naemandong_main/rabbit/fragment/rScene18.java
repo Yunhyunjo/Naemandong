@@ -24,6 +24,7 @@ public class rScene18 extends Fragment {
 
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer mp3 = new MediaPlayer();
     private View view;
     private ImageView background, box, rabbit;
     private TextView subtitles;
@@ -55,6 +56,8 @@ public class rScene18 extends Fragment {
             mp1.prepare();
             mp2.setDataSource("http://49.50.174.179:9000/voice/rScene18_2.mp3");
             mp2.prepare();
+            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene18_3.MP3");
+            mp3.prepare();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -101,5 +104,13 @@ public class rScene18 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
     }
 }

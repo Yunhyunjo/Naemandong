@@ -46,11 +46,11 @@ public class rScene02 extends Fragment {
         next = view.findViewById(R.id.next);
 
         try {
-            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene02_1.mp3");
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene02_1.MP3");
             mp1.prepare();
-            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene02_2.mp3");
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene02_2.MP3");
             mp2.prepare();
-            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene02_3.mp3");
+            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene02_3.MP3");
             mp3.prepare();
         } catch (IOException e) {
             e.printStackTrace();
@@ -133,5 +133,13 @@ public class rScene02 extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
     }
 }
