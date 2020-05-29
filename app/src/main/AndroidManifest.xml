@@ -100,6 +100,9 @@
             android:theme="@style/MyDialog" />
         <activity android:name=".rabbit.activity.Rabbit01" />
         <activity
+            android:name=".Record"
+            android:theme="@style/Transparent2" />
+        <activity
             android:name=".Voice"
             android:theme="@style/Transparent" />
         <activity

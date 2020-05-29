@@ -1,5 +1,6 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
@@ -22,8 +23,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
-import com.example.naemandong_main.Recode;
-import com.example.naemandong_main.rabbit.activity.Rabbit01;
+import com.example.naemandong_main.Record;
 
 import java.io.IOException;
 
@@ -41,15 +41,6 @@ public class rScene01 extends Fragment {
     private String subs [] = {"어느 숲 속에 토끼, 사자, 나무늘보, 거북이가 살고 있었어요.", "동물들은 매일같이 자신이 가장 빠르다며 싸우곤 했지요."};
     Handler delayHandler = new Handler();
 
-
-    Recode recode = new Recode();
-    MediaRecorder mRecorder = new MediaRecorder();
-    MediaPlayer mPlayer = new MediaPlayer();
-    String mPath = null;
-    private ImageButton record_start, record_play, record_save;
-    boolean isPlaying = false;
-    boolean isRecording = false;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,19 +51,6 @@ public class rScene01 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
         record_box = view.findViewById(R.id.record);
-
-        record_start = view.findViewById(R.id.record_star);
-        record_play = view.findViewById(R.id.record_play);
-        record_save = view.findViewById(R.id.record_save);
-
-        mRecorder = new MediaRecorder();
-
-        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
-        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-
-        mPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/record.aac";
-        mRecorder.setOutputFile(mPath);
 
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene01_1.mp3");
@@ -122,69 +100,13 @@ public class rScene01 extends Fragment {
                 if(record == true){
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);
-                    record_box.setVisibility(View.VISIBLE);
+                    //record_box.setVisibility(View.VISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
             }
         }, b);
-
-        record_start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    mRecorder.prepare();
-                    mRecorder.start();
-                    Toast.makeText(getContext(), "녹음 시작", Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    Log.e(TAG, "prepare() failed");
-                }
-               // recode.initAudioRecorder();
-            }
-        });
-
-        record_save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mRecorder != null) {
-                    mRecorder.stop();
-                    mRecorder.reset();
-                    mRecorder.release();
-                    mRecorder = null;
-                    Toast.makeText(getContext(), "녹음 멈춤", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        record_play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isPlaying == false) {
-                    try {
-                        mPlayer = new MediaPlayer();
-
-                        mPlayer.setDataSource(mPath);
-                        mPlayer.prepare();
-                        mPlayer.start();
-
-                        Toast.makeText(getContext(), "재생 시작", Toast.LENGTH_SHORT).show();
-                    }catch (Exception e) {
-                        Log.e(TAG, "prepare() failed");
-                    }
-                    isPlaying = true;
-                }
-                else {
-                    mPlayer.stop();
-                    isPlaying = false;
-                }
-            }
-        });
-
-        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                isPlaying = false;
-            }
-        });
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
