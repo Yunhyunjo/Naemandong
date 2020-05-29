@@ -29,7 +29,7 @@ public class rScene27 extends Fragment {
     private View view;
     private ImageView background, box, rabbit;
     private TextView subtitles;
-    private String subs [] = {"“아냐! 시합이 끝나고 먹으러 오자!” ","토끼는 먹는걸 포기하고 열심히 달려 산꼭대기에 도착했어요."};
+    private String subs [] = {"“아냐아냐! 시합이 끝나고 먹으러 오자!” ","토끼는 먹는걸 포기하고 열심히 달려 산꼭대기에 도착했어요."};
     private ImageButton next;
     private ArrayList<Integer> myList;
     Handler delayHandler = new Handler();

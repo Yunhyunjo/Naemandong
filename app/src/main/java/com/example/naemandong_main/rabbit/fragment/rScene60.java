@@ -35,7 +35,7 @@ public class rScene60 extends Fragment {
     private View view;
     private ImageView background, box, sloth;
     private TextView subtitles;
-    private String subs [] = {"지도를 따라 걷던 나무늘보의 앞에 갈림길이 나타났어요.", "\" 지도에 없는 길인데…\""};
+    private String subs [] = {"지도를 따라 걷던 나무늘보의 앞에 갈림길이 나타났어요.", "\" 지도에 없는...길인데…\""};
     private ImageButton next;
     Handler delayHandler = new Handler();
 

@@ -26,7 +26,7 @@ public class rScene93 extends Fragment {
     private View view;
     private ImageView background, box, turtle,lion, lion2, front, bike, light;
     private TextView subtitles;
-    private String subs [] = {"\"거북이는 2인 자전거를 발견했어요.\"", "\"어? 이건 둘이서만 탈 수 있는 자전거잖아? 꼭 타보고 싶었는데.. 사자랑 같이 탈까?\""};
+    private String subs [] = {"거북이는 2인 자전거를 발견했어요.", "\"어? 이건 둘이서만 탈 수 있는 자전거잖아? 꼭 타보고 싶었는데.. 사자랑 같이 탈까?\""};
     private ImageButton next;
     Handler delayHandler = new Handler();
 

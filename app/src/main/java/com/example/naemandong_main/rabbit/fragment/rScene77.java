@@ -68,7 +68,7 @@ public class rScene77 extends Fragment {
                 frameLion = (AnimationDrawable) lion.getBackground();
                 frameLion.start();
             }
-        }, 2000);
+        }, 4000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {

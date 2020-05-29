@@ -35,7 +35,7 @@ public class rScene03 extends Fragment {
     private ImageButton next;
     private TextView subtitles;
     boolean sound, subtitle;
-    private String subs [] = {"그 때 느림보 거북이가 엉금엉금 기어왔어요.", "“거북이는 느림보래요, 느림보래요.”","“하하하하하하.”"};
+    private String subs [] = {"그 때 느림보 거북이가 엉금엉금 기어왔어요.", "“느림보래요, 느림보래요.”","“하하하하하하.”"};
     Handler delayHandler = new Handler();
 
     @Nullable
