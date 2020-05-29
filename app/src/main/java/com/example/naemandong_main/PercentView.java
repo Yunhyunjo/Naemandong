@@ -36,7 +36,7 @@ public class PercentView extends View {
     {
         super.onDraw(canvas);
         Paint pnt = new Paint();
-        pnt.setStrokeWidth(30f);
+        pnt.setStrokeWidth(15f);
         pnt.setColor(Color.parseColor("#FF8C00"));
         pnt.setStyle(Paint.Style.STROKE);
 
@@ -44,12 +44,12 @@ public class PercentView extends View {
         rcount = rabbitpercent(new bookListData(1));
 
         RectF rect = new RectF();
-        rect.set(218, 188, 408, 378);
+        rect.set(225, 195, 401, 371);
         canvas.drawArc(rect, (270), (float) pcount / 17 * 360, false, pnt);
         Log.d("그리기시작 : ", " " + pcount + " " + rcount);
 
         rect = new RectF();
-        rect.set(570, 188, 760, 378);
+        rect.set(577, 195, 753, 371);
         canvas.drawArc(rect, (270), (float) rcount / 21 * 360, false, pnt);
 
 
