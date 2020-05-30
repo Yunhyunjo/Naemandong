@@ -70,6 +70,7 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
                     }
                     else if (what == "Voice"){
                         mySelect.clear();
+                        ((Voice)context).setSound();
                         readStory(new storybookData(book_no));
                     }
                     else {
@@ -140,9 +141,6 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
 
                 if (storynum ==1) {
                     Intent intent = new Intent(context, Rabbit01.class);
-                    if (what == "Voice"){
-                        intent.putExtra("record", true);
-                    }
                     intent.putExtra("select", mySelect);
                     intent.putExtra("play", true);
                     context.startActivity(intent);

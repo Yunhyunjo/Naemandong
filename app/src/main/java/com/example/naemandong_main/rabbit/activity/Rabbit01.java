@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class Rabbit01 extends AppCompatActivity {
 
     public boolean play = false;
-    public boolean record = false;
     Button setting;
     public ArrayList<Integer> mySelect = new ArrayList<Integer>();
     public boolean sound;
@@ -36,7 +35,6 @@ public class Rabbit01 extends AppCompatActivity {
         Intent intent = getIntent();
         mySelect = intent.getIntegerArrayListExtra("select");
         play = intent.getBooleanExtra("play",false);
-        record = intent.getBooleanExtra("record",false);
         Toast.makeText(this,String.valueOf(mySelect),Toast.LENGTH_LONG).show();
 
         if (play){
@@ -46,7 +44,6 @@ public class Rabbit01 extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putBoolean("sound", sound);
         bundle.putBoolean("subtitle", subtitle);
-        bundle.putBoolean("record", record);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         rScene01 rscene01 = new rScene01();
         transaction.replace(R.id.frame, rscene01);
@@ -85,5 +82,9 @@ public class Rabbit01 extends AppCompatActivity {
     public void removeData() {
         ((Setting_data)this.getApplication()).myList.remove(0);
         Toast.makeText(this,String.valueOf(((Setting_data)this.getApplication()).myList),Toast.LENGTH_LONG).show();
+    }
+
+    public Boolean isRecord() {
+        return ((Setting_data)this.getApplication()).isRecord();
     }
 }

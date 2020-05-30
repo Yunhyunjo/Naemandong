@@ -27,6 +27,7 @@ public class ori_rabbit04 extends Fragment {
     private View view;
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer mp3 = new MediaPlayer();
     private AnimationDrawable frameTurtle, frameRabbit;
     private ImageView background, box, rabbit, turtle;
     private TextView subtitles;
@@ -48,20 +49,20 @@ public class ori_rabbit04 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/7_back.jpg")
                 .into(background);
 
-//        try {
-//            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene07_1.mp3");
-//            mp1.prepare();
-//            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene07_2.mp3");
-//            mp2.prepare();
-//            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene07_3.mp3");
-//            mp3.prepare();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene07_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene07_2.MP3");
+            mp2.prepare();
+            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene07_3.mp3");
+            mp3.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
-//        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
+        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
 
         turtle.setBackgroundResource(R.drawable.turtle_rightgo);
         frameTurtle = (AnimationDrawable) turtle.getBackground();
@@ -82,17 +83,17 @@ public class ori_rabbit04 extends Fragment {
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                //mp2.start();
+                mp2.start();
             }
-        }, 6000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[2]);
-                //mp3.start();
+                mp3.start();
             }
-        }, 9000);
+        }, b);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -102,7 +103,14 @@ public class ori_rabbit04 extends Fragment {
                 transaction.replace(R.id.frame, ori_rabbit05);
                 transaction.commit();  //저장
             }
-        }, 14000);
+        }, c);
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
     }
 }

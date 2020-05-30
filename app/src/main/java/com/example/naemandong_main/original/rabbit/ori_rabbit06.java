@@ -2,6 +2,7 @@ package com.example.naemandong_main.original.rabbit;
 
 
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -9,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,9 +21,14 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 
+import java.io.IOException;
+
 public class ori_rabbit06 extends Fragment {
 
     private View view;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer mp3 = new MediaPlayer();
     private AnimationDrawable frameAnimation1;
     private ImageView background, box,front,front2, turtle, rabbit2;
     private TextView subtitles;
@@ -57,20 +62,20 @@ public class ori_rabbit06 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/original/5_sleep.png")
                 .into(rabbit2);
 
-//        try {
-//            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene08_1.mp3");
-//            mp1.prepare();
-//            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene08_2.mp3");
-//            mp2.prepare();
-//            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene08_3.mp3");
-//            mp3.prepare();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit06_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit06_2.MP3");
+            mp2.prepare();
+            mp3.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit06_3.mp3");
+            mp3.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-//        int a = mp1.getDuration();
-//        int b = mp1.getDuration() + mp2.getDuration();
-//        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
+        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
 
         turtle.setBackgroundResource(R.drawable.turtle_rightgo);
         frameAnimation1 = (AnimationDrawable) turtle.getBackground();
@@ -80,35 +85,41 @@ public class ori_rabbit06 extends Fragment {
         frameAnimation1.start();
         turtle.startAnimation(turtlego);
         subtitles.setText(subs[0]);
-        //mp1.start();
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                //mp2.start();
+                mp2.start();
             }
-        }, 5000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                //mp2.start();
+                mp3.start();
             }
-        }, 7000);
+        }, b);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
-                //mp3.start();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 ori_rabbit07 ori_rabbit07 = new ori_rabbit07();
                 transaction.replace(R.id.frame, ori_rabbit07);
                 transaction.commit();  //저장
             }
-        }, 12000);
+        }, c);
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
     }
 }
