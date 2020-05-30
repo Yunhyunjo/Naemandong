@@ -2,6 +2,7 @@ package com.example.naemandong_main.rabbit.fragment;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -20,13 +21,19 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.rabbit.activity.Rabbit14;
 import com.example.naemandong_main.rabbit.activity.Rabbit15;
 import com.example.naemandong_main.rabbit.activity.Rabbit16;
 
+import java.io.IOException;
+
 public class rScene40 extends Fragment {
 
     private AnimationDrawable frameAnimation1;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
     private View view;
     private ImageView background, box, rabbit, turtle;
     private TextView subtitles;
@@ -54,6 +61,18 @@ public class rScene40 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/35_sleep.png")
                 .into(rabbit);
 
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene40_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene40_2.MP3");
+            mp2.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
+
         turtle.setBackgroundResource(R.drawable.turtle_doridori);
         frameAnimation1 = (AnimationDrawable) turtle.getBackground();
 
@@ -63,20 +82,28 @@ public class rScene40 extends Fragment {
         turtle.startAnimation(turtlego);
 
         subtitles.setText(subs[0]);
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
+                mp2.start();
             }
-        }, 2000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
-        }, 8300);
+        }, b);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,5 +134,12 @@ public class rScene40 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
     }
 }

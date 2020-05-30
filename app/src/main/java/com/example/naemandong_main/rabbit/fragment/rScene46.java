@@ -18,9 +18,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.rabbit.activity.Rabbit17;
 import com.example.naemandong_main.rabbit.activity.Rabbit18;
 import com.example.naemandong_main.rabbit.activity.Rabbit19;
+
+import java.io.IOException;
 
 public class rScene46 extends Fragment {
 
@@ -56,31 +60,31 @@ public class rScene46 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/62_sloth.png")
                 .into(sloth);
 
-//        try {
-//            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene06_1.mp3");
-//            mp1.prepare();
-//            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene06_2.mp3");
-//            mp2.prepare();
-//            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene06_3.mp3");
-//            mp3.prepare();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene46_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene46_2.MP3");
+            mp2.prepare();
+            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene46_3.MP3");
+            mp3.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
         int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
 
         subtitles.setText(subs[0]);
-        //mp1.start();
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                //mp2.start();
+                mp2.start();
             }
-        }, 5000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -89,16 +93,22 @@ public class rScene46 extends Fragment {
                         .load("http://49.50.174.179:9000/images/rabbit/5/62_angry.png")
                         .into(turtle);
                 subtitles.setText(subs[2]);
-                //mp3.start();
+                mp3.start();
             }
-        }, 8000);
+        }, b);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
-        }, 10000);
+        }, c);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,5 +139,13 @@ public class rScene46 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
     }
 }

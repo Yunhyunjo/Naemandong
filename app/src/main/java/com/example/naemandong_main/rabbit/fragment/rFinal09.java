@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Record;
 import com.example.naemandong_main.Save_Dialog;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.rabbit.activity.Rabbit21;
 
 import java.io.IOException;
@@ -142,7 +143,7 @@ public class rFinal09 extends Fragment {
                 if (!play) {
                     save.setVisibility(View.VISIBLE);
                 }
-                if (record == true) {
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(getActivity(), Record.class);

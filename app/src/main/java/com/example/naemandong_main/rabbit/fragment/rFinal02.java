@@ -24,6 +24,7 @@ import com.example.naemandong_main.Network.ServiceApi;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Record;
 import com.example.naemandong_main.Save_Dialog;
+import com.example.naemandong_main.Setting_data;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -94,6 +95,7 @@ public class rFinal02 extends Fragment {
         int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
 
         subtitles.setText(subs[0]);
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -119,7 +121,7 @@ public class rFinal02 extends Fragment {
                 if (!play) {
                     save.setVisibility(View.VISIBLE);
                 }
-                if (record == true) {
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(getActivity(), Record.class);

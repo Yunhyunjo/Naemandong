@@ -1,5 +1,7 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -18,10 +20,18 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
+
+import java.io.IOException;
 
 public class rScene42 extends Fragment {
 
     private View view;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer mp3 = new MediaPlayer();
+    MediaPlayer mp4 = new MediaPlayer();
     private ImageView background, box, bush, rabbit, turtle, bulb, bike_turtle, rabbit_bed, bike;
     private TextView subtitles;
     private String subs [] = {"“여기 오토바이가 있네?”", "거북이는 오토바이를 타고 달리기 시작했어요.", "부아아아앙!!", " “이게 무슨 소리지?”"};
@@ -69,7 +79,26 @@ public class rScene42 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/47_front.png")
                 .into(bush);
 
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene42_1.MP3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene42_2.mp3");
+            mp2.prepare();
+            /*mp3.setDataSource("http://49.50.174.179:9000/voice/rScene42_3.mp3");
+            mp3.prepare();
+            mp4.setDataSource("http://49.50.174.179:9000/voice/rScene42_4.mp3");
+            mp4.prepare();*/
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
+//        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
+//        int d = mp1.getDuration() + mp2.getDuration() + mp3.getDuration() + mp4.getDuration();
+
         subtitles.setText(subs[0]);
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -79,8 +108,9 @@ public class rScene42 extends Fragment {
                 bulb.setImageResource(0);
 
                 subtitles.setText(subs[1]);
+                mp2.start();
             }
-        }, 4000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -92,7 +122,7 @@ public class rScene42 extends Fragment {
 
                 subtitles.setText(subs[2]);
             }
-        }, 9000);
+        }, b);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -112,6 +142,12 @@ public class rScene42 extends Fragment {
             @Override
             public void run() {
                 // TODO
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
         }, 13000);
@@ -127,5 +163,14 @@ public class rScene42 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        /*if (mp3 != null) mp3.release();
+        if (mp4 != null) mp4.release();*/
     }
 }
