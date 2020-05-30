@@ -98,7 +98,7 @@ public class ori_rabbit06 extends Fragment {
             @Override
             public void run() {
                 // TODO
-                subtitles.setText(subs[1]);
+                subtitles.setText(subs[2]);
                 mp3.start();
             }
         }, b);

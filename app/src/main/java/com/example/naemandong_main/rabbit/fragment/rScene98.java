@@ -78,7 +78,7 @@ public class rScene98 extends Fragment {
         int c = mp1.getDuration() + mp2.getDuration()+ mp3.getDuration();
 
         subtitles.setText(subs[0]);
-
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -86,7 +86,7 @@ public class rScene98 extends Fragment {
                 Glide.with(getActivity())
                         .load(0)
                         .into(lion2);
-
+                mp2.start();
                 lion2.setBackgroundResource(R.drawable.lion_rightgo);
                 subtitles.setText(subs[1]);
             }
@@ -100,7 +100,7 @@ public class rScene98 extends Fragment {
 
                 Animation liongo = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene74);
                 lion2.startAnimation(liongo);
-
+                mp3.start();
                 subtitles.setText(subs[2]);
             }
         }, b);

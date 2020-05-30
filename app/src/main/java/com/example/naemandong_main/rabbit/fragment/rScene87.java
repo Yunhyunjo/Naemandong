@@ -74,9 +74,6 @@ public class rScene87 extends Fragment {
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/original/7_front.png")
                 .into(front);
-        Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/8/97_front.png")
-                .into(lion);
 
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene87_1.mp3");

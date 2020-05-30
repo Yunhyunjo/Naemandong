@@ -30,7 +30,7 @@ public class rScene31 extends Fragment {
     MediaPlayer mp2 = new MediaPlayer();
     private ImageView background, box, bed, front;
     private TextView subtitles;
-    private String subs [] = {"\"여기 베개랑 침대가 있네? 신난다!\"", "베개를 찾은 토끼는 쿨쿨 깊은 잠이 들었어요."};
+    private String subs [] = {"그때 마침 토끼는 베개를 발견했어요 ", "베개를 찾은 토끼는 쿨쿨 깊은 잠이 들었어요."};
     private ImageButton next;
     Handler delayHandler = new Handler();
 
@@ -59,7 +59,7 @@ public class rScene31 extends Fragment {
                 .into(front);
 
         try {
-            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene31_1.mp3");
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene31_2.mp3");
             mp1.prepare();
             mp2.setDataSource("http://49.50.174.179:9000/voice/rScene31_2.mp3");
             mp2.prepare();

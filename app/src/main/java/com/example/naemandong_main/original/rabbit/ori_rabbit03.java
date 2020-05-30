@@ -52,11 +52,11 @@ public class ori_rabbit03 extends Fragment {
         turtle.setBackgroundResource(R.drawable.angry_tur);
 
         try {
-            mp1.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit03_1.MP3");
+            mp1.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit03_1.mp3");
             mp1.prepare();
-            mp2.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit03_2.MP3");
+            mp2.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit03_2.mp3");
             mp2.prepare();
-            mp3.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit03_3.mp3");
+            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene06_3.mp3");
             mp3.prepare();
         } catch (IOException e) {
             e.printStackTrace();

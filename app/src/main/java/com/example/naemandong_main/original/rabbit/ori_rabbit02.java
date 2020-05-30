@@ -49,11 +49,11 @@ public class ori_rabbit02 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
 
         try {
-            mp1.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit02_1.MP3");
+            mp1.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit02_1.mp3");
             mp1.prepare();
-            mp2.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit02_0.mp3");
+            mp2.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit02_2.mp3");
             mp2.prepare();
-            mp3.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit02_1.MP3");
+            mp3.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit02_3.mp3");
             mp3.prepare();
         } catch (IOException e) {
             e.printStackTrace();
