@@ -31,7 +31,7 @@ public class Record extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        record_preview = (ImageButton) findViewById(R.id.record_preview);
+        record_preview = (ImageButton) findViewById(R.id.record_play);
         record_start = (ImageButton) findViewById(R.id.record_start);
         record_save = (ImageButton) findViewById(R.id.record_save);
 
