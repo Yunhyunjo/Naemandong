@@ -64,6 +64,7 @@ public class rScene18 extends Fragment {
 
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
+        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
 
         subtitles.setText(subs[0]);
         mp1.start();
@@ -82,6 +83,7 @@ public class rScene18 extends Fragment {
             @Override
             public void run() {
                 // TODO
+                mp3.start();
                 subtitles.setText(subs[2]);
             }
         }, b);
@@ -91,7 +93,7 @@ public class rScene18 extends Fragment {
                 // TODO
                 next.setVisibility(View.VISIBLE);
             }
-        }, b);
+        }, c);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
