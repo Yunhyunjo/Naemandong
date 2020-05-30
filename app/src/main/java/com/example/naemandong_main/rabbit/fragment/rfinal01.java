@@ -1,5 +1,6 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
 import com.example.naemandong_main.Save_Dialog;
 
 import java.io.IOException;
@@ -32,6 +34,7 @@ public class rfinal01 extends Fragment {
     private ImageButton save, exit;
     private ArrayList<Integer> myList;
     boolean play = false;
+    boolean sound, subtitle, record;
     private String subs [] = {"토끼는 자신을 도와준 거북이에게 반해 고백을 했어요.", "그렇게 토끼와 거북이는 결혼을 해서 오래오래 행복하게 살았답니다."};
     Handler delayHandler = new Handler();
 
@@ -49,6 +52,7 @@ public class rfinal01 extends Fragment {
         if (getArguments() != null){
             myList = getArguments().getIntegerArrayList("myList");
             play = getArguments().getBoolean("play");
+            record = getArguments().getBoolean("record");
             if(!play){
             while(myList.size() < 7)
                 myList.add(3);
@@ -92,6 +96,10 @@ public class rfinal01 extends Fragment {
                     save.setVisibility(View.VISIBLE);
                 }
                 exit.setVisibility(View.VISIBLE);
+                if (record == true) {
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
             }
         }, b);
 
