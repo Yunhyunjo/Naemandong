@@ -31,4 +31,8 @@ public class Voice extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
     }
+
+    public void setSound(){
+        ((Setting_data)this.getApplication()).setRecord(true);
+    }
 }

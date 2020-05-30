@@ -3,6 +3,7 @@ package com.example.naemandong_main.original.rabbit;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -23,9 +24,13 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.rabbit.activity.Rabbit01;
 
+import java.io.IOException;
+
 public class ori_rabbit08 extends Fragment {
 
     private View view;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
     private AnimationDrawable frameAnimation1;
     private ImageView background, box, front, rabbit;
     private TextView subtitles;
@@ -52,20 +57,17 @@ public class ori_rabbit08 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/original/7_front.png")
                 .into(front);
 
-//        try {
-//            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene08_1.mp3");
-//            mp1.prepare();
-//            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene08_2.mp3");
-//            mp2.prepare();
-//            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene08_3.mp3");
-//            mp3.prepare();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit08_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit08_2.mp3");
+            mp2.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-//        int a = mp1.getDuration();
-//        int b = mp1.getDuration() + mp2.getDuration();
-//        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
 
         rabbit.setBackgroundResource(R.drawable.rabbit_rightgo);
         frameAnimation1 = (AnimationDrawable) rabbit.getBackground();
@@ -75,7 +77,7 @@ public class ori_rabbit08 extends Fragment {
         frameAnimation1.start();
         rabbit.startAnimation(turtlego);
         subtitles.setText(subs[0]);
-        //mp1.start();
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -85,20 +87,19 @@ public class ori_rabbit08 extends Fragment {
                 Glide.with(view)
                         .load("http://49.50.174.179:9000/images/rabbit/original/8_zwazeol.png")
                         .into(rabbit);
-                //mp2.start();
+                mp2.start();
             }
-        }, 6000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
-                //mp3.start();
                 box.setVisibility(View.INVISIBLE);
                 subtitles.setVisibility(View.INVISIBLE);
                 next.setVisibility(View.VISIBLE);
 
             }
-        }, 12000);
+        }, b);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,5 +111,11 @@ public class ori_rabbit08 extends Fragment {
         });
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
     }
 }

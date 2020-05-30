@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Record;
+import com.example.naemandong_main.rabbit.activity.Rabbit01;
 
 import java.io.IOException;
 
@@ -31,8 +32,7 @@ public class rScene01 extends Fragment {
     private ImageView background, box;
     private ImageButton next;
     private TextView subtitles;
-    private LinearLayout record_box;
-    boolean sound, subtitle, record;
+    boolean sound, subtitle;
     private String subs [] = {"어느 숲 속에 토끼, 사자, 나무늘보, 거북이가 살고 있었어요.", "동물들은 매일같이 자신이 가장 빠르다며 싸우곤 했지요."};
     Handler delayHandler = new Handler();
 
@@ -45,7 +45,6 @@ public class rScene01 extends Fragment {
         box = view.findViewById(R.id.subtitlebox);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
-        record_box = view.findViewById(R.id.record);
 
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene01_1.mp3");
@@ -62,7 +61,6 @@ public class rScene01 extends Fragment {
         if (getArguments() != null){
             sound = getArguments().getBoolean("sound");
             subtitle = getArguments().getBoolean("subtitle");
-            record = getArguments().getBoolean("record");
         }
 
         Glide.with(this)
@@ -92,7 +90,7 @@ public class rScene01 extends Fragment {
             @Override
             public void run() {
                 // TODO
-                if(record == true){
+                if(((Rabbit01)getActivity()).isRecord()){
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(getActivity(), Record.class);

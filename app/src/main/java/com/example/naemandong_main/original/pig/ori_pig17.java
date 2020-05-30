@@ -17,10 +17,8 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
-import com.example.naemandong_main.Save_Dialog;
-import com.example.naemandong_main.rabbit.activity.Rabbit01;
+import com.example.naemandong_main.pig.activity.Pig01;
 
-import java.util.ArrayList;
 
 // 돼지 셋 벽돌집 엔딩
 public class ori_pig17 extends Fragment {
@@ -81,7 +79,7 @@ public class ori_pig17 extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), Rabbit01.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Pig01.class);
                 startActivity(intent);
                 getActivity().finish();
             }
