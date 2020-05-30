@@ -31,7 +31,7 @@ public class pFinal06 extends Fragment {
     private ImageButton save, exit;
     private ArrayList<Integer> myList;
     boolean play = false;
-    private String subs [] = {"막내돼지는 깊은 잠에 빠진 늑대를 강으로 휙 하고 던졌어요.", "\"늑대야! 앞으로 나를 괴롭힐 생각은 하지도마!\""};
+    private String subs [] = {"막내돼지는 깊은 잠에 빠진 늑대를 강으로 휙 하고 던졌어요.", "\"늑대야! 앞으로 나를 괴롭힐 생각은 하지도마!\"","그렇게 혼이난 늑대는 멀리멀리 도망쳤답니다."};
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -67,6 +67,14 @@ public class pFinal06 extends Fragment {
 
             }
         }, 3100);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                subtitles.setText(subs[2]);
+
+            }
+        }, 6000);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {

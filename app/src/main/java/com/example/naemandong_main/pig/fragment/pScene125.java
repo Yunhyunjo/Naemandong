@@ -20,7 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
-import com.example.naemandong_main.pig.activity.Pig06;
+import com.example.naemandong_main.pig.activity.Pig36;
 import com.example.naemandong_main.pig.activity.Pig07;
 import com.example.naemandong_main.pig.activity.Pig14;
 
@@ -70,7 +70,6 @@ public class pScene125 extends Fragment {
                 frameAnimation.start();
                 wolf.startAnimation(wolfgo);
                 subtitles.setText(subs[2]);
-                next.setVisibility(View.VISIBLE);
             }
         }, 4100);
         delayHandler.postDelayed(new Runnable() {
@@ -97,16 +96,16 @@ public class pScene125 extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(((Pig06)getActivity()).play){
-                    if(((Pig06)getActivity()).getData() == 0){
-                        ((Pig06)getActivity()).removeData();
+                if(((Pig36)getActivity()).play){
+                    if(((Pig36)getActivity()).getData() == 0){
+                        ((Pig36)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig07.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
                         getActivity().finish();
                     }
                     else {
-                        ((Pig06)getActivity()).removeData();
+                        ((Pig36)getActivity()).removeData();
                         Intent intent = new Intent(getActivity().getApplicationContext(), Pig14.class);
                         intent.putExtra("play",true);
                         startActivity(intent);
