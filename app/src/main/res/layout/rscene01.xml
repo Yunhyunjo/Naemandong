@@ -59,41 +59,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/next" />
 
-    <LinearLayout
-        android:id="@+id/record"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95">
-
-        <ImageButton
-            android:id="@+id/record_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="#00FFFFFF"
-            android:src="@drawable/record_buttonss" />
-
-        <ImageButton
-            android:id="@+id/record_star"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="#00FFFFFF"
-            android:src="@drawable/record_btn" />
-
-        <ImageButton
-            android:id="@+id/record_play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="#00FFFFFF"
-            android:src="@drawable/record_buttonpp" />
-    </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

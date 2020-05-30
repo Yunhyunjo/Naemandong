@@ -98,7 +98,7 @@ public class pFinal10 extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveDialog = new Save_Dialog(getActivity(), "아기돼지 삼형제",2,myList,"http://49.50.174.179:9000/images/cover/pigcover.png");
+                saveDialog = new Save_Dialog(getActivity(), "아기돼지 삼형제",2,myList,"http://49.50.174.179:9000/images/cover/pig/7-01.png");
                 saveDialog.show();
             }
         });

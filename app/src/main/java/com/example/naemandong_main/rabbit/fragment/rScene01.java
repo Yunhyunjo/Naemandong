@@ -2,11 +2,8 @@ package com.example.naemandong_main.rabbit.fragment;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +11,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +24,6 @@ import com.example.naemandong_main.Record;
 import java.io.IOException;
 
 public class rScene01 extends Fragment {
-    private final static String TAG = "rScene01";
 
     private View view;
     MediaPlayer mp1 = new MediaPlayer();
@@ -100,7 +95,6 @@ public class rScene01 extends Fragment {
                 if(record == true){
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);
-                    //record_box.setVisibility(View.VISIBLE);
                     Intent intent = new Intent(getActivity(), Record.class);
                     startActivity(intent);
                 }
