@@ -54,13 +54,13 @@ public class rScene97 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/12_right.png")
                 .into(right);
 
-        /*try {
-            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene12.mp3");
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene97.mp3");
             mp1.prepare();
             mp1.start();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
 
         left.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,5 +82,10 @@ public class rScene97 extends Fragment {
         });
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
     }
 }

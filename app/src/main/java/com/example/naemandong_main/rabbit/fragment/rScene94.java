@@ -1,5 +1,7 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -16,13 +18,19 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.rabbit.activity.Rabbit37;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class rScene94 extends Fragment {
 
     private View view;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer mp3 = new MediaPlayer();
     private ImageView background, box;
     private TextView subtitles;
     private String subs [] = {"\"사자야~ 일어나봐! 나랑 같이 자전거 타지 않을래?\"", "\"으응? 거북아 뭐라고?\"","\"앗! 2인 자전거네? 그래 같이 타자 거북아~\""};
@@ -44,37 +52,61 @@ public class rScene94 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/7/107_fin1.png")
                 .into(background);
 
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene94_1.MP3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene94_2.MP3");
+            mp2.prepare();
+            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene94_3.MP3");
+            mp3.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
+        int c = mp1.getDuration() + mp2.getDuration()+ mp3.getDuration();
+
         myList = (ArrayList<Integer>) ((Rabbit37)getActivity()).getMylist().clone();
         ((Rabbit37)getActivity()).clearList();
 
         subtitles.setText(subs[0]);
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                mp2.start();
                 Glide.with(view)
                         .load("http://49.50.174.179:9000/images/rabbit/7/107_fin2.png")
                         .into(background);
                 subtitles.setText(subs[1]);
             }
-        }, 3000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                mp3.start();
                 Glide.with(view)
                         .load("http://49.50.174.179:9000/images/rabbit/7/107_fin3.png")
                         .into(background);
                 subtitles.setText(subs[2]);
             }
-        }, 6000);
+        }, b);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                if(((Setting_data)getContext().getApplicationContext()).isRecord()){
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
-        }, 9000);
+        }, c);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,5 +127,12 @@ public class rScene94 extends Fragment {
         });
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
     }
 }

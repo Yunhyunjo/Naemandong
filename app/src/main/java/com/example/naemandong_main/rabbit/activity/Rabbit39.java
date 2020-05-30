@@ -56,11 +56,4 @@ public class Rabbit39 extends AppCompatActivity {
     public void clearList() {
         ((Setting_data) this.getApplication()).clearList();
     }
-    public Boolean isRecord() {
-        return ((Setting_data)this.getApplication()).isRecord();
-    }
-
-    public void setRecord() {
-        ((Setting_data)this.getApplication()).setRecord(false);
-    }
 }

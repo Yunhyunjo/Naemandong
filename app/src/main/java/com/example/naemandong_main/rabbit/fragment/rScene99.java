@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.rabbit.activity.Rabbit28;
 import com.example.naemandong_main.rabbit.activity.Rabbit40;
 
@@ -108,7 +109,7 @@ public class rScene99 extends Fragment {
             @Override
             public void run() {
                 // TODO
-                if(((Rabbit40)getActivity()).isRecord()){
+                if(((Setting_data)getContext().getApplicationContext()).isRecord()){
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(getActivity(), Record.class);
@@ -124,9 +125,6 @@ public class rScene99 extends Fragment {
                 Bundle bundle = new Bundle();
                 if (((Rabbit40) getActivity()).play) {
                     bundle.putBoolean("play", true);
-                }
-                else if(((Rabbit40)getActivity()).isRecord()){
-                    bundle.putBoolean("record", true);
                 }
                 else {
                     bundle.putIntegerArrayList("myList", myList);

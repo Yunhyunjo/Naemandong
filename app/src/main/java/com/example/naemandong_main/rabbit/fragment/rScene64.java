@@ -1,5 +1,6 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -20,15 +21,17 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.rabbit.activity.Rabbit25;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class rScene64 extends Fragment {
 
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
-    MediaPlayer mp3 = new MediaPlayer();
     private AnimationDrawable frameAnimation1;
     private View view;
     private ImageView background, box,front, sloth;
@@ -60,20 +63,17 @@ public class rScene64 extends Fragment {
         myList = (ArrayList<Integer>) ((Rabbit25)getActivity()).getMylist().clone();
         ((Rabbit25)getActivity()).clearList();
 
-//        try {
-//            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene08_1.mp3");
-//            mp1.prepare();
-//            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene08_2.mp3");
-//            mp2.prepare();
-//            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene08_3.mp3");
-//            mp3.prepare();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene64_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene64_2.MP3");
+            mp2.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
-        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
 
         sloth.setBackgroundResource(R.drawable.sloth_64);
         frameAnimation1 = (AnimationDrawable) sloth.getBackground();
@@ -83,22 +83,28 @@ public class rScene64 extends Fragment {
         subtitles.setText(subs[0]);
         frameAnimation1.start();
         sloth.startAnimation(slothgo);
-        //mp1.start();
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                //mp2.start();
+                mp2.start();
             }
-        }, 4000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                if(((Setting_data)getContext().getApplicationContext()).isRecord()){
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
-        }, 8000);
+        }, b);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,5 +126,11 @@ public class rScene64 extends Fragment {
 
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
     }
 }

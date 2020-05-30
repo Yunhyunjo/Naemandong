@@ -59,7 +59,4 @@ public class Rabbit04 extends AppCompatActivity {
         ((Setting_data)this.getApplication()).myList.remove(0);
         Toast.makeText(this,String.valueOf(((Setting_data)this.getApplication()).myList),Toast.LENGTH_SHORT).show();
     }
-    public Boolean isRecord() {
-        return ((Setting_data)this.getApplication()).isRecord();
-    }
 }

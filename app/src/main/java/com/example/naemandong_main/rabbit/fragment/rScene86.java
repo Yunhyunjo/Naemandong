@@ -1,6 +1,8 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -19,15 +21,19 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.rabbit.activity.Rabbit33;
 import com.example.naemandong_main.rabbit.activity.Rabbit34;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class rScene86 extends Fragment {
 
-    private ArrayList<Integer> myList;
     private AnimationDrawable frameAnimation1;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
     private View view;
     private ImageView background, box, turtle,lion, lion2, front;
     private TextView subtitles;
@@ -65,9 +71,22 @@ public class rScene86 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/7/95_front_R.png")
                 .into(turtle);
 
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene86_1.MP3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene86_2.mp3");
+            mp2.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
+
         final Animation liongo = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene66_lion);
 
         subtitles.setText(subs[0]);
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -78,15 +97,22 @@ public class rScene86 extends Fragment {
                 frameAnimation1.start();
                 lion.startAnimation(liongo);
                 subtitles.setText(subs[1]);
+                mp2.start();
             }
-        }, 4000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                if(((Setting_data)getContext().getApplicationContext()).isRecord()){
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
-        }, 9000);
+        }, b);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,5 +129,11 @@ public class rScene86 extends Fragment {
         });
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
     }
 }
