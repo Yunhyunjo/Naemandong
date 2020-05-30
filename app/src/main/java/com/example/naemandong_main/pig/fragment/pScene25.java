@@ -14,9 +14,8 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
-import com.example.naemandong_main.pig.activity.Pig06;
 import com.example.naemandong_main.pig.activity.Pig07;
-import com.example.naemandong_main.pig.activity.Pig08;
+import com.example.naemandong_main.pig.activity.Pig36;
 import com.example.naemandong_main.pig.activity.Pig14;
 
 // 선택지
@@ -50,7 +49,7 @@ public class pScene25 extends Fragment {
         mom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Pig06)getActivity()).setMylist(0);
+                ((Pig36)getActivity()).setMylist(0);
                 Intent intent = new Intent(getActivity().getApplicationContext(), Pig07.class);
                 startActivity(intent);
                 getActivity().finish();
@@ -59,7 +58,7 @@ public class pScene25 extends Fragment {
         pig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Pig06)getActivity()).setMylist(1);
+                ((Pig36)getActivity()).setMylist(1);
                 Intent intent = new Intent(getActivity().getApplicationContext(), Pig14.class);
                 startActivity(intent);
                 getActivity().finish();
