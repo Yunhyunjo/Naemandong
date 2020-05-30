@@ -1,6 +1,7 @@
 package com.example.naemandong_main.rabbit.fragment;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +19,12 @@ import com.example.naemandong_main.rabbit.activity.Rabbit10;
 import com.example.naemandong_main.rabbit.activity.Rabbit11;
 import com.example.naemandong_main.rabbit.activity.Rabbit14;
 
+import java.io.IOException;
+
 public class rScene33 extends Fragment {
 
     private View view;
+    MediaPlayer mp1 = new MediaPlayer();
     private ImageView background;
     private ImageButton yes, no;
 
@@ -43,6 +47,15 @@ public class rScene33 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/36_non.png")
                 .into(no);
 
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene33.mp3");
+            mp1.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mp1.start();
+
 
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,5 +77,11 @@ public class rScene33 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
     }
 }

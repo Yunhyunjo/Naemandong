@@ -19,6 +19,8 @@ import com.example.naemandong_main.rabbit.activity.Rabbit02;
 import com.example.naemandong_main.rabbit.activity.Rabbit18;
 import com.example.naemandong_main.rabbit.activity.Rabbit26;
 
+import java.io.IOException;
+
 public class rScene49 extends Fragment {
 
     MediaPlayer mp1 = new MediaPlayer();
@@ -45,13 +47,13 @@ public class rScene49 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/65_lion.png")
                 .into(lion);
 
-//        try {
-//            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene09.mp3");
-//            mp1.prepare();
-//            mp1.start();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene49.mp3");
+            mp1.prepare();
+            mp1.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         rabbit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,5 +75,11 @@ public class rScene49 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
     }
 }

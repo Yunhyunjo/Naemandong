@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.rabbit.activity.Rabbit01;
 
 import java.io.IOException;
@@ -90,7 +91,7 @@ public class rScene01 extends Fragment {
             @Override
             public void run() {
                 // TODO
-                if(((Rabbit01)getActivity()).isRecord()){
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(getActivity(), Record.class);

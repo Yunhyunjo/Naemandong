@@ -1,5 +1,7 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -16,10 +18,16 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
+
+import java.io.IOException;
 
 public class rScene31 extends Fragment {
 
     private View view;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
     private ImageView background, box, bed, front;
     private TextView subtitles;
     private String subs [] = {"\"여기 베개랑 침대가 있네? 신난다!\"", "베개를 찾은 토끼는 쿨쿨 깊은 잠이 들었어요."};
@@ -50,7 +58,20 @@ public class rScene31 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/33_rabbit.png")
                 .into(front);
 
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene31_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene31_2.mp3");
+            mp2.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
+
         subtitles.setText(subs[0]);
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -60,15 +81,22 @@ public class rScene31 extends Fragment {
                         .load("http://49.50.174.179:9000/images/rabbit/5/34_r_bed.png")
                         .into(bed);
                 subtitles.setText(subs[1]);
+                mp2.start();
             }
-        }, 5000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
-        }, 8300);
+        }, b);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,5 +109,12 @@ public class rScene31 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
     }
 }

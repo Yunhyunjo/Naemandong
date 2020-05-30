@@ -1,5 +1,7 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -18,13 +20,18 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.rabbit.activity.Rabbit06;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class rScene23 extends Fragment {
 
     private View view;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
     private ImageView background, box, rabbit, boat, light;
     private TextView subtitles;
     private String subs [] = {"“어 여기 고무보트가 있네!”","토끼는 고무보트를 타고 개울가를 건너갔어요."};
@@ -55,10 +62,23 @@ public class rScene23 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/23_aa.png")
                 .into(boat);
 
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene23_1.MP3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene23_2.mp3");
+            mp2.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
+
         myList = (ArrayList<Integer>) ((Rabbit06)getActivity()).getMylist().clone();
         ((Rabbit06)getActivity()).clearList();
 
         subtitles.setText(subs[0]);
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -78,8 +98,9 @@ public class rScene23 extends Fragment {
                         .load("http://49.50.174.179:9000/images/rabbit/5/23_a2.png")
                         .into(boat);
                 subtitles.setText(subs[1]);
+                mp2.start();
             }
-        }, 3000);
+        }, 1000 + a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -87,14 +108,20 @@ public class rScene23 extends Fragment {
                 Animation boatgo = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene23);
                 boat.startAnimation(boatgo);
             }
-        }, 3500);
+        }, 2000 + a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
-        }, 8000);
+        }, 2000 + b);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,5 +142,12 @@ public class rScene23 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
     }
 }
