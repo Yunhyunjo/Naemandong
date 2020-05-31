@@ -12,6 +12,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Record extends AppCompatActivity {
 
     private final static String TAG = "Record";
@@ -41,8 +44,13 @@ public class Record extends AppCompatActivity {
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
 
+        long now = System.currentTimeMillis();
+        Date mDate = new Date(now);
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyMMddhhmmss");
+        String getTime = simpleDate.format(mDate);
+
         //mPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/rScene01.aac";
-        mPath = Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_DOWNLOADS ).toString() + "record.mp3";
+        mPath = Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_DOWNLOADS ).toString() + "/" + getTime +".mp3";
         Log.d(TAG, "file path is " + mPath);
         mRecorder.setOutputFile(mPath);
 
