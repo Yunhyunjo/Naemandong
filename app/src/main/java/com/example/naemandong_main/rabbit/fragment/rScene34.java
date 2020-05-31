@@ -30,7 +30,7 @@ public class rScene34 extends Fragment {
     MediaPlayer mp2 = new MediaPlayer();
     private ImageView background, box, bed, front;
     private TextView subtitles;
-    private String subs [] = {"거북이는 토끼를 깨우기로 했어요.", "”토끼야 일어나~ 우리 경주 중이잖아!”"};
+    private String subs[] = {"거북이는 토끼를 깨우기로 했어요.", "“토끼야 일어나~ 우리 경주 중이잖아!”"};
     private ImageButton next;
     Handler delayHandler = new Handler();
 

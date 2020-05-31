@@ -9,10 +9,14 @@ import com.example.naemandong_main.Data.findidpwData;
 import com.example.naemandong_main.Data.loginData;
 import com.example.naemandong_main.Data.loginResponse;
 import com.example.naemandong_main.Data.percentResponse;
+import com.example.naemandong_main.Data.recordListData;
+import com.example.naemandong_main.Data.recordListResponse;
 import com.example.naemandong_main.Data.registerData;
 import com.example.naemandong_main.Data.registerResponse;
 import com.example.naemandong_main.Data.savebookData;
 import com.example.naemandong_main.Data.savebookResponse;
+import com.example.naemandong_main.Data.srecordData;
+import com.example.naemandong_main.Data.srecordResponse;
 import com.example.naemandong_main.Data.storybookData;
 import com.example.naemandong_main.Data.storybookResponse;
 import com.example.naemandong_main.Data.validateData;
@@ -53,4 +57,10 @@ public interface ServiceApi {
 
     @POST("/percent")
     Call<percentResponse> getPercent(@Body bookListData data);
+
+    @POST("/saverecord")
+    Call<srecordResponse> recordSave(@Body srecordData data);
+
+    @POST("/recorddata")
+    Call<recordListResponse> recordList(@Body recordListData data);
 }
