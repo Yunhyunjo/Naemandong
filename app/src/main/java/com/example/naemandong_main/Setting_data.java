@@ -9,6 +9,8 @@ public class Setting_data extends Application {
     private boolean sound = true;
     private boolean subtitle = true;
     private boolean record = false;
+    private boolean recordPlay = false;
+    private ArrayList<String> recordList = new ArrayList<>();
     public ArrayList<Integer> myList = new ArrayList<>();
 
     public boolean getSound(){
@@ -38,10 +40,36 @@ public class Setting_data extends Application {
     public ArrayList<Integer> getMyList() {
         return myList;
     }
+
     public void addMyList(int a) {
         myList.add(a);
     }
+
     public void clearList() {
         myList.clear();
+    }
+
+    public ArrayList<String> getRecordList() {
+        return recordList;
+    }
+
+    public void addRecordList(String path){
+        recordList.add(path);
+    }
+
+    public void removeRecordData(){
+        recordList.remove(0);
+    }
+
+    public void clearRecordList(){
+        recordList.clear();
+    }
+
+    public boolean isRecordPlay() {
+        return recordPlay;
+    }
+
+    public void setRecordPlay(boolean recordPlay){
+        this.recordPlay = recordPlay;
     }
 }
