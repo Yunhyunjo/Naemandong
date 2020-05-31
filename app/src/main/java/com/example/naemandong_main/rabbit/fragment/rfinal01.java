@@ -108,6 +108,7 @@ public class rfinal01 extends Fragment {
                 if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);
+                    save.setVisibility(View.VISIBLE);
                     Intent intent = new Intent(getActivity(), Record.class);
                     startActivity(intent);
                 }
