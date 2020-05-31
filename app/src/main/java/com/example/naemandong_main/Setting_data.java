@@ -77,6 +77,10 @@ public class Setting_data extends Application {
         this.recordPlay = recordPlay;
     }
 
+    public void setRecordList(ArrayList<String> recordList) {
+        this.recordList = recordList;
+    }
+
     public int getBook_no() {
         return book_no;
     }

@@ -78,10 +78,11 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
                         ((Voice)context).setBook_no(book_no);
                         readStory(new storybookData(book_no));
                     }
+                    else if (booktype == "voice") {
+                        ((Book)context).setRecordPlay();
+                        readrStory(new recordListData(id));
+                    }
                     else {
-                        if (booktype == "voice") {
-                            readrStory(new recordListData(id));
-                        }
                         mySelect.clear();
                         readStory(new storybookData(book_no));
                     }
@@ -204,6 +205,7 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
                 myAd.add(result.getAd28());
                 myAd.add(result.getAd29());
 
+                ((Book)context).setRecordList(myAd);
 
                 if (storynum == 1) {
                     Intent intent = new Intent(context, Rabbit01.class);

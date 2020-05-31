@@ -62,6 +62,7 @@ public class Bookre_select extends Fragment {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         Bundle bundle = new Bundle();
         bundle.putIntegerArrayList("myList", mySelect);
+        bundle.putString("selected","basic");
         bundle.putString("what",what);
         bundle.putInt("storynum", storynum);
         MybookList mybookList = new MybookList();
@@ -114,55 +115,4 @@ public class Bookre_select extends Fragment {
 
         return view;
     }
-
-    private void readStory(storybookData data) {
-        service.userBook(data).enqueue(new Callback<storybookResponse>() {
-            @Override
-            public void onResponse(Call<storybookResponse> call, Response<storybookResponse> response) {
-                storybookResponse result = response.body();
-                mySelect.add(result.getSelect0());
-                mySelect.add(result.getSelect1());
-                mySelect.add(result.getSelect2());
-                mySelect.add(result.getSelect3());
-                mySelect.add(result.getSelect4());
-                mySelect.add(result.getSelect5());
-                mySelect.add(result.getSelect5());
-
-                Toast.makeText(context, String.valueOf(mySelect), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<storybookResponse> call, Throwable t) {
-                //               Toast.makeText(rfinal01.this, "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                //               Log.e("회원가입에 실패했습니다.", t.getMessage());
-            }
-        });
-    }
-
-    /*private void startList(bookListData data) {
-        service.userList(data).enqueue(new Callback<bookListResponse>() {
-            @Override
-            public void onResponse(Call<bookListResponse> call, Response<bookListResponse> response) {
-                bookListResponse resource = response.body();
-                re.addAll(resource.result);
-                //               re = resource.result;
-
-                for (int i=0; i<resource.result.size(); i++) {
-                    strBook.add(re.get(i).toString());
-                }
-
-                String title = re.get(1).book_title;
-                Toast.makeText(context, "데이터 수는 "+resource.getCount()+title, Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onFailure(Call<bookListResponse> call, Throwable t) {
-                //               Toast.makeText(rfinal01.this, "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                //               Log.e("회원가입에 실패했습니다.", t.getMessage());
-            }
-        });
-    }*/
-
-
 }
