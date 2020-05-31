@@ -4,6 +4,7 @@ public class MybookListData {
     private int book_no;
     private String title;
     private String cover;
+    private int id;
 
     public MybookListData(){
 
@@ -15,6 +16,15 @@ public class MybookListData {
         this.cover = cover;
 
     }
+
+    public MybookListData(int book_no, String title, String cover, int id) {
+        this.book_no = book_no;
+        this.title = title;
+        this.cover = cover;
+        this.id = id;
+
+    }
+
     public int getBook_no() {
         return book_no;
     }
@@ -27,6 +37,10 @@ public class MybookListData {
         return cover;
     }
 
+    public int getBook_id() {
+        return id;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -37,5 +51,9 @@ public class MybookListData {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+
+    public void setBook_id(int id) {
+        this.book_no = id;
     }
 }

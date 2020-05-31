@@ -102,6 +102,7 @@ public class Bookre_select extends Fragment {
                 record.setSelected(true);
                 Bundle bundle = new Bundle();
                 bundle.putString("selected","voice");
+                bundle.putInt("storynum", storynum);
                 bundle.putIntegerArrayList("myList", mySelect);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 MybookList mybookList = new MybookList();

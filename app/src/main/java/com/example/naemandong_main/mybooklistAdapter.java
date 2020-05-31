@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.naemandong_main.Data.MybookListData;
+import com.example.naemandong_main.Data.recordListData;
+import com.example.naemandong_main.Data.recordListResponse;
 import com.example.naemandong_main.Data.storybookData;
 import com.example.naemandong_main.Data.storybookResponse;
 import com.example.naemandong_main.Network.RetrofitClient;
@@ -36,7 +39,8 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
     private ArrayList<MybookListData> mData = new ArrayList<>();
     public Context context;
     public ArrayList<Integer> mySelect = new ArrayList<>();
-    public String what;
+    public ArrayList<String> myAd = new ArrayList<>();
+    public String what, booktype;
     public int storynum;
     public Activity activity = new Activity();
 
@@ -47,7 +51,7 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView rCover;
         TextView rTitle;
-        int book_no;
+        int book_no, id;
 
         ViewHolder(final View itemView) {
             super(itemView) ;
@@ -75,6 +79,9 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
                         readStory(new storybookData(book_no));
                     }
                     else {
+                        if (booktype == "voice") {
+                            readrStory(new recordListData(id));
+                        }
                         mySelect.clear();
                         readStory(new storybookData(book_no));
                     }
@@ -85,6 +92,7 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
         void onBind(MybookListData data) {
             rTitle.setText(data.getTitle());
             book_no = data.getBook_no();
+            id = data.getBook_id();
             Glide.with(context)
                     .load(data.getCover())
                     .signature(new ObjectKey(String.valueOf(System.currentTimeMillis())))
@@ -145,8 +153,7 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
                     intent.putExtra("select", mySelect);
                     intent.putExtra("play", true);
                     context.startActivity(intent);
-                }
-                else {
+                } else {
                     Intent intent = new Intent(context, Pig01.class);
                     intent.putExtra("select", mySelect);
                     intent.putExtra("play", true);
@@ -156,6 +163,63 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
 
             @Override
             public void onFailure(Call<storybookResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void readrStory(recordListData data) {
+        service.recordList(data).enqueue(new Callback<recordListResponse>() {
+            @Override
+            public void onResponse(Call<recordListResponse> call, Response<recordListResponse> response) {
+                recordListResponse result = response.body();
+                myAd.add(result.getAd0());
+                myAd.add(result.getAd1());
+                myAd.add(result.getAd2());
+                myAd.add(result.getAd3());
+                myAd.add(result.getAd4());
+                myAd.add(result.getAd5());
+                myAd.add(result.getAd6());
+                myAd.add(result.getAd7());
+                myAd.add(result.getAd8());
+                myAd.add(result.getAd9());
+                myAd.add(result.getAd10());
+                myAd.add(result.getAd11());
+                myAd.add(result.getAd12());
+                myAd.add(result.getAd13());
+                myAd.add(result.getAd14());
+                myAd.add(result.getAd15());
+                myAd.add(result.getAd16());
+                myAd.add(result.getAd17());
+                myAd.add(result.getAd18());
+                myAd.add(result.getAd19());
+                myAd.add(result.getAd0());
+                myAd.add(result.getAd21());
+                myAd.add(result.getAd22());
+                myAd.add(result.getAd23());
+                myAd.add(result.getAd24());
+                myAd.add(result.getAd25());
+                myAd.add(result.getAd26());
+                myAd.add(result.getAd27());
+                myAd.add(result.getAd28());
+                myAd.add(result.getAd29());
+
+
+                if (storynum == 1) {
+                    Intent intent = new Intent(context, Rabbit01.class);
+                    intent.putExtra("select", mySelect);
+                    intent.putExtra("play", true);
+                    context.startActivity(intent);
+                } else {
+                    Intent intent = new Intent(context, Pig01.class);
+                    intent.putExtra("select", mySelect);
+                    intent.putExtra("play", true);
+                    context.startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<recordListResponse> call, Throwable t) {
 
             }
         });

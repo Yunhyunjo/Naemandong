@@ -116,7 +116,7 @@ public class rScene50 extends Fragment {
             public void run() {
                 // TODO
                 subtitles.setText(subs[3]);
-                mp3.start();
+                mp4.start();
             }
         }, c);
         delayHandler.postDelayed(new Runnable() {
