@@ -1,6 +1,8 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -19,10 +21,17 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
+
+import java.io.IOException;
 
 public class rScene37 extends Fragment {
 
     private AnimationDrawable frameAnimation1;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer mp3 = new MediaPlayer();
     private View view;
     private ImageView background, box, rabbit;
     private TextView subtitles;
@@ -49,12 +58,29 @@ public class rScene37 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/40_front.png")
                 .into(rabbit);
 
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene37_1.MP3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene37_2.mp3");
+            mp2.prepare();
+            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene37_3.MP3");
+            mp3.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
+        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
+
         subtitles.setText(subs[0]);
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
+                mp2.start();
                 rabbit.setImageResource(0);
                 rabbit.setBackgroundResource(R.drawable.rabbit_sleep_rightgo);
                 frameAnimation1 = (AnimationDrawable) rabbit.getBackground();
@@ -64,21 +90,28 @@ public class rScene37 extends Fragment {
                 frameAnimation1.start();
                 rabbit.startAnimation(rabbitgo);
             }
-        }, 5000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[2]);
+                mp3.start();
             }
-        }, 5000);
+        }, b);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
-        }, 8300);
+        }, c);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,5 +124,13 @@ public class rScene37 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
     }
 }

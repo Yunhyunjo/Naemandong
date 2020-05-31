@@ -1,5 +1,6 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.rabbit.activity.Rabbit01;
 
 import java.io.IOException;
@@ -35,7 +38,7 @@ public class rScene03 extends Fragment {
     private ImageButton next;
     private TextView subtitles;
     boolean sound, subtitle;
-    private String subs [] = {"그 때 느림보 거북이가 엉금엉금 기어왔어요.", "“거북이는 느림보래요, 느림보래요.”","“하하하하하하.”"};
+    private String subs [] = {"그 때 느림보 거북이가 엉금엉금 기어왔어요.", "“느림보래요, 느림보래요.”","“하하하하하하.”"};
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -65,7 +68,7 @@ public class rScene03 extends Fragment {
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene03_1.mp3");
             mp1.prepare();
-            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene03_2.mp3");
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene03_2.MP3");
             mp2.prepare();
             mp3.setDataSource("http://49.50.174.179:9000/voice/rScene03_3.mp3");
             mp3.prepare();
@@ -115,6 +118,12 @@ public class rScene03 extends Fragment {
             @Override
             public void run() {
                 // TODO
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
         }, c);
@@ -130,5 +139,13 @@ public class rScene03 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
     }
 }

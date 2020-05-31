@@ -1,6 +1,8 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -19,15 +21,20 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.rabbit.activity.Rabbit34;
 import com.example.naemandong_main.rabbit.activity.Rabbit39;
 import com.example.naemandong_main.rabbit.activity.Rabbit40;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class rScene87 extends Fragment {
 
     private ArrayList<Integer> myList;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
     private AnimationDrawable frameAnimation1;
     private View view;
     private ImageView background, box, spider ,lion, front;
@@ -61,19 +68,24 @@ public class rScene87 extends Fragment {
             }
         }
 
-
-      /*  myList = (ArrayList<Integer>) ((Rabbit34)getActivity()).getMylist().clone();
-        ((Rabbit34)getActivity()).clearList();*/
-
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/7/98_back.png")
                 .into(background);
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/original/7_front.png")
                 .into(front);
-        Glide.with(this)
-                .load("http://49.50.174.179:9000/images/rabbit/8/97_front.png")
-                .into(lion);
+
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene87_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene87_2.MP3");
+            mp2.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
 
         final Animation liongo = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene87_right);
         final Animation lion_left = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene87_left);
@@ -86,6 +98,7 @@ public class rScene87 extends Fragment {
         subtitles.setText(subs[0]);
         lion.startAnimation(liongo);
         spider.startAnimation(spider_ani);
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -95,15 +108,22 @@ public class rScene87 extends Fragment {
                 frameAnimation1.start();
                 lion.startAnimation(lion_left);
                 subtitles.setText(subs[1]);
+                mp2.start();
             }
-        }, 5000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                if(((Setting_data)getContext().getApplicationContext()).isRecord()){
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
-        }, 9000);
+        }, b);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,5 +152,11 @@ public class rScene87 extends Fragment {
         });
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
     }
 }

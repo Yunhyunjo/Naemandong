@@ -50,14 +50,15 @@ public class rScene68 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/7/80_fish.png")
                 .into(fish);
 
-        /*try {
-            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene09.mp3");
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene68.mp3");
             mp1.prepare();
             mp1.start();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
 
+        mp1.start();
         fish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,5 +79,10 @@ public class rScene68 extends Fragment {
         });
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
     }
 }

@@ -8,6 +8,7 @@ public class Setting_data extends Application {
 
     private boolean sound = true;
     private boolean subtitle = true;
+    private boolean record = false;
     public ArrayList<Integer> myList = new ArrayList<>();
 
     public boolean getSound(){
@@ -24,6 +25,14 @@ public class Setting_data extends Application {
 
     public void setSubtitle(boolean subtitle){
         this.subtitle = subtitle;
+    }
+
+    public boolean isRecord() {
+        return record;
+    }
+
+    public void setRecord(boolean record) {
+        this.record = record;
     }
 
     public ArrayList<Integer> getMyList() {

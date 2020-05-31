@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android" android:fillAfter="true">
     <translate
-        android:duration="6000"
+        android:duration="4000"
         android:fromXDelta="-500%"
         android:toXDelta="0%"
         android:fillAfter="true">
@@ -11,7 +11,7 @@
         android:duration="100"
         android:fromYDelta="0%"
         android:toYDelta="-5%"
-        android:repeatCount= "40"
+        android:repeatCount= "34"
         android:repeatMode="reverse">
     </translate>
 

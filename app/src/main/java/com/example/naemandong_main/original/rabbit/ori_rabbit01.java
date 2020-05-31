@@ -41,14 +41,14 @@ public class ori_rabbit01 extends Fragment {
         box = view.findViewById(R.id.subtitlebox);
         subtitles = view.findViewById(R.id.subTitle);
 
-//        try {
-//            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene01_1.mp3");
-//            mp1.prepare();
-//            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene01_2.mp3");
-//            mp2.prepare();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit01_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit01_2.mp3");
+            mp2.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
@@ -72,15 +72,15 @@ public class ori_rabbit01 extends Fragment {
 //        }
 
         subtitles.setText(subs[0]);
-        //mp1.start();
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                //mp2.start();
+                mp2.start();
             }
-        }, 3000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -90,9 +90,16 @@ public class ori_rabbit01 extends Fragment {
                 transaction.replace(R.id.frame, ori_rabbit02);
                 transaction.commit();  //저장
             }
-        }, 6500);
+        }, b);
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +18,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
+import com.example.naemandong_main.rabbit.activity.Rabbit01;
 import com.example.naemandong_main.rabbit.activity.Rabbit05;
 
 import java.io.IOException;
@@ -50,9 +54,9 @@ public class rScene21 extends Fragment {
                 .into(background);
 
         try {
-            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene21_1.mp3");
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene21_1.MP3");
             mp1.prepare();
-            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene21_2.mp3");
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene21_2.MP3");
             mp2.prepare();
         } catch (IOException e) {
             e.printStackTrace();
@@ -78,6 +82,12 @@ public class rScene21 extends Fragment {
             @Override
             public void run() {
                 // TODO
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
         }, b);
@@ -88,8 +98,9 @@ public class rScene21 extends Fragment {
                 Bundle bundle = new Bundle();
                 if (((Rabbit05)getActivity()).play){
                     bundle.putBoolean("play",true);
-                }
-                else {
+                } else if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    ((Setting_data) getContext().getApplicationContext()).setRecord(false);
+                } else {
                     bundle.putIntegerArrayList("myList", myList);
                 }
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -101,5 +112,12 @@ public class rScene21 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
     }
 }

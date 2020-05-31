@@ -55,5 +55,4 @@ public class Rabbit05 extends AppCompatActivity {
     public void clearList(){
         ((Setting_data)this.getApplication()).clearList();
     }
-
 }

@@ -1,6 +1,8 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -19,14 +21,19 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
+
+import java.io.IOException;
 
 public class rScene93 extends Fragment {
 
-    private AnimationDrawable frameAnimation1;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
     private View view;
     private ImageView background, box, turtle,lion, lion2, front, bike, light;
     private TextView subtitles;
-    private String subs [] = {"\"거북이는 2인 자전거를 발견했어요.\"", "\"어? 이건 둘이서만 탈 수 있는 자전거잖아? 꼭 타보고 싶었는데.. 사자랑 같이 탈까?\""};
+    private String subs [] = {"거북이는 2인 자전거를 발견했어요.", "\"어? 이건 둘이서만 탈 수 있는 자전거잖아? 꼭 타보고 싶었는데.. 사자랑 같이 탈까?\""};
     private ImageButton next;
     Handler delayHandler = new Handler();
 
@@ -65,34 +72,40 @@ public class rScene93 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/7/106_cy.png")
                 .into(bike);
 
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene93_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene93_2.MP3");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
+
         subtitles.setText(subs[0]);
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
-
+                mp2.start();
                 subtitles.setText(subs[1]);
             }
-        }, 4000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
-            }
-        }, 6000);
-        delayHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // TODO
-            }
-        }, 9000);
-        delayHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // TODO
+                if(((Setting_data)getContext().getApplicationContext()).isRecord()){
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
-        }, 13000);
+        }, b);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,5 +118,11 @@ public class rScene93 extends Fragment {
         });
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
     }
 }

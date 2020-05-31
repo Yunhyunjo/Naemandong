@@ -11,7 +11,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Setting;
 import com.example.naemandong_main.Setting_data;
-import com.example.naemandong_main.rabbit.fragment.rScene98;
 import com.example.naemandong_main.rabbit.fragment.rScene99;
 
 import java.util.ArrayList;

@@ -21,6 +21,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.rabbit.activity.Rabbit23;
 import com.example.naemandong_main.rabbit.activity.Rabbit24;
 import com.example.naemandong_main.rabbit.activity.Rabbit25;
@@ -35,7 +37,7 @@ public class rScene60 extends Fragment {
     private View view;
     private ImageView background, box, sloth;
     private TextView subtitles;
-    private String subs [] = {"지도를 따라 걷던 나무늘보의 앞에 갈림길이 나타났어요.", "\" 지도에 없는 길인데…\""};
+    private String subs [] = {"지도를 따라 걷던 나무늘보의 앞에 갈림길이 나타났어요.", "\" 지도에 없는...길인데…\""};
     private ImageButton next;
     Handler delayHandler = new Handler();
 
@@ -54,14 +56,14 @@ public class rScene60 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/11_back.png")
                 .into(background);
 
-//        try {
-//            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene11_1.mp3");
-//            mp1.prepare();
-//            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene11_2.mp3");
-//            mp2.prepare();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene60_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene60_2.MP3");
+            mp2.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
@@ -74,23 +76,29 @@ public class rScene60 extends Fragment {
         frameAnimation1.start();
         sloth.startAnimation(rabbitgo);
         subtitles.setText(subs[0]);
-        //mp1.start();
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                //mp2.start();
+                mp2.start();
             }
-        }, 4000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 frameAnimation1.stop();
                 next.setVisibility(View.VISIBLE);
             }
-        }, 10000);
+        }, b);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,5 +129,12 @@ public class rScene60 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
     }
 }

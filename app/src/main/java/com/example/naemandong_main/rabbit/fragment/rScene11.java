@@ -21,6 +21,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.rabbit.activity.Rabbit03;
 import com.example.naemandong_main.rabbit.activity.Rabbit04;
 import com.example.naemandong_main.rabbit.activity.Rabbit07;
@@ -35,7 +37,7 @@ public class rScene11 extends Fragment {
     private View view;
     private ImageView background, box, rabbit;
     private TextView subtitles;
-    private String subs [] = {"깡총깡총 얼마나 뛰었을까 갈림길이 나왔어요.", "“으음? 어디로 가야 하지?”"};
+    private String subs [] = {"깡총깡총 얼마나 뛰었을까 갈림길이 나왔어요.", "“어어? 어디로 가야 하지?”"};
     private ImageButton next;
     Handler delayHandler = new Handler();
 
@@ -57,7 +59,7 @@ public class rScene11 extends Fragment {
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene11_1.mp3");
             mp1.prepare();
-            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene11_2.mp3");
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene11_2.MP3");
             mp2.prepare();
         } catch (IOException e) {
             e.printStackTrace();
@@ -91,6 +93,12 @@ public class rScene11 extends Fragment {
             @Override
             public void run() {
                 // TODO
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
         }, b);
@@ -124,5 +132,12 @@ public class rScene11 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
     }
 }

@@ -1,6 +1,8 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -19,10 +21,17 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
+
+import java.io.IOException;
 
 public class rScene90 extends Fragment {
 
     private AnimationDrawable frameAnimation1;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer mp3 = new MediaPlayer();
     private View view;
     private ImageView background, box, turtle,lion, lion2, front, skate, turtle2;
     private TextView subtitles;
@@ -62,10 +71,26 @@ public class rScene90 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/7/102_s.png")
                 .into(skate);
 
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene90_1.MP3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene90_2.mp3");
+            mp2.prepare();
+            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene90_3.MP3");
+            mp3.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
+        int c = mp1.getDuration() + mp2.getDuration()+ mp3.getDuration();
+
         final Animation turtlego = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene90);
         final Animation liongo = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene66_lion);
 
         subtitles.setText(subs[0]);
+        mp1.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -76,7 +101,6 @@ public class rScene90 extends Fragment {
                 frameAnimation1 = (AnimationDrawable) turtle2.getBackground();
                 frameAnimation1.start();
                 turtle2.startAnimation(turtlego);
-                subtitles.setText(subs[1]);
             }
         }, 4000);
         delayHandler.postDelayed(new Runnable() {
@@ -87,26 +111,35 @@ public class rScene90 extends Fragment {
                         .load("http://49.50.174.179:9000/images/rabbit/7/93_b.png")
                         .into(lion2);
                 lion.setImageResource(R.drawable.l_run1);
-                subtitles.setText(subs[2]);
+                subtitles.setText(subs[1]);
+                mp2.start();
             }
-        }, 6000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                subtitles.setText(subs[2]);
                 lion.setBackgroundResource(R.drawable.lion_s86);
                 frameAnimation1 = (AnimationDrawable) lion.getBackground();
                 frameAnimation1.start();
                 lion.startAnimation(liongo);
+                mp3.start();
             }
-        }, 9000);
+        }, b);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                if(((Setting_data)getContext().getApplicationContext()).isRecord()){
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
-        }, 13000);
+        }, c);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,5 +152,12 @@ public class rScene90 extends Fragment {
         });
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
     }
 }

@@ -58,4 +58,5 @@ public class Rabbit35 extends AppCompatActivity {
         ((Setting_data)this.getApplication()).myList.remove(0);
         Toast.makeText(this,String.valueOf(((Setting_data)this.getApplication()).myList),Toast.LENGTH_SHORT).show();
     }
+
 }

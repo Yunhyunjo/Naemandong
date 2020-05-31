@@ -1,5 +1,6 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,7 +18,9 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
 import com.example.naemandong_main.Save_Dialog;
+import com.example.naemandong_main.Setting_data;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,6 +37,7 @@ public class rFinal04 extends Fragment {
     private String subs [] = {"토끼와 거북이는 나란히 결승선에 도착을 했어요.","토끼와 거북이는 경주 이후에도 사이 좋게 지냈답니다."};
     private ImageButton save, exit;
     boolean play = false;
+    boolean sound, subtitle, record;
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -50,6 +54,7 @@ public class rFinal04 extends Fragment {
         if (getArguments() != null){
             myList = getArguments().getIntegerArrayList("myList");
             play = getArguments().getBoolean("play");
+            record = getArguments().getBoolean("record");
             if(!play){
                 while(myList.size() < 7)
                     myList.add(3);
@@ -91,6 +96,12 @@ public class rFinal04 extends Fragment {
                 subtitles.setVisibility(View.INVISIBLE);
                 if (!play) {
                     save.setVisibility(View.VISIBLE);
+                }
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
                 }
                 exit.setVisibility(View.VISIBLE);
             }

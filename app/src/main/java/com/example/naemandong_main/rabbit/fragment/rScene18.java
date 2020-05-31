@@ -1,5 +1,6 @@
 package com.example.naemandong_main.rabbit.fragment;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +18,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
+import com.example.naemandong_main.rabbit.activity.Rabbit05;
 
 import java.io.IOException;
 
@@ -24,10 +28,11 @@ public class rScene18 extends Fragment {
 
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer mp3 = new MediaPlayer();
     private View view;
     private ImageView background, box, rabbit;
     private TextView subtitles;
-    private String subs [] = {"풍덩!","토끼가 그대로 물에 빠지고 말았어요."};
+    private String subs [] = {"풍덩!","토끼가 그대로 물에 빠지고 말았어요.", "\"어푸어푸 토끼 살려! 살려주세요!\""};
     private ImageButton next;
     Handler delayHandler = new Handler();
 
@@ -55,12 +60,15 @@ public class rScene18 extends Fragment {
             mp1.prepare();
             mp2.setDataSource("http://49.50.174.179:9000/voice/rScene18_2.mp3");
             mp2.prepare();
+            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene18_3.MP3");
+            mp3.prepare();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
+        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
 
         subtitles.setText(subs[0]);
         mp1.start();
@@ -79,9 +87,23 @@ public class rScene18 extends Fragment {
             @Override
             public void run() {
                 // TODO
-                next.setVisibility(View.VISIBLE);
+                mp3.start();
+                subtitles.setText(subs[2]);
             }
         }, b);
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
+                next.setVisibility(View.VISIBLE);
+            }
+        }, c);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,5 +116,13 @@ public class rScene18 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
     }
 }

@@ -21,6 +21,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.rabbit.activity.Rabbit02;
 import com.example.naemandong_main.rabbit.activity.Rabbit03;
 import com.example.naemandong_main.rabbit.activity.Rabbit10;
@@ -65,7 +67,7 @@ public class rScene08 extends Fragment {
             mp1.prepare();
             mp2.setDataSource("http://49.50.174.179:9000/voice/rScene08_2.mp3");
             mp2.prepare();
-            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene08_3.mp3");
+            mp3.setDataSource("http://49.50.174.179:9000/voice/rScene08_3.MP3");
             mp3.prepare();
         } catch (IOException e) {
             e.printStackTrace();
@@ -115,6 +117,12 @@ public class rScene08 extends Fragment {
             @Override
             public void run() {
                 // TODO
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
         }, c);
@@ -149,5 +157,13 @@ public class rScene08 extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
     }
 }

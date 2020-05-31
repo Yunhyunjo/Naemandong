@@ -22,11 +22,14 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.rabbit.fragment.rScene02;
 
+import java.io.IOException;
+
 public class ori_rabbit02 extends Fragment {
 
     private View view;
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer mp3 = new MediaPlayer();
     private AnimationDrawable frameRabbit;
     private ImageView background, box, rabbit, turtle;
     private TextView subtitles;
@@ -45,17 +48,20 @@ public class ori_rabbit02 extends Fragment {
         turtle = view.findViewById(R.id.turtle);
         subtitles = view.findViewById(R.id.subTitle);
 
-//        try {
-//            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene01_1.mp3");
-//            mp1.prepare();
-//            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene01_2.mp3");
-//            mp2.prepare();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit02_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit02_2.mp3");
+            mp2.prepare();
+            mp3.setDataSource("http://49.50.174.179:9000/voice/ori_rabbit02_3.mp3");
+            mp3.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
+        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
 
         if (getArguments() != null){
             sound = getArguments().getBoolean("sound");
@@ -83,7 +89,7 @@ public class ori_rabbit02 extends Fragment {
 //        }
 
         subtitles.setText(subs[0]);
-        //mp1.start();
+        mp1.start();
         frameRabbit.start();
         delayHandler.postDelayed(new Runnable() {
             @Override
@@ -93,16 +99,17 @@ public class ori_rabbit02 extends Fragment {
                 turtle.setBackgroundResource(R.drawable.angry_tur);
                 subtitles.setText(subs[1]);
                 turtle.startAnimation(angry);
-                //mp2.start();
+                mp2.start();
             }
-        }, 3000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                mp3.start();
                 subtitles.setText(subs[2]);
             }
-        }, 6000);
+        }, b);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -112,9 +119,16 @@ public class ori_rabbit02 extends Fragment {
                 transaction.replace(R.id.frame, ori_rabbit03);
                 transaction.commit();  //저장
             }
-        }, 9500);
+        }, c);
 
         return view;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
+    }
 }
