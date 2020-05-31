@@ -35,7 +35,6 @@ public class Record extends AppCompatActivity {
         record_start = (ImageButton) findViewById(R.id.record_start);
         record_save = (ImageButton) findViewById(R.id.record_save);
 
-        mRecorder = new MediaRecorder();
 
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
@@ -48,6 +47,8 @@ public class Record extends AppCompatActivity {
         record_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mRecorder = new MediaRecorder();
+
                 try {
                     mRecorder.prepare();
                     mRecorder.start();
