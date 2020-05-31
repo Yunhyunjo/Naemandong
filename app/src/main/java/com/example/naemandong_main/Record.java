@@ -41,13 +41,15 @@ public class Record extends AppCompatActivity {
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
 
-        mPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/rScene01.aac";
+        //mPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/rScene01.aac";
+        mPath = Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_DOWNLOADS ).toString() + "record.mp3";
         Log.d(TAG, "file path is " + mPath);
         mRecorder.setOutputFile(mPath);
 
         record_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 try {
                     mRecorder.prepare();
                     mRecorder.start();
