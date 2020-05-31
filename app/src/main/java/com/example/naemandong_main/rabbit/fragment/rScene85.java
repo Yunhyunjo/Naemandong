@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Record;
 import com.example.naemandong_main.Setting_data;
+import com.example.naemandong_main.rabbit.activity.Rabbit33;
 import com.example.naemandong_main.rabbit.activity.Rabbit34;
 
 import java.io.IOException;
@@ -52,8 +53,8 @@ public class rScene85 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
 
-        myList = (ArrayList<Integer>) ((Rabbit34)getActivity()).getMylist().clone();
-        ((Rabbit34)getActivity()).clearList();
+        myList = (ArrayList<Integer>) ((Rabbit33)getActivity()).getMylist().clone();
+        ((Rabbit33)getActivity()).clearList();
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/5/8_back.jpg")
@@ -111,7 +112,7 @@ public class rScene85 extends Fragment {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                if (((Rabbit34)getActivity()).play){
+                if (((Rabbit33)getActivity()).play){
                     bundle.putBoolean("play",true);
                 }
                 else {
