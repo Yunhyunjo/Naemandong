@@ -49,7 +49,6 @@ public class Record extends AppCompatActivity {
         record_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 try {
                     mRecorder.prepare();
                     mRecorder.start();
@@ -57,7 +56,6 @@ public class Record extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.e(TAG, "prepare() failed");
                 }
-                // recode.initAudioRecorder();
             }
         });
 
@@ -71,6 +69,7 @@ public class Record extends AppCompatActivity {
                     mRecorder = null;
                     Toast.makeText(Record.this, "녹음 멈춤", Toast.LENGTH_SHORT).show();
                 }
+                saveRecord();
             }
         });
 
@@ -106,4 +105,7 @@ public class Record extends AppCompatActivity {
     });
     }
 
+    public void saveRecord(){
+        ((Setting_data)this.getApplication()).addRecordList(mPath);
+    }
 }
