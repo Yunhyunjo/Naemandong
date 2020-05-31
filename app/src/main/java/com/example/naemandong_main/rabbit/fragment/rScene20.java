@@ -70,6 +70,7 @@ public class rScene20 extends Fragment {
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
 
+        turtle.setBackgroundResource(R.drawable.tur_back_20);
         Animation turtlego = AnimationUtils.loadAnimation(getActivity(), R.anim.turtle_swim);
         turtle.startAnimation(turtlego);
 
@@ -91,6 +92,7 @@ public class rScene20 extends Fragment {
                         .load("http://49.50.174.179:9000/images/rabbit/5/20_together.png")
                         .into(together);
 
+                turtle.setBackgroundResource(R.drawable.together_20);
                 Animation togehergo = AnimationUtils.loadAnimation(getActivity(), R.anim.turtle_swim);
                 together.startAnimation(togehergo);
             }
