@@ -53,6 +53,9 @@ public class Setting_data extends Application {
     public ArrayList<String> getRecordList() {
         return recordList;
     }
+    public String getRecordone() {
+        return recordList.get(0);
+    }
 
     public void addRecordList(String path){
         recordList.add(path);
@@ -72,6 +75,10 @@ public class Setting_data extends Application {
 
     public void setRecordPlay(boolean recordPlay){
         this.recordPlay = recordPlay;
+    }
+
+    public void setRecordList(ArrayList<String> recordList) {
+        this.recordList = recordList;
     }
 
     public int getBook_no() {

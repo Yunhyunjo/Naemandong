@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 public class Book extends AppCompatActivity {
 
     private Button voice,making,sketchbook;
@@ -53,5 +55,12 @@ public class Book extends AppCompatActivity {
             }
         });
 
+    }
+    public void setRecordPlay(){
+        ((Setting_data)this.getApplication()).setRecordPlay(true);
+    }
+
+    public void setRecordList(ArrayList<String> recordList){
+        ((Setting_data)this.getApplication()).setRecordList(recordList);
     }
 }
