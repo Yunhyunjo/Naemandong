@@ -35,19 +35,20 @@ public class Record extends AppCompatActivity {
         record_start = (ImageButton) findViewById(R.id.record_start);
         record_save = (ImageButton) findViewById(R.id.record_save);
 
+        mRecorder = new MediaRecorder();
 
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
 
-        mPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/rScene01.aac";
+        //mPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/rScene01.aac";
+        mPath = Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_DOWNLOADS ).toString() + "record.mp3";
         Log.d(TAG, "file path is " + mPath);
         mRecorder.setOutputFile(mPath);
 
         record_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mRecorder = new MediaRecorder();
 
                 try {
                     mRecorder.prepare();
