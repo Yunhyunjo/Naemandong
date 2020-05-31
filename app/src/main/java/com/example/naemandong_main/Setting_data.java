@@ -53,6 +53,9 @@ public class Setting_data extends Application {
     public ArrayList<String> getRecordList() {
         return recordList;
     }
+    public String getRecordone() {
+        return recordList.get(0);
+    }
 
     public void addRecordList(String path){
         recordList.add(path);
