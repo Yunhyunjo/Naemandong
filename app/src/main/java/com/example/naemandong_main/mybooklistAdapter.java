@@ -71,7 +71,7 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
                     else if (what == "Voice"){
                         mySelect.clear();
                         ((Voice)context).setSound();
-                        ((Setting_data)context).setBook_no(book_no);
+                        ((Voice)context).setBook_no(book_no);
                         readStory(new storybookData(book_no));
                     }
                     else {

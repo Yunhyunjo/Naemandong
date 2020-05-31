@@ -35,4 +35,7 @@ public class Voice extends AppCompatActivity {
     public void setSound(){
         ((Setting_data)this.getApplication()).setRecord(true);
     }
+    public void setBook_no(int book_no){
+        ((Setting_data)this.getApplication()).setBook_no(book_no);
+    }
 }
