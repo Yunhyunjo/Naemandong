@@ -20,6 +20,8 @@ import androidx.annotation.NonNull;
 
 import com.example.naemandong_main.Data.savebookData;
 import com.example.naemandong_main.Data.savebookResponse;
+import com.example.naemandong_main.Data.srecordData;
+import com.example.naemandong_main.Data.srecordResponse;
 import com.example.naemandong_main.Network.RetrofitClient;
 import com.example.naemandong_main.Network.ServiceApi;
 
@@ -34,9 +36,11 @@ public class Save_Dialog extends Dialog {
     Button exit;
     EditText title;
     private String dtitle;
+    private boolean record = false;
     private String cover;
-    private int storynum;
-    private ArrayList<Integer> myList = new ArrayList<>();
+    private int storynum, book_no;
+    private ArrayList<Integer> myList;
+    private ArrayList<String> recordList = new ArrayList<>();
     private Activity activity;
     Intent intent;
     SpeechRecognizer mRecognizer;
@@ -50,6 +54,17 @@ public class Save_Dialog extends Dialog {
         this.storynum = num;
         this.myList = myList;
         this.cover = cover;
+    }
+
+    public Save_Dialog(@NonNull Activity activity, int book_no, String title, int num, ArrayList<String> recordList, String cover, boolean record) {
+        super(activity);
+        this.activity = activity;
+        this.book_no = book_no;
+        this.dtitle = title;
+        this.storynum = num;
+        this.recordList = recordList;
+        this.cover = cover;
+        this.record = record;
     }
 
     @Override
@@ -86,20 +101,12 @@ public class Save_Dialog extends Dialog {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String book_title = title.getText().toString();
-                int book_select0 = myList.get(0);
-                int book_select1 = myList.get(1);
-                int book_select2 = myList.get(2);
-                int book_select3 = myList.get(3);
-                int book_select4 = myList.get(4);
-                int book_select5 = myList.get(5);
-                int book_select6 = myList.get(6);
-                String book_cover = cover;
-
-                startSave(new savebookData(storynum, book_title, book_select0, book_select1, book_select2, book_select3, book_select4, book_select5, book_select6, book_cover));
-                Toast.makeText(activity, String.valueOf(myList), Toast.LENGTH_LONG).show();
-                dismiss();
-                activity.finish();
+                if(record){
+                    myRecordSave();
+                }
+                else {
+                    myListSave();
+                }
             }
         });
         exit.setOnClickListener(new View.OnClickListener() {
@@ -144,6 +151,26 @@ public class Save_Dialog extends Dialog {
 
             @Override
             public void onFailure(Call<savebookResponse> call, Throwable t) {
+                Toast.makeText(activity, "저장에 실패했습니다.", Toast.LENGTH_SHORT).show();
+//                Log.e("회원가입에 실패했습니다.", t.getMessage());
+            }
+        });
+    }
+
+    private void startRecordSave(srecordData data) {
+        service.recordSave(data).enqueue(new Callback<srecordResponse>() {
+            @Override
+            public void onResponse(Call<srecordResponse> call, Response<srecordResponse> response) {
+                srecordResponse result = response.body();
+                Toast.makeText(activity, "저장을 완료했습니다.", Toast.LENGTH_SHORT).show();
+
+                /*if (result.getCode() == 200) {
+                    finish();
+                }*/
+            }
+
+            @Override
+            public void onFailure(Call<srecordResponse> call, Throwable t) {
                 Toast.makeText(activity, "저장에 실패했습니다.", Toast.LENGTH_SHORT).show();
 //                Log.e("회원가입에 실패했습니다.", t.getMessage());
             }
@@ -234,4 +261,61 @@ public class Save_Dialog extends Dialog {
 
         }
     };
+
+    public void myRecordSave(){
+        String book_title = title.getText().toString();
+        String ad0 = recordList.get(0);
+        String ad1 = recordList.get(1);
+        String ad2 = recordList.get(2);
+        String ad3 = recordList.get(3);
+        String ad4 = recordList.get(4);
+        String ad5 = recordList.get(5);
+        String ad6 = recordList.get(6);
+        String ad7 = recordList.get(7);
+        String ad8 = recordList.get(8);
+        String ad9 = recordList.get(9);
+        String ad10 = recordList.get(10);
+        String ad11 = recordList.get(11);
+        String ad12 = recordList.get(12);
+        String ad13 = recordList.get(13);
+        String ad14 = recordList.get(14);
+        String ad15 = recordList.get(15);
+        String ad16 = recordList.get(16);
+        String ad17 = recordList.get(17);
+        String ad18 = recordList.get(18);
+        String ad19 = recordList.get(19);
+        String ad20 = recordList.get(20);
+        String ad21 = recordList.get(21);
+        String ad22 = recordList.get(22);
+        String ad23 = recordList.get(23);
+        String ad24 = recordList.get(24);
+        String ad25 = recordList.get(25);
+        String ad26 = recordList.get(26);
+        String ad27 = recordList.get(27);
+        String ad28 = recordList.get(28);
+        String ad29 = recordList.get(29);
+        String book_cover = cover;
+
+        startRecordSave(new srecordData(storynum, book_no, book_title, book_cover, ad0, ad1, ad2, ad3, ad4, ad5, ad6, ad7, ad8, ad9, ad10, ad11, ad12, ad13, ad14, ad15, ad16, ad17, ad18, ad19, ad20, ad21, ad22, ad23, ad24, ad25, ad26, ad27, ad28, ad29));
+        Toast.makeText(activity, String.valueOf(recordList), Toast.LENGTH_LONG).show();
+        dismiss();
+        activity.finish();
+    }
+
+    public void myListSave(){
+        String book_title = title.getText().toString();
+        int book_select0 = myList.get(0);
+        int book_select1 = myList.get(1);
+        int book_select2 = myList.get(2);
+        int book_select3 = myList.get(3);
+        int book_select4 = myList.get(4);
+        int book_select5 = myList.get(5);
+        int book_select6 = myList.get(6);
+        String book_cover = cover;
+
+        startSave(new savebookData(storynum, book_title, book_select0, book_select1, book_select2, book_select3, book_select4, book_select5, book_select6, book_cover));
+        Toast.makeText(activity, String.valueOf(myList), Toast.LENGTH_LONG).show();
+        dismiss();
+        activity.finish();
+    }
 }

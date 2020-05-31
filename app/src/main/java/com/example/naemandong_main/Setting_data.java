@@ -12,6 +12,7 @@ public class Setting_data extends Application {
     private boolean recordPlay = false;
     private ArrayList<String> recordList = new ArrayList<>();
     public ArrayList<Integer> myList = new ArrayList<>();
+    private int book_no;
 
     public boolean getSound(){
         return sound;
@@ -71,5 +72,13 @@ public class Setting_data extends Application {
 
     public void setRecordPlay(boolean recordPlay){
         this.recordPlay = recordPlay;
+    }
+
+    public int getBook_no() {
+        return book_no;
+    }
+
+    public void setBook_no(int book_no) {
+        this.book_no = book_no;
     }
 }
