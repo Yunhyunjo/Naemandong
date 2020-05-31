@@ -12,16 +12,20 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Record extends AppCompatActivity {
 
     private final static String TAG = "Record";
 
-    MediaRecorder mRecorder = new MediaRecorder();
+    MediaRecorder mRecorder;
     MediaPlayer mPlayer = new MediaPlayer();
     String mPath = null;
     private ImageButton record_preview, record_start, record_save;
     boolean isPlaying = false;
     boolean isRecording = false;
+    String getTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,27 +39,24 @@ public class Record extends AppCompatActivity {
         record_start = (ImageButton) findViewById(R.id.record_start);
         record_save = (ImageButton) findViewById(R.id.record_save);
 
-        mRecorder = new MediaRecorder();
+        long now = System.currentTimeMillis();
+        Date mDate = new Date(now);
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyMMddhhmmss");
+        getTime = simpleDate.format(mDate);
 
-        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
-        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+        //mPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/rScene01.aac";
 
-        mPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/rScene01.aac";
-        Log.d(TAG, "file path is " + mPath);
-        mRecorder.setOutputFile(mPath);
 
         record_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                initAudioRecorder();
                 try {
-                    mRecorder.prepare();
                     mRecorder.start();
                     Toast.makeText(Record.this, "녹음시작", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     Log.e(TAG, "prepare() failed");
                 }
-                // recode.initAudioRecorder();
             }
         });
 
@@ -69,6 +70,7 @@ public class Record extends AppCompatActivity {
                     mRecorder = null;
                     Toast.makeText(Record.this, "녹음 멈춤", Toast.LENGTH_SHORT).show();
                 }
+                saveRecord();
             }
         });
 
@@ -104,4 +106,25 @@ public class Record extends AppCompatActivity {
     });
     }
 
+    public void saveRecord(){
+        ((Setting_data)this.getApplication()).addRecordList(mPath);
+    }
+
+    void initAudioRecorder() {
+        mRecorder = new MediaRecorder();
+
+        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+
+        //mPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/rScene01.aac";
+        mPath = Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_DOWNLOADS ).toString() + "/" + getTime +".mp3";
+        Log.d(TAG, "file path is " + mPath);
+        mRecorder.setOutputFile(mPath);
+        try {
+            mRecorder.prepare();
+        } catch (Exception e) {
+            Log.e(TAG, "prepare() failed");
+        }
+    }
 }

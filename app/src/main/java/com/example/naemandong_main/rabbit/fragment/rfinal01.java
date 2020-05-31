@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +35,9 @@ public class rfinal01 extends Fragment {
     private TextView subtitles;
     private ImageButton save, exit;
     private ArrayList<Integer> myList;
+    private ArrayList<String> recordList;
     boolean play = false;
-    boolean sound, subtitle, record;
+    boolean subtitle, record;
     private String subs [] = {"토끼는 자신을 도와준 거북이에게 반해 고백을 했어요.", "그렇게 토끼와 거북이는 결혼을 해서 오래오래 행복하게 살았답니다."};
     Handler delayHandler = new Handler();
 
@@ -58,6 +60,12 @@ public class rfinal01 extends Fragment {
             while(myList.size() < 7)
                 myList.add(3);
             }
+        }
+
+        if (((Setting_data) getContext().getApplicationContext()).isRecord()){
+            recordList = ((Setting_data) getContext().getApplicationContext()).getRecordList();
+            while(recordList.size() < 30)
+                recordList.add("0");
         }
 
 
@@ -109,8 +117,17 @@ public class rfinal01 extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList,"http://49.50.174.179:9000/images/cover/rabbit_ending01.png");
-                saveDialog.show();
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()){
+//                    saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이", 1, myList, "http://49.50.174.179:9000/images/cover/rabbit_ending01.png");
+//                    saveDialog.show();
+                    Log.d("record >>>>>>>> ", String.valueOf(recordList));
+                    ((Setting_data) getContext().getApplicationContext()).setRecord(false);
+                    ((Setting_data) getContext().getApplicationContext()).clearList();
+                }
+                else {
+                    saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이", 1, myList, "http://49.50.174.179:9000/images/cover/rabbit_ending01.png");
+                    saveDialog.show();
+                }
             }
         });
         exit.setOnClickListener(new View.OnClickListener() {
