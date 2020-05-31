@@ -9,6 +9,8 @@ import com.example.naemandong_main.Data.findidpwData;
 import com.example.naemandong_main.Data.loginData;
 import com.example.naemandong_main.Data.loginResponse;
 import com.example.naemandong_main.Data.percentResponse;
+import com.example.naemandong_main.Data.rbookListData;
+import com.example.naemandong_main.Data.rbookListResponse;
 import com.example.naemandong_main.Data.recordListData;
 import com.example.naemandong_main.Data.recordListResponse;
 import com.example.naemandong_main.Data.registerData;
@@ -63,4 +65,7 @@ public interface ServiceApi {
 
     @POST("/recorddata")
     Call<recordListResponse> recordList(@Body recordListData data);
+
+    @POST("/rbookList")
+    Call<rbookListResponse> rbookList(@Body rbookListData data);
 }

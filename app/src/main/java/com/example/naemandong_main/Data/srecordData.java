@@ -10,6 +10,12 @@ public class srecordData {
     @SerializedName("book_no")
     private int book_no;
 
+    @SerializedName("book_title")
+    private String book_title;
+
+    @SerializedName("book_cover")
+    private String book_cover;
+
     @SerializedName("ad0")
     private String ad0;
 
@@ -100,9 +106,11 @@ public class srecordData {
     @SerializedName("ad29")
     private String ad29;
 
-    public srecordData(int storynum, int book_no, String ad0, String ad1, String ad2, String ad3, String ad4, String ad5, String ad6, String ad7, String ad8, String ad9, String ad10, String ad11, String ad12, String ad13, String ad14, String ad15, String ad16, String ad17, String ad18, String ad19, String ad20, String ad21, String ad22, String ad23, String ad24, String ad25, String ad26, String ad27, String ad28, String ad29) {
+    public srecordData(int storynum, int book_no, String book_title, String book_cover, String ad0, String ad1, String ad2, String ad3, String ad4, String ad5, String ad6, String ad7, String ad8, String ad9, String ad10, String ad11, String ad12, String ad13, String ad14, String ad15, String ad16, String ad17, String ad18, String ad19, String ad20, String ad21, String ad22, String ad23, String ad24, String ad25, String ad26, String ad27, String ad28, String ad29) {
         this.storynum = storynum;
         this.book_no = book_no;
+        this.book_title = book_title;
+        this.book_cover = book_cover;
         this.ad0 = ad0;
         this.ad1 = ad1;
         this.ad2 = ad2;

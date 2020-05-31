@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class recordListData {
 
-    @SerializedName("book_no")
-    private int book_no;
+    @SerializedName("id")
+    private int id;
 
-    public recordListData(int book_no) {
-        this.book_no = book_no;
+    public recordListData(int id) {
+        this.id = id;
     }
 }

@@ -62,13 +62,6 @@ public class rfinal01 extends Fragment {
             }
         }
 
-        if (((Setting_data) getContext().getApplicationContext()).isRecord()){
-            recordList = ((Setting_data) getContext().getApplicationContext()).getRecordList();
-            while(recordList.size() < 30)
-                recordList.add("0");
-        }
-
-
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/5/22_fin1.png")
                 .into(background);
@@ -119,8 +112,12 @@ public class rfinal01 extends Fragment {
             @Override
             public void onClick(View v) {
                 if (((Setting_data) getContext().getApplicationContext()).isRecord()){
-//                    saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이", 1, myList, "http://49.50.174.179:9000/images/cover/rabbit_ending01.png");
-//                    saveDialog.show();
+                    recordList = ((Setting_data) getContext().getApplicationContext()).getRecordList();
+                    int book_no = ((Setting_data) getContext().getApplicationContext()).getBook_no();
+                    while(recordList.size() < 30)
+                        recordList.add("0");
+                    saveDialog = new Save_Dialog(getActivity(),book_no, "토끼와 거북이", 1, recordList, "http://49.50.174.179:9000/images/cover/rabbit_ending01.png",true);
+                    saveDialog.show();
                     Log.d("record >>>>>>>> ", String.valueOf(recordList));
                     ((Setting_data) getContext().getApplicationContext()).setRecord(false);
                     ((Setting_data) getContext().getApplicationContext()).clearList();
