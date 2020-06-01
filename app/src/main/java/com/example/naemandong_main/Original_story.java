@@ -35,6 +35,9 @@ public class Original_story extends AppCompatActivity {
         if (story == 1){
             background.setImageResource(R.drawable.nmdrabbit_cover);
         }
+        else {
+            background.setImageResource(R.drawable.nmdpig_cover);
+        }
 
         original.setOnClickListener(new View.OnClickListener() {
             @Override
