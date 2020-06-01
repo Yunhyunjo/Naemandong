@@ -1,6 +1,7 @@
 package com.example.naemandong_main.pig.fragment;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +20,15 @@ import com.example.naemandong_main.pig.activity.Pig08;
 import com.example.naemandong_main.pig.activity.Pig25;
 import com.example.naemandong_main.pig.activity.Pig28;
 
+import java.io.IOException;
+
 // 막돼 재료 선택
 public class pScene28 extends Fragment {
 
     private View view;
     private ImageView background;
     private ImageButton stone, brick, sand;
+    MediaPlayer mp1 = new MediaPlayer();
 
     @Nullable
     @Override
@@ -48,6 +52,14 @@ public class pScene28 extends Fragment {
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/17_sand-01.png")
                 .into(sand);
+
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/pig/pScene28.mp3");
+            mp1.prepare();
+            mp1.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         stone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,4 +92,11 @@ public class pScene28 extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+    }
+
 }
