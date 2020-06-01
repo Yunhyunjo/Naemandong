@@ -195,7 +195,7 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
                 myAd.add(result.getAd17());
                 myAd.add(result.getAd18());
                 myAd.add(result.getAd19());
-                myAd.add(result.getAd0());
+                myAd.add(result.getAd20());
                 myAd.add(result.getAd21());
                 myAd.add(result.getAd22());
                 myAd.add(result.getAd23());
