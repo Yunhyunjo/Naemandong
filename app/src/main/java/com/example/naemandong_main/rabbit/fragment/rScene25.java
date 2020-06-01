@@ -164,5 +164,6 @@ public class rScene25 extends Fragment {
         super.onDestroy();
         if (mp1 != null) mp1.release();
         if (mp2 != null) mp2.release();
+        if (recordmp != null) recordmp.release();
     }
 }

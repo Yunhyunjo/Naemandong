@@ -200,5 +200,6 @@ public class rScene50 extends Fragment {
         if (mp2 != null) mp2.release();
         if (mp3 != null) mp3.release();
         if (mp4 != null) mp4.release();
+        if (recordmp != null) recordmp.release();
     }
 }
