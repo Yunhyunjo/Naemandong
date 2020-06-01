@@ -120,6 +120,7 @@ public class rFinal07 extends Fragment {
                 if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);
+                    save.setVisibility(View.VISIBLE);
                     Intent intent = new Intent(getActivity(), Record.class);
                     startActivity(intent);
                 }
@@ -139,7 +140,7 @@ public class rFinal07 extends Fragment {
                     int book_no = ((Setting_data) getContext().getApplicationContext()).getBook_no();
                     while(recordList.size() < 30)
                         recordList.add("0");
-                    saveDialog = new Save_Dialog(getActivity(),book_no, "토끼와 거북이", 1, recordList, "http://49.50.174.179:9000/images/cover/rabbit_ending01.png",true);
+                    saveDialog = new Save_Dialog(getActivity(),book_no, "토끼와 거북이", 1, recordList, "http://49.50.174.179:9000/images/cover/rabbit/2-02.png",true);
                     saveDialog.show();
                     Log.d("record >>>>>>>> ", String.valueOf(recordList));
                     ((Setting_data) getContext().getApplicationContext()).setRecord(false);
@@ -166,5 +167,6 @@ public class rFinal07 extends Fragment {
         super.onDestroy();
         if (mp1 != null) mp1.release();
         if (mp2 != null) mp2.release();
+        if (recordmp != null) recordmp.release();
     }
 }

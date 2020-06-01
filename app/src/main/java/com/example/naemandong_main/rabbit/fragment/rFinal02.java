@@ -40,11 +40,12 @@ public class rFinal02 extends Fragment {
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
     MediaPlayer mp3 = new MediaPlayer();
+    MediaPlayer recordmp = new MediaPlayer();
+    private ArrayList<String> recordList;
     private View view;
     private ImageView background, box, rabbit;
     private TextView subtitles;
     private ArrayList<Integer> myList;
-    private ArrayList<String> recordList;
     boolean play = false;
     boolean sound, subtitle, record;
     private String subs [] = {"“와 내가 이겼다!! 역시 난 빨라~”","토끼는 결국 경주에서 이겼어요.", "그 후로 거북이는 계속 느림보로 불렸답니다."};
@@ -80,6 +81,17 @@ public class rFinal02 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/24_r.png")
                 .into(rabbit);
 
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
+            ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            try {
+                recordmp.setDataSource(path);
+                recordmp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rFinal02_1.MP3");
             mp1.prepare();
@@ -97,12 +109,19 @@ public class rFinal02 extends Fragment {
         int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
 
         subtitles.setText(subs[0]);
-        mp1.start();
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            recordmp.start();
+        }
+        else {
+            mp1.start();
+        }
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
-                mp2.start();
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp2.start();
+                }
                 subtitles.setText(subs[1]);
             }
         }, a);
@@ -110,7 +129,9 @@ public class rFinal02 extends Fragment {
             @Override
             public void run() {
                 // TODO
-                mp3.start();
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp3.start();
+                }
                 subtitles.setText(subs[2]);
             }
         }, b);
@@ -126,6 +147,7 @@ public class rFinal02 extends Fragment {
                 if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);
+                    save.setVisibility(View.VISIBLE);
                     Intent intent = new Intent(getActivity(), Record.class);
                     startActivity(intent);
                 }
@@ -145,7 +167,7 @@ public class rFinal02 extends Fragment {
                     int book_no = ((Setting_data) getContext().getApplicationContext()).getBook_no();
                     while(recordList.size() < 30)
                         recordList.add("0");
-                    saveDialog = new Save_Dialog(getActivity(),book_no, "토끼와 거북이", 1, recordList, "http://49.50.174.179:9000/images/cover/rabbit_ending01.png",true);
+                    saveDialog = new Save_Dialog(getActivity(),book_no, "토끼와 거북이", 1, recordList, "http://49.50.174.179:9000/images/cover/rabbit_ending02.png",true);
                     saveDialog.show();
                     Log.d("record >>>>>>>> ", String.valueOf(recordList));
                     ((Setting_data) getContext().getApplicationContext()).setRecord(false);
@@ -173,5 +195,6 @@ public class rFinal02 extends Fragment {
         if (mp1 != null) mp1.release();
         if (mp2 != null) mp2.release();
         if (mp3 != null) mp3.release();
+        if (recordmp != null) recordmp.release();
     }
 }
