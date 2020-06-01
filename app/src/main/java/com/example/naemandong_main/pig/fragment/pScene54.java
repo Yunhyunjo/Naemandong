@@ -1,6 +1,7 @@
 package com.example.naemandong_main.pig.fragment;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +23,10 @@ import com.example.naemandong_main.pig.activity.Pig16;
 import com.example.naemandong_main.pig.activity.Pig17;
 import com.example.naemandong_main.pig.activity.Pig18;
 
-public class pScene54 extends Fragment {
+import java.io.IOException;
 
+public class pScene54 extends Fragment {
+    MediaPlayer mp1 = new MediaPlayer();
     private View view;
     private ImageView background, background2;
     private ImageButton fire, tack, bed;
@@ -50,6 +53,14 @@ public class pScene54 extends Fragment {
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/24_sel3-01-01.png")
                 .into(bed);
+
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/pig/pScene39.mp3");
+            mp1.prepare();
+            mp1.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         fire.setOnClickListener(new View.OnClickListener() {
             @Override

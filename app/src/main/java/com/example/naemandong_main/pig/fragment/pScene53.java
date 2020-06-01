@@ -2,6 +2,7 @@ package com.example.naemandong_main.pig.fragment;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -18,14 +19,24 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.pig.activity.Pig10;
 import com.example.naemandong_main.pig.activity.Pig11;
 import com.example.naemandong_main.pig.activity.Pig16;
 import com.example.naemandong_main.pig.activity.Pig17;
 import com.example.naemandong_main.pig.activity.Pig18;
 
+import java.io.IOException;
+
 public class pScene53 extends Fragment {
 
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer mp3 = new MediaPlayer();
+    MediaPlayer recordmp = new MediaPlayer();
+    boolean sound, subtitle;
+    private ImageView box;
     AnimationDrawable frameAnimation;
     private View view;
     private ImageView background;
@@ -42,10 +53,48 @@ public class pScene53 extends Fragment {
         background = view.findViewById(R.id.background);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
-
+        box = view.findViewById(R.id.subtitlebox);
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/23-001.png")
                 .into(background);
+
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/pig/pScene38_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/pig/pScene53_2.mp3");
+            mp2.prepare();
+            mp3.setDataSource("http://49.50.174.179:9000/voice/pig/pScene53_3.mp3");
+            mp3.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
+            ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            try {
+                recordmp.setDataSource(path);
+                recordmp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
+        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
+
+        if (getArguments() != null){
+            sound = getArguments().getBoolean("sound");
+            subtitle = getArguments().getBoolean("subtitle");
+        }
+
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            recordmp.start();
+        }
+        else {
+            mp1.start();
+        }
 
         subtitles.setText(subs[0]);
         delayHandler.postDelayed(new Runnable() {
@@ -53,22 +102,34 @@ public class pScene53 extends Fragment {
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp2.start();
+                }
             }
-        }, 3000);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[2]);
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp3.start();
+                }
             }
-        }, 4000);
+        }, b);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 next.setVisibility(View.VISIBLE);
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
             }
-        }, 5000);
+        }, c);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,5 +160,15 @@ public class pScene53 extends Fragment {
         });
 
         return view;
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
+        if (recordmp != null) recordmp.release();
     }
 }
