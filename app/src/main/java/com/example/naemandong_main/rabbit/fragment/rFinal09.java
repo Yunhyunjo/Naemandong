@@ -183,7 +183,7 @@ public class rFinal09 extends Fragment {
                     while(recordList.size() < 30)
                         recordList.add("0");
                     saveDialog = new Save_Dialog(getActivity(),book_no, "토끼와 거북이", 1, recordList, "http://49.50.174.179:9000/images/cover/rabbit/3-03.png",true);
-                    saveDialog.show();
+                    //saveDialog.show();
                     Log.d("record >>>>>>>> ", String.valueOf(recordList));
                     ((Setting_data) getContext().getApplicationContext()).setRecord(false);
                     ((Setting_data) getContext().getApplicationContext()).clearRecordList();
