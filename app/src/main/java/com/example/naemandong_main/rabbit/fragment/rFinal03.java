@@ -31,10 +31,12 @@ public class rFinal03 extends Fragment {
     private Save_Dialog saveDialog;
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer recordmp = new MediaPlayer();
     private View view;
     private ImageView background, box, turtle;
     private TextView subtitles;
     private ArrayList<Integer> myList;
+    private ArrayList<String> recordList;
     private String subs [] = {"“와 내가 이겼다, 이겼어!”","그렇게 거북이가 이기게 되었고, 아무도 거북이를 느림보라 놀리지 않았답니다."};
     private ImageButton save, exit;
     boolean play = false;
@@ -70,6 +72,17 @@ public class rFinal03 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/32_t.png")
                 .into(turtle);
 
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
+            ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            try {
+                recordmp.setDataSource(path);
+                recordmp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rFinal03_1.MP3");
             mp1.prepare();
@@ -84,13 +97,20 @@ public class rFinal03 extends Fragment {
         int b = mp1.getDuration() + mp2.getDuration();
 
         subtitles.setText(subs[0]);
-        mp1.start();
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            recordmp.start();
+        }
+        else {
+            mp1.start();
+        }
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                mp2.start();
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp2.start();
+                }
             }
         }, a);
         delayHandler.postDelayed(new Runnable() {
@@ -115,8 +135,21 @@ public class rFinal03 extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList,"http://49.50.174.179:9000/images/cover/rabbit_ending03.png");
-                saveDialog.show();
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()){
+                    recordList = ((Setting_data) getContext().getApplicationContext()).getRecordList();
+                    int book_no = ((Setting_data) getContext().getApplicationContext()).getBook_no();
+                    while(recordList.size() < 30)
+                        recordList.add("0");
+                    saveDialog = new Save_Dialog(getActivity(),book_no, "토끼와 거북이", 1, recordList, "http://49.50.174.179:9000/images/cover/rabbit_ending01.png",true);
+                    saveDialog.show();
+                    Log.d("record >>>>>>>> ", String.valueOf(recordList));
+                    ((Setting_data) getContext().getApplicationContext()).setRecord(false);
+                    ((Setting_data) getContext().getApplicationContext()).clearRecordList();
+                }
+                else {
+                    saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList,"http://49.50.174.179:9000/images/cover/rabbit_ending03.png");
+                    saveDialog.show();
+                }
             }
         });
         exit.setOnClickListener(new View.OnClickListener() {

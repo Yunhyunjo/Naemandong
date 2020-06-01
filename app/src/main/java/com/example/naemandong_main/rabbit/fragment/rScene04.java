@@ -33,6 +33,8 @@ public class rScene04 extends Fragment {
 
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer recordmp = new MediaPlayer();
+    boolean sound, subtitle;
     private View view;
     private ImageView background, turtle, box;
     private ImageButton next;
@@ -67,20 +69,43 @@ public class rScene04 extends Fragment {
             e.printStackTrace();
         }
 
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
+            ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            try {
+                recordmp.setDataSource(path);
+                recordmp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
+
+        if (getArguments() != null){
+            sound = getArguments().getBoolean("sound");
+            subtitle = getArguments().getBoolean("subtitle");
+        }
 
         Animation angry = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene04);
 
         turtle.startAnimation(angry);
         subtitles.setText(subs[0]);
-        mp1.start();
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            recordmp.start();
+        }
+        else {
+            mp1.start();
+        }
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                mp2.start();
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp2.start();
+                }
             }
         }, a);
         delayHandler.postDelayed(new Runnable() {

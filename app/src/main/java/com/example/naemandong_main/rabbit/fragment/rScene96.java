@@ -32,6 +32,8 @@ public class rScene96 extends Fragment {
     private AnimationDrawable frameLion;
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer recordmp = new MediaPlayer();
+    boolean sound, subtitle;
     private View view;
     private ImageView background, box, lion, lion2;
     private TextView subtitles;
@@ -55,6 +57,17 @@ public class rScene96 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/13_back.png")
                 .into(background);
 
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
+            ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            try {
+                recordmp.setDataSource(path);
+                recordmp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene96_1.mp3");
             mp1.prepare();
@@ -62,6 +75,11 @@ public class rScene96 extends Fragment {
             mp2.prepare();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        if (getArguments() != null){
+            sound = getArguments().getBoolean("sound");
+            subtitle = getArguments().getBoolean("subtitle");
         }
 
         int a = mp1.getDuration();
@@ -75,7 +93,12 @@ public class rScene96 extends Fragment {
 
         subtitles.setText(subs[0]);
 
-        mp1.start();
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            recordmp.start();
+        }
+        else {
+            mp1.start();
+        }
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -84,7 +107,9 @@ public class rScene96 extends Fragment {
 
                 lion2.setBackgroundResource(R.drawable.lion_ggauddung);
                 frameLion = (AnimationDrawable) lion2.getBackground();
-                mp2.start();
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp2.start();
+                }
                 frameLion.start();
                 subtitles.setText(subs[1]);
             }

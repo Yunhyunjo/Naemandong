@@ -5,6 +5,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,8 @@ public class rFinal09 extends Fragment {
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
     MediaPlayer mp3 = new MediaPlayer();
+    MediaPlayer recordmp = new MediaPlayer();
+    private ArrayList<String> recordList;
     private AnimationDrawable frameAnimation1;
     private View view;
     private ImageView background, box, front, turtle, rabbit;
@@ -65,6 +68,17 @@ public class rFinal09 extends Fragment {
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/5/8_front_rabbit.png")
                 .into(front);
+
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
+            ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            try {
+                recordmp.setDataSource(path);
+                recordmp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rFinal09_1.MP3");
@@ -111,7 +125,12 @@ public class rFinal09 extends Fragment {
         frameAnimation1.start();
         rabbit.startAnimation(rabbitgo);
         subtitles.setText(subs[0]);
-        mp1.start();
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            recordmp.start();
+        }
+        else {
+            mp1.start();
+        }
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -123,7 +142,10 @@ public class rFinal09 extends Fragment {
                         .into(turtle);
                 subtitles.setText(subs[1]);
                 frameAnimation1.stop();
-                mp2.start();
+
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp2.start();
+                }
             }
         }, a);
         delayHandler.postDelayed(new Runnable() {
@@ -131,7 +153,10 @@ public class rFinal09 extends Fragment {
             public void run() {
                 // TODO
                 subtitles.setText(subs[2]);
-                mp3.start();
+
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp3.start();
+                }
             }
         }, b);
         delayHandler.postDelayed(new Runnable() {
@@ -156,10 +181,24 @@ public class rFinal09 extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList,"http://49.50.174.179:9000/images/cover/rabbit/3-03.png");
-                saveDialog.show();
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()){
+                    recordList = ((Setting_data) getContext().getApplicationContext()).getRecordList();
+                    int book_no = ((Setting_data) getContext().getApplicationContext()).getBook_no();
+                    while(recordList.size() < 30)
+                        recordList.add("0");
+                    saveDialog = new Save_Dialog(getActivity(),book_no, "토끼와 거북이", 1, recordList, "http://49.50.174.179:9000/images/cover/rabbit_ending01.png",true);
+                    saveDialog.show();
+                    Log.d("record >>>>>>>> ", String.valueOf(recordList));
+                    ((Setting_data) getContext().getApplicationContext()).setRecord(false);
+                    ((Setting_data) getContext().getApplicationContext()).clearRecordList();
+                }
+                else {
+                    saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList,"http://49.50.174.179:9000/images/cover/rabbit/3-03.png");
+                    saveDialog.show();
+                }
             }
         });
+
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,7 @@ public class rFinal02 extends Fragment {
     private ImageView background, box, rabbit;
     private TextView subtitles;
     private ArrayList<Integer> myList;
+    private ArrayList<String> recordList;
     boolean play = false;
     boolean sound, subtitle, record;
     private String subs [] = {"“와 내가 이겼다!! 역시 난 빨라~”","토끼는 결국 경주에서 이겼어요.", "그 후로 거북이는 계속 느림보로 불렸답니다."};
@@ -134,8 +136,21 @@ public class rFinal02 extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList,"http://49.50.174.179:9000/images/cover/rabbit_ending02.png");
-                saveDialog.show();
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()){
+                    recordList = ((Setting_data) getContext().getApplicationContext()).getRecordList();
+                    int book_no = ((Setting_data) getContext().getApplicationContext()).getBook_no();
+                    while(recordList.size() < 30)
+                        recordList.add("0");
+                    saveDialog = new Save_Dialog(getActivity(),book_no, "토끼와 거북이", 1, recordList, "http://49.50.174.179:9000/images/cover/rabbit_ending01.png",true);
+                    saveDialog.show();
+                    Log.d("record >>>>>>>> ", String.valueOf(recordList));
+                    ((Setting_data) getContext().getApplicationContext()).setRecord(false);
+                    ((Setting_data) getContext().getApplicationContext()).clearRecordList();
+                }
+                else {
+                    saveDialog = new Save_Dialog(getActivity(), "토끼와 거북이",1,myList,"http://49.50.174.179:9000/images/cover/rabbit_ending02.png");
+                    saveDialog.show();
+                }
             }
         });
         exit.setOnClickListener(new View.OnClickListener() {

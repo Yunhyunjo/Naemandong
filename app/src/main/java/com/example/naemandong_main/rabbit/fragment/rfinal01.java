@@ -30,6 +30,7 @@ public class rfinal01 extends Fragment {
 
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer recordmp = new MediaPlayer();
     private View view;
     private ImageView background, box;
     private TextView subtitles;
@@ -66,6 +67,18 @@ public class rfinal01 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/22_fin1.png")
                 .into(background);
 
+
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
+            ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            try {
+                recordmp.setDataSource(path);
+                recordmp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rfinal01_1.mp3");
             mp1.prepare();
@@ -79,13 +92,20 @@ public class rfinal01 extends Fragment {
         int b = mp1.getDuration() + mp2.getDuration();
 
         subtitles.setText(subs[0]);
-        mp1.start();
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            recordmp.start();
+        }
+        else {
+            mp1.start();
+        }
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                mp2.start();
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp2.start();
+                }
             }
         }, a);
         delayHandler.postDelayed(new Runnable() {

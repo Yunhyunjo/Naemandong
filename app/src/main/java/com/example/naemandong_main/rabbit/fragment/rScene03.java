@@ -32,6 +32,7 @@ public class rScene03 extends Fragment {
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
     MediaPlayer mp3 = new MediaPlayer();
+    MediaPlayer recordmp = new MediaPlayer();
     private AnimationDrawable frameAnimation;
     private View view;
     private ImageView background, turtle, plant, box;
@@ -76,9 +77,25 @@ public class rScene03 extends Fragment {
             e.printStackTrace();
         }
 
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
+            ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            try {
+                recordmp.setDataSource(path);
+                recordmp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
         int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
+
+        if (getArguments() != null){
+            sound = getArguments().getBoolean("sound");
+            subtitle = getArguments().getBoolean("subtitle");
+        }
 
         turtle.setBackgroundResource(R.drawable.turtle_leftgo);
         frameAnimation = (AnimationDrawable) turtle.getBackground();
@@ -97,13 +114,23 @@ public class rScene03 extends Fragment {
         frameAnimation.start();
         turtle.startAnimation(tgo);
         subtitles.setText(subs[0]);
-        mp1.start();
+
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            recordmp.start();
+        }
+        else {
+            mp1.start();
+        }
+
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                mp2.start();
+
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp2.start();
+                }
             }
         }, a);
         delayHandler.postDelayed(new Runnable() {
@@ -111,7 +138,10 @@ public class rScene03 extends Fragment {
             public void run() {
                 // TODO
                 subtitles.setText(subs[2]);
-                mp3.start();
+
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp3.start();
+                }
             }
         }, b);
         delayHandler.postDelayed(new Runnable() {

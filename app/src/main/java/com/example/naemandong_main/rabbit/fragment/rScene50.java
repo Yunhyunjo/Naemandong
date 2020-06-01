@@ -35,6 +35,8 @@ public class rScene50 extends Fragment {
     MediaPlayer mp2 = new MediaPlayer();
     MediaPlayer mp3 = new MediaPlayer();
     MediaPlayer mp4 = new MediaPlayer();
+    MediaPlayer recordmp = new MediaPlayer();
+    boolean sound, subtitle;
     private AnimationDrawable frameTurtle, frameSloth;
     private View view;
     private ImageView background, box, sloth, turtle;
@@ -62,6 +64,17 @@ public class rScene50 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/62_hwanagizon.png")
                 .into(turtle);
 
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
+            ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            try {
+                recordmp.setDataSource(path);
+                recordmp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene50_1.MP3");
             mp1.prepare();
@@ -73,6 +86,11 @@ public class rScene50 extends Fragment {
             mp4.prepare();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        if (getArguments() != null){
+            sound = getArguments().getBoolean("sound");
+            subtitle = getArguments().getBoolean("subtitle");
         }
 
         int a = mp1.getDuration();
@@ -87,7 +105,12 @@ public class rScene50 extends Fragment {
         final Animation slothgo = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene50_sloth);
 
         subtitles.setText(subs[0]);
-        mp1.start();
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            recordmp.start();
+        }
+        else {
+            mp1.start();
+        }
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -96,7 +119,9 @@ public class rScene50 extends Fragment {
                 turtle.setImageResource(0);
                 turtle.setBackgroundResource(R.drawable.turtle_rightgo);
                 frameTurtle = (AnimationDrawable) turtle.getBackground();
-                mp2.start();
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp2.start();
+                }
             }
         }, a);
         delayHandler.postDelayed(new Runnable() {
@@ -108,7 +133,9 @@ public class rScene50 extends Fragment {
                 frameSloth.start();
                 turtle.startAnimation(turtlego);
                 sloth.startAnimation(slothgo);
-                mp3.start();
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp3.start();
+                }
             }
         }, b);
         delayHandler.postDelayed(new Runnable() {
@@ -116,7 +143,9 @@ public class rScene50 extends Fragment {
             public void run() {
                 // TODO
                 subtitles.setText(subs[3]);
-                mp4.start();
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp4.start();
+                }
             }
         }, c);
         delayHandler.postDelayed(new Runnable() {

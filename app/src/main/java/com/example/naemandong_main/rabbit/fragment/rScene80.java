@@ -28,6 +28,8 @@ public class rScene80 extends Fragment {
     private View view;
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer recordmp = new MediaPlayer();
+    boolean sound, subtitle;
     private ImageView background, box, lion, lion2, front;
     private TextView subtitles;
     private String subs [] = {"\"거북이는 아직 오려면 멀었으니 한숨 자고 갈까?\"", "사자는 한숨 자기로 하고 쿨쿨 잠에 들었어요."};
@@ -54,6 +56,17 @@ public class rScene80 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/7/90_1.png")
                 .into(lion);
 
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
+            ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            try {
+                recordmp.setDataSource(path);
+                recordmp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
 
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene80_1.MP3");
@@ -64,11 +77,22 @@ public class rScene80 extends Fragment {
             e.printStackTrace();
         }
 
+
+        if (getArguments() != null){
+            sound = getArguments().getBoolean("sound");
+            subtitle = getArguments().getBoolean("subtitle");
+        }
+
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
 
         subtitles.setText(subs[0]);
-        mp1.start();
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            recordmp.start();
+        }
+        else {
+            mp1.start();
+        }
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -78,7 +102,10 @@ public class rScene80 extends Fragment {
                         .load("http://49.50.174.179:9000/images/rabbit/7/90_2.png")
                         .into(lion2);
                 subtitles.setText(subs[1]);
-                mp2.start();
+
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp2.start();
+                }
             }
         }, a);
         delayHandler.postDelayed(new Runnable() {

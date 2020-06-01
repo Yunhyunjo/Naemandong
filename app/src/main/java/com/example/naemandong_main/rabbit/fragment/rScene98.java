@@ -33,6 +33,8 @@ public class rScene98 extends Fragment {
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
     MediaPlayer mp3 = new MediaPlayer();
+    MediaPlayer recordmp = new MediaPlayer();
+    boolean sound, subtitle;
     private View view;
     private ImageView background, box, lion, lion2, front;
     private TextView subtitles;
@@ -62,6 +64,17 @@ public class rScene98 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/7/109_lion_front.png")
                 .into(lion2);
 
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
+            ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            try {
+                recordmp.setDataSource(path);
+                recordmp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene98_1.mp3");
             mp1.prepare();
@@ -73,12 +86,22 @@ public class rScene98 extends Fragment {
             e.printStackTrace();
         }
 
+        if (getArguments() != null){
+            sound = getArguments().getBoolean("sound");
+            subtitle = getArguments().getBoolean("subtitle");
+        }
+
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
         int c = mp1.getDuration() + mp2.getDuration()+ mp3.getDuration();
 
         subtitles.setText(subs[0]);
-        mp1.start();
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            recordmp.start();
+        }
+        else {
+            mp1.start();
+        }
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -86,7 +109,9 @@ public class rScene98 extends Fragment {
                 Glide.with(getActivity())
                         .load(0)
                         .into(lion2);
-                mp2.start();
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp2.start();
+                }
                 lion2.setBackgroundResource(R.drawable.lion_rightgo);
                 subtitles.setText(subs[1]);
             }
@@ -100,7 +125,9 @@ public class rScene98 extends Fragment {
 
                 Animation liongo = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene74);
                 lion2.startAnimation(liongo);
-                mp3.start();
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp3.start();
+                }
                 subtitles.setText(subs[2]);
             }
         }, b);

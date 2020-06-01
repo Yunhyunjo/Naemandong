@@ -34,6 +34,8 @@ public class rScene91 extends Fragment {
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
     MediaPlayer mp3 = new MediaPlayer();
+    MediaPlayer recordmp = new MediaPlayer();
+    boolean sound, subtitle;
     private View view;
     private ImageView background, box, lion, skate_turtle, bush1, bush2;
     private TextView subtitles;
@@ -65,6 +67,17 @@ public class rScene91 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/48_right.png")
                 .into(bush2);
 
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
+            ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            try {
+                recordmp.setDataSource(path);
+                recordmp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene91_1.mp3");
             mp1.prepare();
@@ -74,6 +87,11 @@ public class rScene91 extends Fragment {
             mp3.prepare();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        if (getArguments() != null){
+            sound = getArguments().getBoolean("sound");
+            subtitle = getArguments().getBoolean("subtitle");
         }
 
         int a = mp1.getDuration();
@@ -94,12 +112,20 @@ public class rScene91 extends Fragment {
         lion.startAnimation(rabbitgo);
         skate_turtle.startAnimation(turtlego);
         subtitles.setText(subs[0]);
-        mp1.start();
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            recordmp.start();
+        }
+        else {
+            mp1.start();
+        }
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
-                mp2.start();
+
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp2.start();
+                }
                 subtitles.setText(subs[1]);
                 frameTurtle.stop();
                 skate_turtle.setBackgroundResource(0);
@@ -110,7 +136,10 @@ public class rScene91 extends Fragment {
             @Override
             public void run() {
                 // TODO
-                mp3.start();
+
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp3.start();
+                }
                 subtitles.setText(subs[2]);
                 next.setVisibility(View.VISIBLE);
             }

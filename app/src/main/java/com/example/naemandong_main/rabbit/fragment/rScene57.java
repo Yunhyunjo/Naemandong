@@ -30,6 +30,8 @@ public class rScene57 extends Fragment {
 
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer recordmp = new MediaPlayer();
+    boolean sound, subtitle;
     private AnimationDrawable frameAnimation1;
     private View view;
     private ImageView background, box, front, sloth;
@@ -57,6 +59,17 @@ public class rScene57 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/5/66_front.png")
                 .into(front);
 
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
+            ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            try {
+                recordmp.setDataSource(path);
+                recordmp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         sloth.setBackgroundResource(R.drawable.sloth_rightgo);
         frameAnimation1 = (AnimationDrawable) sloth.getBackground();
 
@@ -69,6 +82,11 @@ public class rScene57 extends Fragment {
             e.printStackTrace();
         }
 
+        if (getArguments() != null){
+            sound = getArguments().getBoolean("sound");
+            subtitle = getArguments().getBoolean("subtitle");
+        }
+
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
 
@@ -77,13 +95,21 @@ public class rScene57 extends Fragment {
         frameAnimation1.start();
         sloth.startAnimation(slothgo);
         subtitles.setText(subs[0]);
-        mp1.start();
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            recordmp.start();
+        }
+        else {
+            mp1.start();
+        }
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-                mp2.start();
+
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp2.start();
+                }
             }
         }, a);
         delayHandler.postDelayed(new Runnable() {
