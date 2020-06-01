@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -40,7 +41,7 @@ public class Save_Dialog extends Dialog {
     private String cover;
     private int storynum, book_no;
     private ArrayList<Integer> myList;
-    private ArrayList<String> recordList = new ArrayList<>();
+    private ArrayList<String> recordList;
     private Activity activity;
     Intent intent;
     SpeechRecognizer mRecognizer;
@@ -98,17 +99,30 @@ public class Save_Dialog extends Dialog {
             Toast.makeText(activity,e.toString(),Toast.LENGTH_LONG).show();
         }
 
+        Log.d("Save Dialog >>>>>>>> ", String.valueOf(recordList));
+
+        if(record){
+            Log.d("save >>>>>>>> ", String.valueOf(recordList));
+            myRecordSave();
+        }
+        else {
+            //myListSave();
+        }
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("if not save >>>>>>>> ", String.valueOf(recordList));
                 if(record){
-                    myRecordSave();
+                    //Log.d("save >>>>>>>> ", String.valueOf(recordList));
+                    //myRecordSave();
                 }
                 else {
                     myListSave();
                 }
             }
         });
+
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

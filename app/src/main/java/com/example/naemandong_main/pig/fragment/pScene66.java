@@ -22,6 +22,8 @@ import com.example.naemandong_main.pig.activity.Pig20;
 import com.example.naemandong_main.pig.activity.Pig21;
 import com.example.naemandong_main.pig.activity.Pig24;
 
+import java.io.IOException;
+
 public class pScene66 extends Fragment {
 
     MediaPlayer mp1 = new MediaPlayer();
@@ -56,13 +58,13 @@ public class pScene66 extends Fragment {
                 .load("http://49.50.174.179:9000/images/pig/1/22_selc2-01.png")
                 .into(chimney);
 
-//        try {
-//            mp1.setDataSource("http://49.50.174.179:9000/voice/pig/pScene14.mp3");
-//            mp1.prepare();
-//            mp1.start();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/pig/pScene34.mp3");
+            mp1.prepare();
+            mp1.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         digging.setOnClickListener(new View.OnClickListener() {
             @Override
