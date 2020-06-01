@@ -81,6 +81,7 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
                     else if (booktype == "voice") {
                         ((Book)context).setRecordPlay();
                         readrStory(new recordListData(id));
+                        readStory(new storybookData(book_no));
                     }
                     else {
                         mySelect.clear();
@@ -206,18 +207,6 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
                 myAd.add(result.getAd29());
 
                 ((Book)context).setRecordList(myAd);
-
-                if (storynum == 1) {
-                    Intent intent = new Intent(context, Rabbit01.class);
-                    intent.putExtra("select", mySelect);
-                    intent.putExtra("play", true);
-                    context.startActivity(intent);
-                } else {
-                    Intent intent = new Intent(context, Pig01.class);
-                    intent.putExtra("select", mySelect);
-                    intent.putExtra("play", true);
-                    context.startActivity(intent);
-                }
             }
 
             @Override

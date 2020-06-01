@@ -108,15 +108,6 @@ public class rFinal09 extends Fragment {
 
         turtle.setImageResource(R.drawable.t_run1);
 
-//        try {
-//            mp1.setDataSource("http://49.50.174.179:9000/voice/rScene10_1.mp3");
-//            mp1.prepare();
-//            mp2.setDataSource("http://49.50.174.179:9000/voice/rScene10_2.mp3");
-//            mp2.prepare();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
         rabbit.setBackgroundResource(R.drawable.rabbit_leftgo);
         frameAnimation1 = (AnimationDrawable) rabbit.getBackground();
 
@@ -175,6 +166,10 @@ public class rFinal09 extends Fragment {
                     startActivity(intent);
                 }
                 exit.setVisibility(View.VISIBLE);
+                if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    ((Setting_data) getContext().getApplicationContext()).setRecordPlay(false);
+                    ((Setting_data) getContext().getApplicationContext()).clearRecordList();
+                }
             }
         }, c);
 

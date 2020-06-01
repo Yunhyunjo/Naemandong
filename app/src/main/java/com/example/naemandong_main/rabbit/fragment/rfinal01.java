@@ -125,6 +125,10 @@ public class rfinal01 extends Fragment {
                     Intent intent = new Intent(getActivity(), Record.class);
                     startActivity(intent);
                 }
+                if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    ((Setting_data) getContext().getApplicationContext()).setRecordPlay(false);
+                    ((Setting_data) getContext().getApplicationContext()).clearRecordList();
+                }
             }
         }, b);
 

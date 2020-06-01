@@ -21,7 +21,6 @@ import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Record;
 import com.example.naemandong_main.Setting_data;
-import com.example.naemandong_main.rabbit.activity.Rabbit01;
 
 import java.io.IOException;
 

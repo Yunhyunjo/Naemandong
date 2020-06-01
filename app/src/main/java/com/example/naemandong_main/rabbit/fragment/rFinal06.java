@@ -125,6 +125,10 @@ public class rFinal06 extends Fragment {
                     startActivity(intent);
                 }
                 exit.setVisibility(View.VISIBLE);
+                if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    ((Setting_data) getContext().getApplicationContext()).setRecordPlay(false);
+                    ((Setting_data) getContext().getApplicationContext()).clearRecordList();
+                }
             }
         }, b);
 
