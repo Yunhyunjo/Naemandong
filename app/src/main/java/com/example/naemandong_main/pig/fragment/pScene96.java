@@ -1,6 +1,7 @@
 package com.example.naemandong_main.pig.fragment;
 
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -17,12 +18,17 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Setting_data;
+
+import java.io.IOException;
 
 public class pScene96 extends Fragment {
 
-    AnimationDrawable frameAnimation;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp2 = new MediaPlayer();
+    MediaPlayer recordmp = new MediaPlayer();
     private View view;
-    private ImageView background, wolf, pig, house, house_inside;
+    private ImageView background, box;
     private ImageButton next;
     private TextView subtitles;
     private String subs [] = {"막내 돼지는 무서웠지만 침착하게 말했어요.", "\"싫어! 날 잡아먹으려는 거잖아!\"" };
@@ -36,14 +42,34 @@ public class pScene96 extends Fragment {
         background = view.findViewById(R.id.background);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
+        box = view.findViewById(R.id.subtitlebox);
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/20_example-03.png")
                 .into(background);
 
-        /*wolf.setBackgroundResource(R.drawable.wolf_s5);
-        frameAnimation = (AnimationDrawable) wolf.getBackground();
-        Animation wolfgo = AnimationUtils.loadAnimation(getActivity(), R.anim.pscene05);*/
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/pig/pScene121_1.mp3");
+            mp1.prepare();
+            mp2.setDataSource("http://49.50.174.179:9000/voice/pig/pScene121_2.mp3");
+            mp2.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
+            ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            try {
+                recordmp.setDataSource(path);
+                recordmp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp2.getDuration();
 
         subtitles.setText(subs[0]);
        /* frameAnimation.start();

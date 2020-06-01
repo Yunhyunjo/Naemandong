@@ -1,6 +1,8 @@
 package com.example.naemandong_main.pig.fragment;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -17,20 +19,25 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting_data;
 import com.example.naemandong_main.pig.activity.Pig33;
 import com.example.naemandong_main.pig.activity.Pig34;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class pScene116 extends Fragment {
 
-    AnimationDrawable frameAnimation;
+    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp3 = new MediaPlayer();
+    MediaPlayer recordmp = new MediaPlayer();
     private View view;
-    private ImageView background, wolf, pig, house, house_inside;
+    private ImageView background, box;
     private ImageButton next;
     private TextView subtitles;
     private ArrayList<Integer> myList;
-    private String subs [] = {"물을 마시던 늑대는 그만 강물에 빠져버렸어요. ", "“어? 몸이 왜 점점 무거워지는 거지?!아이고 늑대 살려! 늑대 죽네 죽어!”", "배에 돌이 잔뜩 든 늑대는 강을 헤엄쳐 나올 수 없었어요."};
+    private String subs [] = {"물을 마시던 늑대는 그만 강물에 빠져버렸어요. ", "배에 돌이 잔뜩 든 늑대는 강을 헤엄쳐 나올 수 없었어요."};
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -40,8 +47,8 @@ public class pScene116 extends Fragment {
 
         background = view.findViewById(R.id.background);
         subtitles = view.findViewById(R.id.subTitle);
-        wolf = view.findViewById(R.id.wolf);
         next = view.findViewById(R.id.next);
+        box = view.findViewById(R.id.subtitlebox);
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/36-01.png")
@@ -50,22 +57,59 @@ public class pScene116 extends Fragment {
         myList = (ArrayList<Integer>) ((Pig34)getActivity()).getMylist().clone();
         ((Pig34)getActivity()).clearList();
 
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/pig/pScene112_1.mp3");
+            mp1.prepare();
+            mp3.setDataSource("http://49.50.174.179:9000/voice/pig/pScene116_3.mp3");
+            mp3.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
+            ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            try {
+                recordmp.setDataSource(path);
+                recordmp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        int a = mp1.getDuration();
+        int b = mp1.getDuration() + mp3.getDuration();
+
         subtitles.setText(subs[0]);
+        if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            recordmp.start();
+        }
+        else {
+            mp1.start();
+        }
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
                 subtitles.setText(subs[1]);
-
+                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+                    mp3.start();
+                }
             }
-        }, 3100);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    subtitles.setVisibility(View.INVISIBLE);
+                    box.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getActivity(), Record.class);
+                    startActivity(intent);
+                }
                 next.setVisibility(View.VISIBLE);
             }
-        }, 5100);
+        }, b);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,5 +130,12 @@ public class pScene116 extends Fragment {
         });
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
+        if (mp3 != null) mp3.release();
+        if (recordmp != null) recordmp.release();
     }
 }

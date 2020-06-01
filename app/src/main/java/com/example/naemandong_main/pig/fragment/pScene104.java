@@ -61,6 +61,7 @@ public class pScene104 extends Fragment {
             e.printStackTrace();
         }
 
+        mp1.start();
         steel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,5 +91,10 @@ public class pScene104 extends Fragment {
         });
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.naemandong_main.pig.fragment;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +21,11 @@ import com.example.naemandong_main.pig.activity.Pig32;
 import com.example.naemandong_main.pig.activity.Pig33;
 import com.example.naemandong_main.pig.activity.Pig34;
 
+import java.io.IOException;
+
 public class pScene109 extends Fragment {
 
+    MediaPlayer mp1 = new MediaPlayer();
     private View view;
     private ImageView background, background2;
     private ImageButton cotton, rock;
@@ -49,6 +53,14 @@ public class pScene109 extends Fragment {
                 .load("http://49.50.174.179:9000/images/pig/1/32_sel2-01.png")
                 .into(rock);
 
+        try {
+            mp1.setDataSource("http://49.50.174.179:9000/voice/pig/pScene109.mp3");
+            mp1.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mp1.start();
+
         cotton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,5 +82,10 @@ public class pScene109 extends Fragment {
         });
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mp1 != null) mp1.release();
     }
 }
