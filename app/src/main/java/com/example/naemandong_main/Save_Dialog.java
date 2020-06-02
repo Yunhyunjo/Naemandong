@@ -116,7 +116,7 @@ public class Save_Dialog extends Dialog {
                 if(record){
                     Log.d("save >>>>>>>> ", String.valueOf(recordList));
                     myRecordSave();
-                    ((Setting_data) getContext().getApplicationContext()).clearRecordList();
+                    //((Setting_data) getContext().getApplicationContext()).clearRecordList();
                 }
                 else {
                     myListSave();

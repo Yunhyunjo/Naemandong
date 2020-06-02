@@ -65,4 +65,8 @@ public class Book extends AppCompatActivity {
     public void setRecordList(ArrayList<String> recordList){
         ((Setting_data)this.getApplication()).setRecordList(recordList);
     }
+
+    public void clearRecordList(){
+        ((Setting_data)this.getApplication()).clearRecordList();
+    }
 }

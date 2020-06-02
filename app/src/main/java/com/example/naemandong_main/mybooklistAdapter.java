@@ -74,11 +74,13 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
                     }
                     else if (what == "Voice"){
                         mySelect.clear();
+                        ((Voice)context).clearRecordList();
                         ((Voice)context).setSound();
                         ((Voice)context).setBook_no(book_no);
                         readStory(new storybookData(book_no));
                     }
                     else if (booktype == "voice") {
+                        ((Book)context).clearRecordList();
                         ((Book)context).setRecordPlay();
                         readrStory(new recordListData(id));
                         readStory(new storybookData(book_no));
@@ -207,6 +209,7 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
                 myAd.add(result.getAd29());
 
                 ((Book)context).setRecordList(myAd);
+
             }
 
             @Override
