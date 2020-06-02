@@ -59,7 +59,8 @@ public class Making extends AppCompatActivity {
         voice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(Making.this, Voice.class));
+                finish();
             }
         });
         book.setOnClickListener(new View.OnClickListener() {

@@ -1,9 +1,11 @@
 package com.example.naemandong_main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.FragmentTransaction;
@@ -11,15 +13,19 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 
-public class SketchbookActivity extends AppCompatActivity implements View.OnClickListener {
+public class SketchbookActivity extends AppCompatActivity {
 
-    private Exit_Dialog exitDialog;
     public static Context context;
+    private Button book,making,voice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sketchbook);
+
+        book = (Button) findViewById(R.id.book_btn);
+        making = (Button) findViewById(R.id.making_btn);
+        voice = (Button) findViewById(R.id.voice_btn);
 
         context = this;
 
@@ -33,23 +39,27 @@ public class SketchbookActivity extends AppCompatActivity implements View.OnClic
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-    }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.book_btn:
-                exitDialog = new Exit_Dialog(this, Book.class, this);
-                exitDialog.show();
-                break;
-            case R.id.voice_btn:
-                exitDialog = new Exit_Dialog(this, Voice.class, this);
-                exitDialog.show();
-                break;
-            case R.id.making_btn:
-                exitDialog = new Exit_Dialog(this, Making.class, this);
-                exitDialog.show();
-                break;
-        }
+        book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SketchbookActivity.this, Book.class));
+                finish();
+            }
+        });
+        making.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SketchbookActivity.this, Making.class));
+                finish();
+            }
+        });
+        voice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SketchbookActivity.this, Voice.class));
+                finish();
+            }
+        });
     }
 }

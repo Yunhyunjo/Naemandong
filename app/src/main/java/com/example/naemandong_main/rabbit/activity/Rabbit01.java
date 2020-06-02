@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -53,7 +54,7 @@ public class Rabbit01 extends AppCompatActivity {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Setting.class);
+                Intent intent = new Intent(Rabbit01.this, Setting.class);
                 startActivityForResult(intent,0);
             }
         });
@@ -67,8 +68,13 @@ public class Rabbit01 extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode== 0) {
-            sound = getIntent().getBooleanExtra("sound",true);
-            subtitle = getIntent().getBooleanExtra("subtitle", true);
+            sound = data.getBooleanExtra("sound",true);
+            subtitle = data.getBooleanExtra("subtitle", true);
+            boolean exit = data.getBooleanExtra("exit", false);
+            if(exit){
+                finish();
+            }
+            Log.d("exit", String.valueOf(exit));
         }
     }
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -12,7 +13,7 @@ import android.widget.ImageButton;
 
  public class Setting extends AppCompatActivity {
 
-    private ImageButton exit, sound_on, sound_off, subtitle_on, subtitle_off, logout;
+    private ImageButton exit, sound_on, sound_off, subtitle_on, subtitle_off, logout, nmd_exit;
     public boolean sound;
     public boolean subtitle;
 
@@ -28,6 +29,7 @@ import android.widget.ImageButton;
         subtitle_on = (ImageButton)findViewById(R.id.subtitle_on);
         subtitle_off = (ImageButton)findViewById(R.id.subitle_off);
         logout = (ImageButton)findViewById(R.id.logout);
+        nmd_exit = (ImageButton)findViewById(R.id.nmd_exit);
 
         sound = ((Setting_data)this.getApplication()).getSound();
         subtitle = ((Setting_data)this.getApplication()).getSubtitle();
@@ -54,9 +56,10 @@ import android.widget.ImageButton;
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getIntent().putExtra("sound", sound);
-                getIntent().putExtra("subtitle", subtitle);
-                setResult(Activity.RESULT_OK, getIntent());
+                Intent intent = new Intent();
+                intent.putExtra("sound", sound);
+                intent.putExtra("subtitle", subtitle);
+                setResult(0, intent);
                 finish();
             }
         });
@@ -112,6 +115,17 @@ import android.widget.ImageButton;
             @Override
             public void onClick(View v) {
 
+            }
+        });
+        nmd_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("sound", sound);
+                intent.putExtra("subtitle", subtitle);
+                intent.putExtra("exit", true);
+                setResult(0, intent);
+                finish();
             }
         });
     }

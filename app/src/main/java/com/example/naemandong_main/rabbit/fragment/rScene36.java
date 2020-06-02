@@ -24,7 +24,6 @@ import java.io.IOException;
 
 public class rScene36 extends Fragment {
 
-    Setting set = new Setting();
     MediaPlayer mp1 = new MediaPlayer();
     private View view;
     private ImageView background;

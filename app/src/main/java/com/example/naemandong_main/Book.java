@@ -37,6 +37,8 @@ public class Book extends AppCompatActivity {
         voice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(Book.this, Voice.class));
+                finish();
 
             }
         });
