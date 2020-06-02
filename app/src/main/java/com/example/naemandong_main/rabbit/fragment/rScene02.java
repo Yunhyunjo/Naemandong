@@ -39,6 +39,12 @@ public class rScene02 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            subtitle = savedInstanceState.getBoolean("saveSubtitle");
+        }
+
         view = inflater.inflate(R.layout.rscene02, container,false);
 
         background = view.findViewById(R.id.background);
@@ -48,6 +54,14 @@ public class rScene02 extends Fragment {
         box = view.findViewById(R.id.subtitlebox);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
+
+        if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+            subtitles.setVisibility(View.VISIBLE);
+            box.setVisibility(View.VISIBLE);
+        } else {
+            subtitles.setVisibility(View.INVISIBLE);
+            box.setVisibility(View.INVISIBLE);
+        }
 
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene02_1.MP3");
@@ -171,5 +185,11 @@ public class rScene02 extends Fragment {
         if (mp2 != null) mp2.release();
         if (mp3 != null) mp3.release();
         if (recordmp != null) recordmp.release();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean("saveSubtitle", ((Setting_data) getContext().getApplicationContext()).getSubtitle());
+        super.onSaveInstanceState(outState);
     }
 }
