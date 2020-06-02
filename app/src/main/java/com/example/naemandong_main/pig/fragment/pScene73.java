@@ -41,7 +41,7 @@ public class pScene73 extends Fragment {
     private ImageButton next;
     private TextView subtitles;
     private ArrayList<Integer> myList;
-    private String subs [] = {"\"돼지 삼형제는 깊은 잠에 빠진 늑대를 강으로 휙 하고 던졌어요.\"", "\"나쁜 늑대야! 앞으로 우리 괴롭힐 생각은 하지도 마!\""};
+    private String subs [] = {"\"막내 돼지는 깊은 잠에 빠진 늑대를 강으로 휙 하고 던졌어요.\"", "\"나쁜 늑대야! 앞으로 우리 괴롭힐 생각은 하지도 마!\""};
     Handler delayHandler = new Handler();
     boolean t = false;
 
@@ -93,7 +93,7 @@ public class pScene73 extends Fragment {
                 .into(background);
 
         try {
-            mp1.setDataSource("http://49.50.174.179:9000/voice/pig/pfinal06_1.mp3");
+            mp1.setDataSource("http://49.50.174.179:9000/voice/pig/pFinal06_1.mp3");
             mp1.prepare();
             mp2.setDataSource("http://49.50.174.179:9000/voice/pig/pScene59_2.mp3");
             mp2.prepare();

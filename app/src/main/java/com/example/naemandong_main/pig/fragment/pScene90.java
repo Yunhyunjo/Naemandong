@@ -63,34 +63,39 @@ public class pScene90 extends Fragment {
         next = view.findViewById(R.id.next);
         box = view.findViewById(R.id.subtitlebox);
 
-        (new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (!Thread.interrupted()) {
-                    try {
-                        Thread.sleep(1000); //1초 간격으로 실행
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
-                                    subtitles.setVisibility(View.VISIBLE);
-                                    box.setVisibility(View.VISIBLE);
-                                } else {
-                                    subtitles.setVisibility(View.INVISIBLE);
-                                    box.setVisibility(View.INVISIBLE);
+        if(!((Setting_data) getContext().getApplicationContext()).isRecord()){
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (!Thread.interrupted()) {
+                        try {
+                            Thread.sleep(1000); //1초 간격으로 실행
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                        subtitles.setVisibility(View.VISIBLE);
+                                        box.setVisibility(View.VISIBLE);
+                                    } else {
+                                        subtitles.setVisibility(View.INVISIBLE);
+                                        box.setVisibility(View.INVISIBLE);
+                                    }
+
                                 }
-
-                            }
-                        });
-                    } catch (InterruptedException e) {
-                        // error
+                            });
+                        } catch (InterruptedException e) {
+                            // error
+                        }
+                        if (t)
+                            break;
                     }
-                    if (t)
-                        break;
-                }
 
-            }
-        })).start();
+                }
+            })).start();
+        }
+        else{
+
+        }
 
 
         Glide.with(this)
@@ -175,15 +180,14 @@ public class pScene90 extends Fragment {
             @Override
             public void run() {
                 // TODO
-                next.setVisibility(View.VISIBLE);
-                t = true;
-
                 if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(getActivity(), Record.class);
                     startActivity(intent);
                 }
+                next.setVisibility(View.VISIBLE);
+                t = true;
             }
         }, c);
 
