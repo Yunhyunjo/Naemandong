@@ -142,7 +142,7 @@ public class rScene44 extends Fragment {
                 // TODO
                 turtle.setImageResource(0);
                 car.setImageResource(0);
-
+                car_turtle.setBackgroundResource(R.drawable.t_car);
                 subtitles.setText(subs[1]);
                 if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
                     mp2.start();
@@ -153,8 +153,6 @@ public class rScene44 extends Fragment {
             @Override
             public void run() {
                 // TODO
-                car_turtle.setBackgroundResource(R.drawable.t_car);
-
                 Animation turtlego = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene42);
                 car_turtle.startAnimation(turtlego);
 

@@ -5,11 +5,10 @@ import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,50 +16,60 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Save_Dialog;
 import com.example.naemandong_main.Setting_data;
-import com.example.naemandong_main.pig.activity.Pig09;
-import com.example.naemandong_main.pig.fragment.pFinal03;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class pScene37 extends Fragment {
-
+// 돌집 막내돼지 혼자 엔딩
+public class pFinal14 extends Fragment {
     boolean t = false;
+    private Save_Dialog saveDialog;
     AnimationDrawable frameAnimation;
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
-    MediaPlayer mp3 = new MediaPlayer();
     MediaPlayer recordmp = new MediaPlayer();
+    private ArrayList<String> recordList;
+    boolean record;
     private View view;
-    private ImageView background, wolf, box;
-    private ImageButton next;
+    private ImageView background, box, pig, house, house_inside;
     private TextView subtitles;
+    private ImageButton save, exit;
     private ArrayList<Integer> myList;
-    private String subs[] = {"막내 돼지는 늑대의 거짓말을 알아챘어요.", "\"이 나쁜 늑대! 엄마 목소리를 흉내내서 날 잡아먹으려고 하다니! 난 속지 않아!\"", "\"에잇 아까워! 막내 돼지도 잡아먹을 수 있었는데!\""};
+    boolean play = false;
+    private String subs [] = {"막내 돼지가 문을 열어주지 않자 늑대는 아쉬워하며 마을을 떠났어요.", "늑대가 떠나고 난 평화로운 마을에서 막내돼지는 오래오래 행복하게 살았답니다."};
     Handler delayHandler = new Handler();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.pscene37, container,false);
-        box = view.findViewById(R.id.subtitlebox);
+        view = inflater.inflate(R.layout.pfinal03, container,false);
+
         background = view.findViewById(R.id.background);
+        box = view.findViewById(R.id.subtitlebox);
+        pig = view.findViewById(R.id.pig);
+        house = view.findViewById(R.id.house);
+        house_inside = view.findViewById(R.id.house_inside);
         subtitles = view.findViewById(R.id.subTitle);
-        wolf = view.findViewById(R.id.wolf);
-        next = view.findViewById(R.id.next);
+        save = view.findViewById(R.id.save);
+        exit = view.findViewById(R.id.exit);
 
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/pig/1/19_example.png")
+                .load("http://49.50.174.179:9000/images/pig/1/19_bg-01.png")
                 .into(background);
+
         Glide.with(this)
-                .load("http://49.50.174.179:9000/images/pig/1/25_wolf1-01.png")
-                .into(wolf);
+                .load("http://49.50.174.179:9000/images/pig/1/26_house.png")
+                .into(house);
+
+        Glide.with(this)
+                .load("http://49.50.174.179:9000/images/pig/1/26_houseinside.png")
+                .into(house_inside);
 
         (new Thread(new Runnable() {
             @Override
@@ -102,25 +111,32 @@ public class pScene37 extends Fragment {
             }
         }
 
+        pig.setBackgroundResource(R.drawable.pig_final03);
+        frameAnimation = (AnimationDrawable) pig.getBackground();
 
         try {
-            mp1.setDataSource("http://49.50.174.179:9000/voice/pig/pScene37_1.mp3");
+            mp1.setDataSource("http://49.50.174.179:9000/voice/pig/pFinal03_1.mp3");
             mp1.prepare();
-            mp2.setDataSource("http://49.50.174.179:9000/voice/pig/pScene37_2.mp3");
+            mp2.setDataSource("http://49.50.174.179:9000/voice/pig/pFinal03_2.mp3");
             mp2.prepare();
-            mp3.setDataSource("http://49.50.174.179:9000/voice/pig/pScene37_3.mp3");
-            mp3.prepare();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
-        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
 
-        myList = (ArrayList<Integer>) ((Pig09)getActivity()).getMylist().clone();
-        ((Pig09)getActivity()).clearList();
+        if (getArguments() != null){
+            myList = getArguments().getIntegerArrayList("myList");
+            play = getArguments().getBoolean("play");
+            record = getArguments().getBoolean("record");
+            if(!play){
+                while(myList.size() < 7)
+                    myList.add(3);
+            }
+        }
 
+        frameAnimation.start();
         subtitles.setText(subs[0]);
         if (((Setting_data) getContext().getApplicationContext()).isRecordPlay()) {
             recordmp.start();
@@ -135,56 +151,60 @@ public class pScene37 extends Fragment {
                 if (!((Setting_data) getContext().getApplicationContext()).isRecordPlay()) {
                     mp2.start();
                 }
+                t = true;
+
             }
         }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO
-                subtitles.setText(subs[2]);
-                wolf.setImageResource(0);
 
-                wolf.setBackgroundResource(R.drawable.wolf_s37);
-                frameAnimation = (AnimationDrawable) wolf.getBackground();
-                Animation wolfgo = AnimationUtils.loadAnimation(getActivity(),R.anim.pscene37);
-                frameAnimation.start();
-                wolf.startAnimation(wolfgo);
-                if (!((Setting_data) getContext().getApplicationContext()).isRecordPlay()) {
-                    mp3.start();
+                box.setVisibility(View.INVISIBLE);
+                subtitles.setVisibility(View.INVISIBLE);
+                if (!play) {
+                    save.setVisibility(View.VISIBLE);
                 }
-            }
-        }, b);
-        delayHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // TODO
+                exit.setVisibility(View.VISIBLE);
                 if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);
+                    save.setVisibility(View.VISIBLE);
                     Intent intent = new Intent(getActivity(), Record.class);
                     startActivity(intent);
                 }
-                next.setVisibility(View.VISIBLE);
-                t = true;
-            }
-        }, c);
+                if (((Setting_data) getContext().getApplicationContext()).isRecordPlay()) {
+                    ((Setting_data) getContext().getApplicationContext()).setRecordPlay(false);
+                    ((Setting_data) getContext().getApplicationContext()).clearRecordList();
+                }
 
-        next.setOnClickListener(new View.OnClickListener() {
+            }
+        }, b);
+
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                if (((Pig09)getActivity()).play){
-                    bundle.putBoolean("play",true);
-                } else if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                    recordList = ((Setting_data) getContext().getApplicationContext()).getRecordList();
+                    int book_no = ((Setting_data) getContext().getApplicationContext()).getBook_no();
+                    while (recordList.size() < 30)
+                        recordList.add("0");
+                    saveDialog = new Save_Dialog(getActivity(), book_no, "아기돼지 삼형제", 2, recordList, "http://49.50.174.179:9000/images/cover/pig/9-01.png", true);
+                    saveDialog.show();
+                    Log.d("record >>>>>>>> ", String.valueOf(recordList));
                     ((Setting_data) getContext().getApplicationContext()).setRecord(false);
                 } else {
-                    bundle.putIntegerArrayList("myList", myList);
+                    saveDialog = new Save_Dialog(getActivity(), "아기돼지 삼형제", 2, myList, "http://49.50.174.179:9000/images/cover/pig/9-01.png");
+                    saveDialog.show();
                 }
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                pFinal14 pfinal14 = new pFinal14();
-                pfinal14.setArguments(bundle);
-                transaction.replace(R.id.frame,pfinal14);
-                transaction.commit();  //저장
+            }
+        });
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
             }
         });
 
@@ -196,7 +216,6 @@ public class pScene37 extends Fragment {
         super.onDestroy();
         if (mp1 != null) mp1.release();
         if (mp2 != null) mp2.release();
-        if (mp3 != null) mp3.release();
         if (recordmp != null) recordmp.release();
     }
 }

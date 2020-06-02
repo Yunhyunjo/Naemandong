@@ -158,6 +158,7 @@ public class rScene42 extends Fragment {
                 turtle.setImageResource(0);
                 bike.setImageResource(0);
                 bulb.setImageResource(0);
+                bike_turtle.setBackgroundResource(R.drawable.bike_tur_large);
 
                 subtitles.setText(subs[1]);
                 if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
@@ -169,7 +170,6 @@ public class rScene42 extends Fragment {
             @Override
             public void run() {
                 // TODO
-                bike_turtle.setBackgroundResource(R.drawable.bike_tur_large);
 
                 Animation turtlego = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene42);
                 bike_turtle.startAnimation(turtlego);

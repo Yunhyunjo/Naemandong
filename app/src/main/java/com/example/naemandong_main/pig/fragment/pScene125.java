@@ -206,8 +206,11 @@ public class pScene125 extends Fragment {
                     }
                 }
                 else{
+                    Bundle bundle = new Bundle();
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     pScene25 pscene25 = new pScene25();
+                    bundle.putInt("where",36);
+                    pscene25.setArguments(bundle);
                     transaction.replace(R.id.frame, pscene25);
                     transaction.commit();  //저장
                 }

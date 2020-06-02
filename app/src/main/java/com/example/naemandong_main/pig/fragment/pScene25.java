@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
+import com.example.naemandong_main.pig.activity.Pig06;
 import com.example.naemandong_main.pig.activity.Pig07;
 import com.example.naemandong_main.pig.activity.Pig36;
 import com.example.naemandong_main.pig.activity.Pig14;
@@ -28,6 +29,7 @@ public class pScene25 extends Fragment {
     private View view;
     private ImageView background;
     private ImageButton mom, pig;
+    private int where;
     MediaPlayer mp1 = new MediaPlayer();
 
     @Nullable
@@ -57,11 +59,20 @@ public class pScene25 extends Fragment {
             e.printStackTrace();
         }
 
+        if (getArguments() != null){
+            where = getArguments().getInt("where");
+        }
+
 
         mom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Pig36)getActivity()).setMylist(0);
+                if(where == 36){
+                    ((Pig36) getActivity()).setMylist(0);
+                }
+                else {
+                    ((Pig06) getActivity()).setMylist(0);
+                }
                 Intent intent = new Intent(getActivity().getApplicationContext(), Pig07.class);
                 startActivity(intent);
                 getActivity().finish();
@@ -70,7 +81,12 @@ public class pScene25 extends Fragment {
         pig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Pig36)getActivity()).setMylist(1);
+                if(where == 36){
+                    ((Pig36) getActivity()).setMylist(0);
+                }
+                else {
+                    ((Pig06) getActivity()).setMylist(1);
+                }
                 Intent intent = new Intent(getActivity().getApplicationContext(), Pig14.class);
                 startActivity(intent);
                 getActivity().finish();
