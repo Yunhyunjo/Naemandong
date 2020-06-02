@@ -43,6 +43,8 @@ public class pScene121 extends Fragment {
     private ArrayList<Integer> myList;
     private String subs [] = {"돼지 삼형제는 늑대에 맞서 싸우기로 했어요. ", "“나쁜 늑대 너!! 우리들 집을 부숴? 가만 두지 않겠어! 이야아아!”", "”어? 이게 아닌데.. 늑대 살려!!”"};
     Handler delayHandler = new Handler();
+    boolean t = false;
+
 
     @Nullable
     @Override
@@ -55,6 +57,36 @@ public class pScene121 extends Fragment {
         wolf = view.findViewById(R.id.wolf);
         next = view.findViewById(R.id.next);
         box = view.findViewById(R.id.subtitlebox);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/26_bg1.png")
@@ -135,6 +167,8 @@ public class pScene121 extends Fragment {
             public void run() {
                 // TODO
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
                 if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);

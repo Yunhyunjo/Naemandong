@@ -40,6 +40,8 @@ public class pScene112 extends Fragment {
     private ArrayList<Integer> myList;
     private String subs [] = {"물을 마시던 늑대는 그만 강물에 빠져버렸어요. ", "“어? 몸이 왜 점점 무거워지는 거지?!아이고 늑대 살려! 늑대 죽네 죽어!”", "배에 있던 솜이 젖어 몸이 무거워진 늑대는 강을 헤엄쳐 나올 수 없었어요."};
     Handler delayHandler = new Handler();
+    boolean t = false;
+
 
     @Nullable
     @Override
@@ -51,6 +53,36 @@ public class pScene112 extends Fragment {
         wolf = view.findViewById(R.id.wolf);
         next = view.findViewById(R.id.next);
         box = view.findViewById(R.id.subtitlebox);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/36-01.png")
@@ -123,6 +155,8 @@ public class pScene112 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
             }
         }, c);
 

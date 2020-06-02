@@ -41,6 +41,8 @@ public class pScene91 extends Fragment {
     private TextView subtitles;
     private String subs [] = {"첫째 돼지는 과자로 집을 짓기로 결정했어요.", "\"과자로 집을 지으면 얼마나 간단한지~\"" };
     Handler delayHandler = new Handler();
+    boolean t = false;
+
 
     @Nullable
     @Override
@@ -52,6 +54,36 @@ public class pScene91 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
         box = view.findViewById(R.id.subtitlebox);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/3_bg-01.png")
@@ -116,6 +148,8 @@ public class pScene91 extends Fragment {
             public void run() {
                 // TODO
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
                 if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);

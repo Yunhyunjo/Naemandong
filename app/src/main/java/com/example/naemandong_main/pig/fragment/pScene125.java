@@ -44,6 +44,7 @@ public class pScene125 extends Fragment {
     private TextView subtitles;
     private String subs [] = {"\"저리 가! 이 나쁜 늑대야!!\"", "\"흥, 이쯤이야 내 몸통 박치기 한 번이면 무너지지!\"", "쿵!!", "늑대는 튼튼한 몸으로 둘째 돼지의 집을 무너뜨렸어요." };
     Handler delayHandler = new Handler();
+    boolean t = false;
 
     @Nullable
     @Override
@@ -57,6 +58,36 @@ public class pScene125 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         box = view.findViewById(R.id.subtitlebox);
         next = view.findViewById(R.id.next);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/11_bg-01.png")
@@ -151,6 +182,7 @@ public class pScene125 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
             }
         }, d);
 

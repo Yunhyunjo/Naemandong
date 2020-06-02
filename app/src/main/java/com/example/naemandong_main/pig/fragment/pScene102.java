@@ -41,6 +41,8 @@ public class pScene102 extends Fragment {
     private ArrayList<Integer> myList;
     private String subs [] = {"그러자 안에서 첫째 돼지와 둘째돼지가 나왔어요!", "“고마워 막내 돼지야, 덕분에 살았어!”", "돼지 삼형제는 늑대가 잠들어 있는 틈을 타 마을에서 멀리멀리 도망치기로 했어요." };
     Handler delayHandler = new Handler();
+    boolean t = false;
+
 
     @Nullable
     @Override
@@ -51,6 +53,36 @@ public class pScene102 extends Fragment {
         box = view.findViewById(R.id.subtitlebox);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
         Glide.with(view)
                 .load("http://49.50.174.179:9000/images/pig/1/28_example-03.png")
@@ -123,6 +155,8 @@ public class pScene102 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
             }
         }, c);
 

@@ -38,6 +38,8 @@ public class rScene93 extends Fragment {
     private String subs [] = {"거북이는 2인 자전거를 발견했어요.", "\"어? 이건 둘이서만 탈 수 있는 자전거잖아? 꼭 타보고 싶었는데.. 사자랑 같이 탈까?\""};
     private ImageButton next;
     Handler delayHandler = new Handler();
+    boolean t = false;
+
 
     @Nullable
     @Override
@@ -54,6 +56,36 @@ public class rScene93 extends Fragment {
         bike = view.findViewById(R.id.skate);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/5/8_back.jpg")
@@ -131,6 +163,8 @@ public class rScene93 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
             }
         }, b);
 

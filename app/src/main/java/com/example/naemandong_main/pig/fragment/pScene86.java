@@ -36,6 +36,8 @@ public class pScene86 extends Fragment {
     private TextView subtitles;
     private String subs [] = {"한편, 그 사실을 모르고 있는 셋째 돼지는 반짝이는 모래로 집을 짓고 있었어요. ", "\"반짝이는 모래로 집을 짓는건 재밌어!\"" };
     Handler delayHandler = new Handler();
+    boolean t = false;
+
 
     @Nullable
     @Override
@@ -47,6 +49,36 @@ public class pScene86 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
         box = view.findViewById(R.id.subtitlebox);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/18_bg-03.png")
@@ -107,6 +139,8 @@ public class pScene86 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
             }
         }, b);
 

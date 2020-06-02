@@ -36,6 +36,8 @@ public class pScene84 extends Fragment {
     private TextView subtitles;
     private String subs [] = {"\"크크크. 기다려라 막내 돼지야! 늑대님이 내려가신다!\"", "막내 돼지는 굴뚝 아래에 아주 푹신한 침대를 두었어요."};
     Handler delayHandler = new Handler();
+    boolean t = false;
+
 
     @Nullable
     @Override
@@ -49,6 +51,36 @@ public class pScene84 extends Fragment {
         chimney = view.findViewById(R.id.chimney);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/26_bg(top)-02.png")
@@ -116,6 +148,8 @@ public class pScene84 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
             }
         }, b);
 

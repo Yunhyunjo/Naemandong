@@ -36,6 +36,8 @@ public class pScene79 extends Fragment {
     private TextView subtitles;
     private String subs [] = {"막내 돼지가 문을 열어주지 않자 늑대는 벽돌집을 발로 뻥 하고 찼어요.", "하지만 단단한 막내 돼지의 벽돌집은 무너지지 않았어요." };
     Handler delayHandler = new Handler();
+    boolean t = false;
+
 
     @Nullable
     @Override
@@ -50,6 +52,36 @@ public class pScene79 extends Fragment {
         wolf = view.findViewById(R.id.wolf);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/19_bg-01.png")
@@ -122,6 +154,8 @@ public class pScene79 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
             }
         }, b);
 

@@ -39,6 +39,8 @@ public class pScene110 extends Fragment {
     private TextView subtitles;
     private String subs [] = {"“그래 솜을 넣자!”", "엄마돼지와 아기 돼지 삼형제는 늑대의 뱃속에 솜을 넣었어요. "};
     Handler delayHandler = new Handler();
+    boolean t = false;
+
 
     @Nullable
     @Override
@@ -51,6 +53,36 @@ public class pScene110 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
         box = view.findViewById(R.id.subtitlebox);
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
+
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/25_bg-02.png")
@@ -115,6 +147,8 @@ public class pScene110 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
             }
         }, b);
 

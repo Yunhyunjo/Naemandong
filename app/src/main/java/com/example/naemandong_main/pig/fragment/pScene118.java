@@ -40,6 +40,8 @@ public class pScene118 extends Fragment {
     private TextView subtitles;
     private String subs [] = {"그 때 완성된 집에서 쉬고 있던 막내 돼지의 집을 첫째, 둘째 돼지가 두드렸어요.", "\"막내야! 형들이야 우리 좀 들여보내줘!! 늑대가 우리 집을 무너뜨리고 잡아먹으려고 해!\"", "\"형들 괜찮아? 어서 들어와!!\""};
     Handler delayHandler = new Handler();
+    boolean t = false;
+
 
     @Nullable
     @Override
@@ -55,6 +57,36 @@ public class pScene118 extends Fragment {
 
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/19_bg-01.png")
@@ -144,6 +176,8 @@ public class pScene118 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
             }
         }, c);
 

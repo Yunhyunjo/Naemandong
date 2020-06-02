@@ -39,6 +39,8 @@ public class pScene113 extends Fragment {
     private TextView subtitles;
     private String subs [] = {"늑대가 자고있던 그때, 여행을 갔던 엄마 돼지가 돌아왔어요.", "“얘들아~ 모두 집은 잘 지었니? 첫째야~ 둘째야~ 우리 막내 어디있니?”", "엄마 돼지가 애타게 아기 돼지 삼형제를 불러보았지만 삼형제의 대답은 들리지 않았어요."};
     Handler delayHandler = new Handler();
+    boolean t = false;
+
 
     @Nullable
     @Override
@@ -50,6 +52,36 @@ public class pScene113 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
         box = view.findViewById(R.id.subtitlebox);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/28_example.png")
@@ -126,6 +158,8 @@ public class pScene113 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
             }
         }, c);
 

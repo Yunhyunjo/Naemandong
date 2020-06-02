@@ -39,6 +39,8 @@ public class pScene105 extends Fragment {
     private TextView subtitles;
     private String subs [] = {"“아휴. 아무래도 아직 너무 배고파서 안되겠어. 지금 너도 잡아먹을테다!”", "막내 돼지까지 몽땅 다 잡아먹은 배부른 늑대는 솔솔 잠이 왔어요.", "“배가 부르니 잠이 솔솔 오네. 시원한 나무 그늘 아래서 낮잠이나 자야지.”" };
     Handler delayHandler = new Handler();
+    boolean t = false;
+
 
     @Nullable
     @Override
@@ -52,6 +54,36 @@ public class pScene105 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
         box = view.findViewById(R.id.subtitlebox);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/25_bg-02.png")
@@ -135,6 +167,8 @@ public class pScene105 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
             }
         }, c);
 

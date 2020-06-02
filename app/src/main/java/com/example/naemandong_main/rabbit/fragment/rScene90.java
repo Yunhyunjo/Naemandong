@@ -40,6 +40,8 @@ public class rScene90 extends Fragment {
     private String subs [] = {"\"여기 인라인 스케이트가 있네? 이걸 신고 달려야겠다!\"", "그 때! 거북이 목소리를 들은 사자가 잠에서 깨어났어요.","\"거북이 너, 나 몰래 먼저 가려고 하다니! 거기서!!\""};
     private ImageButton next;
     Handler delayHandler = new Handler();
+    boolean t = false;
+
 
     @Nullable
     @Override
@@ -56,6 +58,36 @@ public class rScene90 extends Fragment {
         skate = view.findViewById(R.id.skate);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/5/8_back.jpg")
@@ -164,6 +196,7 @@ public class rScene90 extends Fragment {
                     Intent intent = new Intent(getActivity(), Record.class);
                     startActivity(intent);
                 }
+                t = true;
                 next.setVisibility(View.VISIBLE);
             }
         }, c);

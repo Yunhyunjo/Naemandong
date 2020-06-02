@@ -42,6 +42,8 @@ public class pScene85 extends Fragment {
     private ArrayList<Integer> myList;
     private String subs [] = {"\"어 뭐야 이 푹신한 침대는…푹신한 침대에 누우니까 잠이 솔솔 오는데…\"", "하루종일 돼지들을 쫓느라 힘들었던 늑대는 푹신한 침대에 눕자 잠이 들고 말았어요."};
     Handler delayHandler = new Handler();
+    boolean t = false;
+
 
     @Nullable
     @Override
@@ -53,6 +55,36 @@ public class pScene85 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         wolf = view.findViewById(R.id.wolf);
         next = view.findViewById(R.id.next);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/27-02.png")
@@ -111,6 +143,8 @@ public class pScene85 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
             }
         }, b);
 

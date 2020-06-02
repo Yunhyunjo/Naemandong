@@ -40,6 +40,8 @@ public class rScene85 extends Fragment {
     private String subs [] = {"\"앗 거북아 혹시 네가 날 깨운거니? 정말 고마워. 우리 그냥 같이 들어가자!\"","\"그럴까? 친구와 경쟁하는 것 보다 사이 좋게 같이 들어가는게 더 좋아!\""};
     private ImageButton next;
     Handler delayHandler = new Handler();
+    boolean t = false;
+
 
     @Nullable
     @Override
@@ -54,6 +56,36 @@ public class rScene85 extends Fragment {
         lion2 = view.findViewById(R.id.lion2);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
         myList = (ArrayList<Integer>) ((Rabbit33)getActivity()).getMylist().clone();
         ((Rabbit33)getActivity()).clearList();
@@ -131,6 +163,8 @@ public class rScene85 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
             }
         }, b);
 
