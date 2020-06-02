@@ -157,10 +157,9 @@ public class pFinal08 extends Fragment {
                     while (recordList.size() < 30)
                         recordList.add("0");
                     saveDialog = new Save_Dialog(getActivity(), book_no, "아기돼지 삼형제", 2, recordList, "http://49.50.174.179:9000/images/cover/pig/6-01.png", true);
-                    //saveDialog.show();
+                    saveDialog.show();
                     Log.d("record >>>>>>>> ", String.valueOf(recordList));
                     ((Setting_data) getContext().getApplicationContext()).setRecord(false);
-                    ((Setting_data) getContext().getApplicationContext()).clearRecordList();
                 } else {
                     saveDialog = new Save_Dialog(getActivity(), "아기돼지 삼형제", 2, myList, "http://49.50.174.179:9000/images/cover/pig/6-01.png");
                     saveDialog.show();

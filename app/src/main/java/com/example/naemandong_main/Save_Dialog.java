@@ -101,21 +101,22 @@ public class Save_Dialog extends Dialog {
 
         Log.d("Save Dialog >>>>>>>> ", String.valueOf(recordList));
 
-        if(record){
+        /*if(record){
             Log.d("save >>>>>>>> ", String.valueOf(recordList));
             myRecordSave();
         }
         else {
             //myListSave();
-        }
+        }*/
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("if not save >>>>>>>> ", String.valueOf(recordList));
                 if(record){
-                    //Log.d("save >>>>>>>> ", String.valueOf(recordList));
-                    //myRecordSave();
+                    Log.d("save >>>>>>>> ", String.valueOf(recordList));
+                    myRecordSave();
+                    ((Setting_data) getContext().getApplicationContext()).clearRecordList();
                 }
                 else {
                     myListSave();
