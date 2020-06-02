@@ -156,7 +156,6 @@ public class pFinal11 extends Fragment {
                     saveDialog.show();
                     Log.d("record >>>>>>>> ", String.valueOf(recordList));
                     ((Setting_data) getContext().getApplicationContext()).setRecord(false);
-                    getActivity().finish();
                 } else {
                     saveDialog = new Save_Dialog(getActivity(), "아기돼지 삼형제", 2, myList, "http://49.50.174.179:9000/images/cover/pig/5-01.png");
                     saveDialog.show();

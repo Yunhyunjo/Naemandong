@@ -69,4 +69,8 @@ public class Voice extends AppCompatActivity {
     public void setBook_no(int book_no){
         ((Setting_data)this.getApplication()).setBook_no(book_no);
     }
+
+    public void clearRecordList(){
+        ((Setting_data)this.getApplication()).clearRecordList();
+    }
 }

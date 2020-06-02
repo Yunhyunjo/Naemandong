@@ -56,7 +56,6 @@ public class pScene96 extends Fragment {
             mp1.prepare();
             mp2.setDataSource("http://49.50.174.179:9000/voice/pig/pScene31_2.mp3");
             mp2.prepare();
-            mp2.prepare();
         } catch (IOException e) {
             e.printStackTrace();
         }
