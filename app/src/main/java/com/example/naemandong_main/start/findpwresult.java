@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -84,7 +85,10 @@ public class findpwresult extends AppCompatActivity {
             public void onResponse(Call<findResponse> call, Response<findResponse> response) {
                 findResponse result = response.body();
 
-                userpw.setText(result.getPw());
+                if (result.getCode() == 200)
+                    userpw.setText(result.getPw());
+                else
+                    Toast.makeText(findpwresult.this, "존재하지 않는 회원정보입니다.", Toast.LENGTH_SHORT).show();
             }
 
             @Override

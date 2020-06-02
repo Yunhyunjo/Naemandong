@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.naemandong_main.Data.bookListData;
 import com.example.naemandong_main.Data.percentResponse;
 import com.example.naemandong_main.Network.RetrofitClient;
 import com.example.naemandong_main.Network.ServiceApi;
+import com.example.naemandong_main.start.Login;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView imageView1;
     PercentView percentView;
 
+    String username;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
         this.InitializeView();
         this.SetListener();
 
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
+
+        Toast.makeText(MainActivity.this, username + "님 환영합니다.", Toast.LENGTH_LONG).show();
     }
 
 
