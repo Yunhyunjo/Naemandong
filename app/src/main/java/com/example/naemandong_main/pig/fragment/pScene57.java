@@ -140,7 +140,7 @@ public class pScene57 extends Fragment {
                 if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
                     mp3.start();
                 }
-                subtitles.setText(subs[1]);
+                subtitles.setText(subs[2]);
             }
         }, b);
         delayHandler.postDelayed(new Runnable() {
