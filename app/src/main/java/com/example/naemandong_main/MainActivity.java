@@ -1,5 +1,6 @@
 package com.example.naemandong_main;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -125,11 +126,21 @@ public class MainActivity extends AppCompatActivity {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Setting.class);
-                startActivities(new Intent[]{intent});
+                Intent intent = new Intent(MainActivity.this, Setting.class);
+                startActivityForResult(intent,0);
             }
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode== 0) {
+            boolean exit = data.getBooleanExtra("exit", false);
+            if(exit){
+                finish();
+            }
+        }
+    }
 
 }
