@@ -39,6 +39,7 @@ public class rFinal11 extends Fragment {
     private String subs [] = {"자전거를 탄 사자와 거북이는 신이나 경주도 잊고 말았어요.","그렇게 사자와 거북이는 함께 즐겁게 소풍을 갔답니다."};
     private ImageButton save, exit;
     boolean play = false;
+    boolean t;
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -51,6 +52,35 @@ public class rFinal11 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         save = view.findViewById(R.id.save);
         exit = view.findViewById(R.id.exit);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
 
         if (getArguments() != null){
             myList = getArguments().getIntegerArrayList("myList");
@@ -126,6 +156,7 @@ public class rFinal11 extends Fragment {
                     ((Setting_data) getContext().getApplicationContext()).setRecordPlay(false);
                     ((Setting_data) getContext().getApplicationContext()).clearRecordList();
                 }
+                t = true;
             }
         }, b);
 

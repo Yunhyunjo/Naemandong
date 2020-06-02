@@ -33,7 +33,7 @@ public class rScene42 extends Fragment {
     MediaPlayer mp3 = new MediaPlayer();
     MediaPlayer mp4 = new MediaPlayer();
     MediaPlayer recordmp = new MediaPlayer();
-    boolean sound, subtitle;
+    boolean sound, subtitle, t;
     private ImageView background, box, bush, rabbit, turtle, bulb, bike_turtle, rabbit_bed, bike;
     private TextView subtitles;
     private String subs [] = {"“여기 오토바이가 있네?”", "거북이는 오토바이를 타고 달리기 시작했어요.", "부아아아앙!!", " “이게 무슨 소리지?”"};
@@ -56,6 +56,35 @@ public class rScene42 extends Fragment {
         turtle = view.findViewById(R.id.turtle);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/5/47_back.png")
@@ -182,6 +211,7 @@ public class rScene42 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
             }
         }, d);
 

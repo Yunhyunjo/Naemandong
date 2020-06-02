@@ -79,9 +79,6 @@ public class rScene01 extends Fragment {
             }
         })).start();
 
-
-
-
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene01_1.mp3");
             mp1.prepare();
@@ -113,15 +110,6 @@ public class rScene01 extends Fragment {
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/1/1_fin.jpg")
                 .into(background);
-
-//        if (subtitle) {
-//            box.setVisibility(View.VISIBLE);
-//            subtitles.setVisibility(View.VISIBLE);
-//        }
-//        else {
-//            box.setVisibility(View.INVISIBLE);
-//            subtitles.setVisibility(View.INVISIBLE);
-//        }
 
         subtitles.setText(subs[0]);
         if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
@@ -158,12 +146,8 @@ public class rScene01 extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Bundle bundle = new Bundle();
-//                bundle.putBoolean("sound",sound);
-//                bundle.putBoolean("subtitle",subtitle);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 rScene02 rscene02 = new rScene02();
-//                rscene02.setArguments(bundle);
                 transaction.replace(R.id.frame,rscene02);
                 transaction.commit();  //저장
             }

@@ -33,7 +33,7 @@ public class rScene23 extends Fragment {
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
     MediaPlayer recordmp = new MediaPlayer();
-    boolean sound, subtitle;
+    boolean sound, subtitle, t;
     private ImageView background, box, rabbit, boat, light;
     private TextView subtitles;
     private String subs [] = {"“어 여기 고무보트가 있네!”","토끼는 고무보트를 타고 개울가를 건너갔어요."};
@@ -53,6 +53,35 @@ public class rScene23 extends Fragment {
         light = view.findViewById(R.id.light);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/5/23_back.jpg")
@@ -126,7 +155,7 @@ public class rScene23 extends Fragment {
                     mp2.start();
                 }
             }
-        }, 1000 + a);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -146,8 +175,9 @@ public class rScene23 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
             }
-        }, 2000 + b);
+        }, b);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

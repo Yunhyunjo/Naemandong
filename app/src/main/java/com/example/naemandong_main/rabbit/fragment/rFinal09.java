@@ -45,7 +45,7 @@ public class rFinal09 extends Fragment {
     private String subs [] = {"\"거북아, 겁쟁이 사자가 거미를 보고 놀라서 집에 가버렸어!\"","\"오잉?.. 지금까지 뭐한거지…\"", "그렇게 경주는 허무하게 끝이 나 버렸답니다."};
     private ImageButton save, exit;
     boolean play = false;
-    boolean sound, subtitle, record;
+    boolean t, record;
     Handler delayHandler = new Handler();
 
     @Nullable
@@ -61,6 +61,35 @@ public class rFinal09 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         save = view.findViewById(R.id.save);
         exit = view.findViewById(R.id.exit);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/5/8_back.jpg")
@@ -171,6 +200,7 @@ public class rFinal09 extends Fragment {
                     ((Setting_data) getContext().getApplicationContext()).setRecordPlay(false);
                     ((Setting_data) getContext().getApplicationContext()).clearRecordList();
                 }
+                t = true;
             }
         }, c);
 

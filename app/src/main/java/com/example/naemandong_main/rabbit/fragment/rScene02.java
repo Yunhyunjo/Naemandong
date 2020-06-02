@@ -125,24 +125,11 @@ public class rScene02 extends Fragment {
                 .load("http://49.50.174.179:9000/images/rabbit/2/2_sloth_select.png")
                 .into(sloth);
 
-//        if (subtitle) {
-//            box.setVisibility(View.VISIBLE);
-//            subtitles.setVisibility(View.VISIBLE);
-//        }
-//        else {
-//            box.setVisibility(View.INVISIBLE);
-//            subtitles.setVisibility(View.INVISIBLE);
-//        }
-
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Bundle bundle = new Bundle();
-//                bundle.putBoolean("sound",sound);
-//                bundle.putBoolean("subtitle",subtitle);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 rScene03 rscene03 = new rScene03();
-//                rscene03.setArguments(bundle);
                 transaction.replace(R.id.frame,rscene03);
                 transaction.commit();  //저장
 

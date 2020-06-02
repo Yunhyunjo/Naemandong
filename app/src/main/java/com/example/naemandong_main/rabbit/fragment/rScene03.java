@@ -87,11 +87,6 @@ public class rScene03 extends Fragment {
             }
         })).start();
 
-//        if (getArguments() != null){
-//            sound = getArguments().getBoolean("sound");
-//            subtitle = getArguments().getBoolean("subtitle");
-//        }
-
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/rabbit/3/3_back.jpg")
                 .into(background);
@@ -134,15 +129,6 @@ public class rScene03 extends Fragment {
         frameAnimation = (AnimationDrawable) turtle.getBackground();
 
         Animation tgo = AnimationUtils.loadAnimation(getActivity(), R.anim.rscene03);
-
-//        if (subtitle) {
-//            box.setVisibility(View.VISIBLE);
-//            subtitles.setVisibility(View.VISIBLE);
-//        }
-//        else {
-//            box.setVisibility(View.INVISIBLE);
-//            subtitles.setVisibility(View.INVISIBLE);
-//        }
 
         frameAnimation.start();
         turtle.startAnimation(tgo);

@@ -47,7 +47,7 @@ public class rFinal02 extends Fragment {
     private TextView subtitles;
     private ArrayList<Integer> myList;
     boolean play = false;
-    boolean sound, subtitle, record;
+    boolean t, record;
     private String subs [] = {"“와 내가 이겼다!! 역시 난 빨라~”","토끼는 결국 경주에서 이겼어요.", "그 후로 거북이는 계속 느림보로 불렸답니다."};
     private ImageButton save, exit;
     Handler delayHandler = new Handler();
@@ -63,6 +63,35 @@ public class rFinal02 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         save = view.findViewById(R.id.save);
         exit = view.findViewById(R.id.exit);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
 
         if (getArguments() != null){
             myList = getArguments().getIntegerArrayList("myList");
@@ -156,6 +185,7 @@ public class rFinal02 extends Fragment {
                     ((Setting_data) getContext().getApplicationContext()).setRecordPlay(false);
                     ((Setting_data) getContext().getApplicationContext()).clearRecordList();
                 }
+                t = true;
             }
         }, c);
 
