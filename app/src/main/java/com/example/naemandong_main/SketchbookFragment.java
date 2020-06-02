@@ -257,11 +257,11 @@ public class SketchbookFragment extends Fragment implements View.OnClickListener
                 save(vw);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 Bundle bundle = new Bundle();
-                bundle.putString("what", "sketchbook");
+                bundle.putString("what", "Sketchbook");
                 bundle.putInt("storynum", storynum);
-                MybookList mybookList = new MybookList();
-                transaction.replace(R.id.framelayout, mybookList);
-                mybookList.setArguments(bundle);
+                Bookre_select bookre_select = new Bookre_select();
+                transaction.replace(R.id.framelayout, bookre_select);
+                bookre_select.setArguments(bundle);
                 transaction.commit();  //저장
                 break;
         }
