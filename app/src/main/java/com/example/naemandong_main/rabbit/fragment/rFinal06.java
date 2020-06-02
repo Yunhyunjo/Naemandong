@@ -54,34 +54,39 @@ public class rFinal06 extends Fragment {
         save = view.findViewById(R.id.save);
         exit = view.findViewById(R.id.exit);
 
-        (new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (!Thread.interrupted()) {
-                    try {
-                        Thread.sleep(1000); //1초 간격으로 실행
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
-                                    subtitles.setVisibility(View.VISIBLE);
-                                    box.setVisibility(View.VISIBLE);
-                                } else {
-                                    subtitles.setVisibility(View.INVISIBLE);
-                                    box.setVisibility(View.INVISIBLE);
+        if(!((Setting_data) getContext().getApplicationContext()).isRecord() && !((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (!Thread.interrupted()) {
+                        try {
+                            Thread.sleep(1000); //1초 간격으로 실행
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                        subtitles.setVisibility(View.VISIBLE);
+                                        box.setVisibility(View.VISIBLE);
+                                    } else {
+                                        subtitles.setVisibility(View.INVISIBLE);
+                                        box.setVisibility(View.INVISIBLE);
+                                    }
+
                                 }
-
-                            }
-                        });
-                    } catch (InterruptedException e) {
-                        // error
+                            });
+                        } catch (InterruptedException e) {
+                            // error
+                        }
+                        if (t)
+                            break;
                     }
-                    if (t)
-                        break;
-                }
 
-            }
-        })).start();
+                }
+            })).start();
+        }
+        else{
+
+        }
 
         if (getArguments() != null){
             myList = getArguments().getIntegerArrayList("myList");
@@ -100,6 +105,8 @@ public class rFinal06 extends Fragment {
         if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
             String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
             ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            box.setVisibility(View.INVISIBLE);
+            subtitles.setVisibility(View.INVISIBLE);
             try {
                 recordmp.setDataSource(path);
                 recordmp.prepare();

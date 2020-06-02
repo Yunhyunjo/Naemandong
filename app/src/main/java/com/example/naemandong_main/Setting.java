@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 
  public class Setting extends AppCompatActivity {
 
-    private ImageButton exit, sound_on, sound_off, subtitle_on, subtitle_off, logout, nmd_exit;
+    private ImageButton exit, sound_on, sound_off, subtitle_on, subtitle_off, nmd_exit;
     public boolean sound;
     public boolean subtitle;
 
@@ -110,15 +110,11 @@ import android.widget.ImageButton;
                 setSubtitle(subtitle);
             }
         });
-        /*logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });*/
         nmd_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setRecordPlay();
+                setRecord();
                 Intent intent = new Intent();
                 intent.putExtra("sound", sound);
                 intent.putExtra("subtitle", subtitle);
@@ -144,5 +140,11 @@ import android.widget.ImageButton;
 
      public void setSubtitle(boolean subtitle){
          ((Setting_data)this.getApplication()).setSubtitle(subtitle);
+     }
+     public void setRecordPlay(){
+         ((Setting_data)this.getApplication()).setRecordPlay(false);
+     }
+     public void setRecord(){
+         ((Setting_data)this.getApplication()).setRecord(false);
      }
 }

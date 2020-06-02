@@ -50,7 +50,7 @@ public class rScene01 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
 
-        if(!((Setting_data) getContext().getApplicationContext()).isRecord()){
+        if(!((Setting_data) getContext().getApplicationContext()).isRecord() && !((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
             (new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -96,6 +96,8 @@ public class rScene01 extends Fragment {
         if(((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
             String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
             ((Setting_data) getContext().getApplicationContext()).removeRecordData();
+            box.setVisibility(View.INVISIBLE);
+            subtitles.setVisibility(View.INVISIBLE);
             try {
                 recordmp.setDataSource(path);
                 recordmp.prepare();
