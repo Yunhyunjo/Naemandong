@@ -152,6 +152,8 @@ public class pFinal06 extends Fragment {
                 if (!((Setting_data) getContext().getApplicationContext()).isRecordPlay()) {
                     mp3.start();
                 }
+                t = true;
+
             }
         }, b);
         delayHandler.postDelayed(new Runnable() {
@@ -159,7 +161,6 @@ public class pFinal06 extends Fragment {
             public void run() {
                 // TODO
 
-                t = true;
                 box.setVisibility(View.INVISIBLE);
                 subtitles.setVisibility(View.INVISIBLE);
                 if (!play) {

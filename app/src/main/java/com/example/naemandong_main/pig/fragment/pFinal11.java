@@ -147,6 +147,8 @@ public class pFinal11 extends Fragment {
                 if (!((Setting_data) getContext().getApplicationContext()).isRecordPlay()) {
                     mp2.start();
                 }
+                t = true;
+
 
             }
         }, a);
@@ -155,7 +157,6 @@ public class pFinal11 extends Fragment {
             public void run() {
                 // TODO
 
-                t = true;
                 box.setVisibility(View.INVISIBLE);
                 subtitles.setVisibility(View.INVISIBLE);
                 if (!play) {

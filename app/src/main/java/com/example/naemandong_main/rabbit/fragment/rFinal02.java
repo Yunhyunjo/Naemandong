@@ -162,6 +162,8 @@ public class rFinal02 extends Fragment {
                     mp3.start();
                 }
                 subtitles.setText(subs[2]);
+                t = true;
+
             }
         }, b);
         delayHandler.postDelayed(new Runnable() {
@@ -185,7 +187,6 @@ public class rFinal02 extends Fragment {
                     ((Setting_data) getContext().getApplicationContext()).setRecordPlay(false);
                     ((Setting_data) getContext().getApplicationContext()).clearRecordList();
                 }
-                t = true;
             }
         }, c);
 
