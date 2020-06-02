@@ -40,6 +40,7 @@ public class pFinal02 extends Fragment {
     private ImageButton save, exit;
     private ArrayList<Integer> myList;
     boolean play = false;
+    boolean t = false;
     private String subs[] = {"\"휴~ 늑대가 갔어. 정말 다행이다.\"", "늑대가 가고 위기에서 벗어난 첫째 돼지와 둘째 돼지는 행복하게 살았답니다."};
     Handler delayHandler = new Handler();
 
@@ -57,6 +58,36 @@ public class pFinal02 extends Fragment {
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/18_bg.png")
                 .into(background);
+
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
 
         if (((Setting_data) getContext().getApplicationContext()).isRecordPlay()) {
             String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
@@ -115,6 +146,8 @@ public class pFinal02 extends Fragment {
             @Override
             public void run() {
                 // TODO
+                t = true;
+
                 box.setVisibility(View.INVISIBLE);
                 subtitles.setVisibility(View.INVISIBLE);
                 if (!play) {
@@ -152,6 +185,7 @@ public class pFinal02 extends Fragment {
                     saveDialog = new Save_Dialog(getActivity(), "아기돼지 삼형제", 2, myList, "http://49.50.174.179:9000/images/cover/pig/2-01.png");
                     saveDialog.show();
                 }
+
             }
         });
 

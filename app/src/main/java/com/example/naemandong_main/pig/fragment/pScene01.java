@@ -42,6 +42,7 @@ public class pScene01 extends Fragment {
     private ImageView background, pig, box;
     private ImageButton next;
     private TextView subtitles;
+    boolean t = false;
     private String subs [] = {"어느날 숲속에 사는 아기 돼지 삼형제에게 엄마돼지가 말했어요", "\"이제 너희도 다 컷으니 혼자 살아보렴.\"","집에서 나오게 된 삼형제는 어떤 집을 짓고 살 것인지 고민하게 되었어요."};
     Handler delayHandler = new Handler();
 
@@ -59,6 +60,35 @@ public class pScene01 extends Fragment {
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1_bg.png")
                 .into(background);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
 
         if (((Setting_data) getContext().getApplicationContext()).isRecordPlay()) {
             String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
@@ -128,6 +158,7 @@ public class pScene01 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
 
             }
         }, c);
@@ -135,6 +166,7 @@ public class pScene01 extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (((Pig01)getActivity()).play) {
                     if (((Pig01) getActivity()).getData() == 0) {
                         ((Pig01) getActivity()).removeData();

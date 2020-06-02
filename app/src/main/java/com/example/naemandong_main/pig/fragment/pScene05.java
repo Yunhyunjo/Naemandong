@@ -36,6 +36,7 @@ public class pScene05 extends Fragment {
     private View view;
     private ImageView background, wolf, box;
     private ImageButton next;
+    boolean t = false;
     private TextView subtitles;
     private String subs [] = {"그런데 이때! 어슬렁 어슬렁거리며 배가 고픈 늑대가 나타났어요!", "\"아이고 배고파.. 돼지야!! 돼지야!! 이리 좀 나와봐.\"","\"나.. 나 지금 바빠서.. 나중에 보자!!\"" };
     Handler delayHandler = new Handler();
@@ -53,6 +54,35 @@ public class pScene05 extends Fragment {
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/4_1-01.png")
                 .into(background);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
 
         if (((Setting_data) getContext().getApplicationContext()).isRecordPlay()) {
             String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
@@ -125,6 +155,8 @@ public class pScene05 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
             }
         }, c);
 
