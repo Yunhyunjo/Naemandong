@@ -82,6 +82,7 @@ public class mybooklistAdapter extends RecyclerView.Adapter<mybooklistAdapter.Vi
                     else if (booktype == "voice") {
                         ((Book)context).clearRecordList();
                         ((Book)context).setRecordPlay();
+                        ((Book)context).finish();
                         readrStory(new recordListData(id));
                         readStory(new storybookData(book_no));
                     }

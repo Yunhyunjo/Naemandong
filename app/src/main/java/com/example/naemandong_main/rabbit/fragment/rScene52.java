@@ -143,6 +143,7 @@ public class rScene52 extends Fragment {
                 subtitles.setText(subs[2]);
                 Glide.with(view)
                         .load("http://49.50.174.179:9000/images/rabbit/5/57_sloth.png")
+                        .override(399,647)
                         .into(sloth);
                 if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
                     mp3.start();
