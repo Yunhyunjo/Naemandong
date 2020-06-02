@@ -131,7 +131,7 @@ public class pScene122 extends Fragment {
                     mp2.start();
                 }
             }
-        }, 3100);
+        }, a);
         delayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -146,7 +146,7 @@ public class pScene122 extends Fragment {
                 t = true;
 
             }
-        }, 6000);
+        }, b);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

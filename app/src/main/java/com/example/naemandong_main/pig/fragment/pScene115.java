@@ -92,7 +92,7 @@ public class pScene115 extends Fragment {
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/pig/pScene111_1.mp3");
             mp1.prepare();
-            mp2.setDataSource("http://49.50.174.179:9000/voice/pig/pScene111_2.mp3");
+            mp2.setDataSource("http://49.50.174.179:9000/voice/pig/pScene115_2.mp3");
             mp2.prepare();
             mp3.setDataSource("http://49.50.174.179:9000/voice/pig/pScene115_3.mp3");
             mp3.prepare();

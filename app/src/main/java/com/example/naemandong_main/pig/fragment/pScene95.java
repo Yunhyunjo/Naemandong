@@ -30,7 +30,6 @@ public class pScene95 extends Fragment {
 
     MediaPlayer mp1 = new MediaPlayer();
     MediaPlayer mp2 = new MediaPlayer();
-    MediaPlayer mp3 = new MediaPlayer();
     MediaPlayer recordmp = new MediaPlayer();
     boolean sound, subtitle;
     private ImageView box;
@@ -39,7 +38,7 @@ public class pScene95 extends Fragment {
     private ImageView background, wolf, pig, house, house_inside;
     private ImageButton next;
     private TextView subtitles;
-    private String subs [] = {"그런데 이때! 어슬렁 어슬렁거리며 배가 고픈 늑대가 나타났어요!", "늑대는 군침을 다시며 막내 돼지네 문을 두드렸어요.", "\"아이고 배고파.. 돼지야!! 돼지야!! 이리 좀 나와봐.\"" };
+    private String subs [] = {"그런데 이때! 어슬렁 어슬렁거리며 배가 고픈 늑대가 나타났어요!", "\"아이고 배고파.. 돼지야!! 돼지야!! 이리 좀 나와봐.\"" };
     Handler delayHandler = new Handler();
     boolean t = false;
 
@@ -94,8 +93,6 @@ public class pScene95 extends Fragment {
             mp1.prepare();
             mp2.setDataSource("http://49.50.174.179:9000/voice/pig/pScene05_2.mp3");
             mp2.prepare();
-            mp3.setDataSource("http://49.50.174.179:9000/voice/pig/pScene05_3.mp3");
-            mp3.prepare();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -113,7 +110,6 @@ public class pScene95 extends Fragment {
 
         int a = mp1.getDuration();
         int b = mp1.getDuration() + mp2.getDuration();
-        int c = mp1.getDuration() + mp2.getDuration() + mp3.getDuration();
 
         if (getArguments() != null){
             sound = getArguments().getBoolean("sound");
@@ -150,16 +146,6 @@ public class pScene95 extends Fragment {
             @Override
             public void run() {
                 // TODO
-                subtitles.setText(subs[2]);
-                if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
-                    mp3.start();
-                }
-            }
-        }, b);
-        delayHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // TODO
                 next.setVisibility(View.VISIBLE);
                 t = true;
 
@@ -170,7 +156,7 @@ public class pScene95 extends Fragment {
                     startActivity(intent);
                 }
             }
-        }, c);
+        }, b);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,7 +176,6 @@ public class pScene95 extends Fragment {
         super.onDestroy();
         if (mp1 != null) mp1.release();
         if (mp2 != null) mp2.release();
-        if (mp3 != null) mp3.release();
         if (recordmp != null) recordmp.release();
     }
 }
