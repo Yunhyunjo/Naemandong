@@ -54,6 +54,7 @@ public class pFinal02 extends Fragment {
         pigs = view.findViewById(R.id.pigs);
         subtitles = view.findViewById(R.id.subTitle);
         save = view.findViewById(R.id.save);
+        exit = view.findViewById(R.id.exit);
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/18_bg.png")

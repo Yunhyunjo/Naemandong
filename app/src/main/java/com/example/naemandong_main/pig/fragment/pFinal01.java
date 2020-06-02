@@ -61,6 +61,7 @@ public class pFinal01 extends Fragment {
         box = view.findViewById(R.id.subtitlebox);
         subtitles = view.findViewById(R.id.subTitle);
         save = view.findViewById(R.id.save);
+        exit = view.findViewById(R.id.exit);
 
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/20_end2.png")
