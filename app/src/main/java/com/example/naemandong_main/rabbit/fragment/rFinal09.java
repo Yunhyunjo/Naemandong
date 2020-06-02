@@ -177,6 +177,8 @@ public class rFinal09 extends Fragment {
                 if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
                     mp3.start();
                 }
+                t = true;
+
             }
         }, b);
         delayHandler.postDelayed(new Runnable() {
@@ -200,7 +202,6 @@ public class rFinal09 extends Fragment {
                     ((Setting_data) getContext().getApplicationContext()).setRecordPlay(false);
                     ((Setting_data) getContext().getApplicationContext()).clearRecordList();
                 }
-                t = true;
             }
         }, c);
 

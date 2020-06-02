@@ -135,6 +135,8 @@ public class rfinal01 extends Fragment {
                 if(!((Setting_data) getContext().getApplicationContext()).isRecordPlay()){
                     mp2.start();
                 }
+                t = true;
+
             }
         }, a);
         delayHandler.postDelayed(new Runnable() {
@@ -158,7 +160,6 @@ public class rfinal01 extends Fragment {
                     ((Setting_data) getContext().getApplicationContext()).setRecordPlay(false);
                     ((Setting_data) getContext().getApplicationContext()).clearRecordList();
                 }
-                t = true;
             }
         }, b);
 

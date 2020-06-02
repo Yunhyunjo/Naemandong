@@ -147,6 +147,8 @@ public class pFinal04 extends Fragment {
                 Animation wolfgo = AnimationUtils.loadAnimation(getActivity(),R.anim.pscene41);
                 frameAnimation.start();
                 wolf.startAnimation(wolfgo);
+                t = true;
+
 
             }
         }, a);
@@ -154,7 +156,6 @@ public class pFinal04 extends Fragment {
             @Override
             public void run() {
                 // TODO
-                t = true;
                 box.setVisibility(View.INVISIBLE);
                 subtitles.setVisibility(View.INVISIBLE);
                 if (!play) {
