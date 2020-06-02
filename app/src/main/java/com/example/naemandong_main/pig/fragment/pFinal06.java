@@ -190,12 +190,12 @@ public class pFinal06 extends Fragment {
                     int book_no = ((Setting_data) getContext().getApplicationContext()).getBook_no();
                     while (recordList.size() < 30)
                         recordList.add("0");
-                    saveDialog = new Save_Dialog(getActivity(), book_no, "아기돼지 삼형제", 2, recordList, "http://49.50.174.179:9000/images/cover/pig/pigcover.png", true);
+                    saveDialog = new Save_Dialog(getActivity(), book_no, "아기돼지 삼형제", 2, recordList, "http://49.50.174.179:9000/images/cover/pig/11-01.png", true);
                     saveDialog.show();
                     Log.d("record >>>>>>>> ", String.valueOf(recordList));
                     ((Setting_data) getContext().getApplicationContext()).setRecord(false);
                 } else {
-                    saveDialog = new Save_Dialog(getActivity(), "아기돼지 삼형제", 2, myList, "http://49.50.174.179:9000/images/cover/pig/pigcover.png");
+                    saveDialog = new Save_Dialog(getActivity(), "아기돼지 삼형제", 2, myList, "http://49.50.174.179:9000/images/cover/pig/11-01.png");
                     saveDialog.show();
                 }
             }
