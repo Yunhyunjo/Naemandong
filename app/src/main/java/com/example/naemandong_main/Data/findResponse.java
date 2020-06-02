@@ -10,12 +10,19 @@ public class findResponse {
     @SerializedName("userpw")
     private String userpw;
 
+    @SerializedName("resultCode")
+    private int resultCode;
+
     public String getId() {
         return userid;
     }
 
     public String getPw() {
         return userpw;
+    }
+
+    public int getCode() {
+        return resultCode;
     }
 
 

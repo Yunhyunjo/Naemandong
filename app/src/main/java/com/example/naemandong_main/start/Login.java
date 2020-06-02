@@ -85,12 +85,13 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(Call<loginResponse> call, Response<loginResponse> response) {
                 loginResponse result = response.body();
-                Toast.makeText(Login.this, result.getMessage(), Toast.LENGTH_SHORT).show();
 
                 if (result.getCode() == 200) {
-                    Toast.makeText(Login.this, result.getUsername()+"님 환영합니다.", Toast.LENGTH_SHORT).show();
                     finish();
-                    startActivity(new Intent(Login.this, MainActivity.class));
+                    Start.activity.finish();
+                    Intent intent = new Intent(Login.this, MainActivity.class);
+                    intent.putExtra("username", result.getUsername());
+                    startActivity(intent);
                 }
                 else {
                     Toast.makeText(Login.this, "아이디, 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show();

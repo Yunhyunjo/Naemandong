@@ -36,8 +36,8 @@ public class Start extends AppCompatActivity {
         slogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Start.this, MainActivity.class));
- //               startActivity(new Intent(Start.this, Login.class));
+//                startActivity(new Intent(Start.this, MainActivity.class));
+                startActivity(new Intent(Start.this, Login.class));
             }
         });
     }
