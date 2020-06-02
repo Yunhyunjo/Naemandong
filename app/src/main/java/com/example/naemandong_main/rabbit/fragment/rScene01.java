@@ -35,17 +35,13 @@ public class rScene01 extends Fragment {
     private ImageButton next;
     private TextView subtitles;
     boolean sound, subtitle;
+    boolean t = false;
     private String subs [] = {"어느 숲 속에 토끼, 사자, 나무늘보, 거북이가 살고 있었어요.", "동물들은 매일같이 자신이 가장 빠르다며 싸우곤 했지요."};
     Handler delayHandler = new Handler();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            subtitle = savedInstanceState.getBoolean("saveSubtitle");
-        }
 
         view = inflater.inflate(R.layout.rscene01, container,false);
 
@@ -54,13 +50,35 @@ public class rScene01 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
 
-        if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
-            subtitles.setVisibility(View.VISIBLE);
-            box.setVisibility(View.VISIBLE);
-        } else {
-            subtitles.setVisibility(View.INVISIBLE);
-            box.setVisibility(View.INVISIBLE);
-        }
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
+
 
 
 
@@ -133,6 +151,7 @@ public class rScene01 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
             }
         }, b);
 
@@ -161,9 +180,4 @@ public class rScene01 extends Fragment {
         if (recordmp != null) recordmp.release();
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putBoolean("saveSubtitle", ((Setting_data) getContext().getApplicationContext()).getSubtitle());
-        super.onSaveInstanceState(outState);
-    }
 }
