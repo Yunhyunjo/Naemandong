@@ -36,7 +36,6 @@ public class Rabbit01 extends AppCompatActivity {
         Intent intent = getIntent();
         mySelect = intent.getIntegerArrayListExtra("select");
         play = intent.getBooleanExtra("play",false);
-        Toast.makeText(this,String.valueOf(mySelect),Toast.LENGTH_LONG).show();
 
         if (play){
             ((Setting_data)this.getApplication()).myList = mySelect;
