@@ -36,6 +36,7 @@ public class pScene03 extends Fragment {
     private ImageView background, pig, box;
     private ImageButton next;
     private TextView subtitles;
+    boolean t = false;
     private String subs [] = {"첫째 돼지는 지푸라기로 집을 짓기로 결정했어요.", "\"지푸라기로 집을 지으면 얼마나 간단한지~\"" };
     Handler delayHandler = new Handler();
 
@@ -53,6 +54,35 @@ public class pScene03 extends Fragment {
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/3_bg-01.png")
                 .into(background);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
 
         if (((Setting_data) getContext().getApplicationContext()).isRecordPlay()) {
             String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
@@ -114,6 +144,8 @@ public class pScene03 extends Fragment {
                     startActivity(intent);
                 }
                 next.setVisibility(View.VISIBLE);
+                t = true;
+
             }
         }, b);
 

@@ -29,6 +29,8 @@ import java.util.ArrayList;
 
 // 돌집 늑대 침대 엔딩
 public class pFinal06 extends Fragment {
+
+    boolean t = false;
     private Save_Dialog saveDialog;
     AnimationDrawable frameAnimation;
     MediaPlayer recordmp = new MediaPlayer();
@@ -60,6 +62,35 @@ public class pFinal06 extends Fragment {
         Glide.with(this)
                 .load("http://49.50.174.179:9000/images/pig/1/pigpig1.png")
                 .into(background);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(1000); //1초 간격으로 실행
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                    subtitles.setVisibility(View.VISIBLE);
+                                    box.setVisibility(View.VISIBLE);
+                                } else {
+                                    subtitles.setVisibility(View.INVISIBLE);
+                                    box.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        // error
+                    }
+                    if (t)
+                        break;
+                }
+
+            }
+        })).start();
 
         if (((Setting_data) getContext().getApplicationContext()).isRecordPlay()) {
             String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
@@ -127,6 +158,8 @@ public class pFinal06 extends Fragment {
             @Override
             public void run() {
                 // TODO
+
+                t = true;
                 box.setVisibility(View.INVISIBLE);
                 subtitles.setVisibility(View.INVISIBLE);
                 if (!play) {
