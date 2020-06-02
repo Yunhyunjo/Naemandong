@@ -82,7 +82,7 @@ public class pScene25 extends Fragment {
             @Override
             public void onClick(View v) {
                 if(where == 36){
-                    ((Pig36) getActivity()).setMylist(0);
+                    ((Pig36) getActivity()).setMylist(1);
                 }
                 else {
                     ((Pig06) getActivity()).setMylist(1);
