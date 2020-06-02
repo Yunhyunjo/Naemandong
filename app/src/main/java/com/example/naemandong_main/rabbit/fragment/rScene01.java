@@ -50,34 +50,39 @@ public class rScene01 extends Fragment {
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
 
-        (new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (!Thread.interrupted()) {
-                    try {
-                        Thread.sleep(1000); //1초 간격으로 실행
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
-                                    subtitles.setVisibility(View.VISIBLE);
-                                    box.setVisibility(View.VISIBLE);
-                                } else {
-                                    subtitles.setVisibility(View.INVISIBLE);
-                                    box.setVisibility(View.INVISIBLE);
+        if(!((Setting_data) getContext().getApplicationContext()).isRecord()){
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (!Thread.interrupted()) {
+                        try {
+                            Thread.sleep(1000); //1초 간격으로 실행
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                        subtitles.setVisibility(View.VISIBLE);
+                                        box.setVisibility(View.VISIBLE);
+                                    } else {
+                                        subtitles.setVisibility(View.INVISIBLE);
+                                        box.setVisibility(View.INVISIBLE);
+                                    }
+
                                 }
-
-                            }
-                        });
-                    } catch (InterruptedException e) {
-                        // error
+                            });
+                        } catch (InterruptedException e) {
+                            // error
+                        }
+                        if (t)
+                            break;
                     }
-                    if (t)
-                        break;
-                }
 
-            }
-        })).start();
+                }
+            })).start();
+        }
+        else{
+
+        }
 
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene01_1.mp3");
@@ -132,7 +137,7 @@ public class rScene01 extends Fragment {
             @Override
             public void run() {
                 // TODO
-                if ((((Setting_data) getContext().getApplicationContext()).getSubtitle() == true)&&(((Setting_data) getContext().getApplicationContext()).isRecord()==true)) {
+                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(getActivity(), Record.class);
