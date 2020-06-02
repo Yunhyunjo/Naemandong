@@ -28,7 +28,6 @@ import android.widget.ImageButton;
         sound_off = (ImageButton)findViewById(R.id.sound_off);
         subtitle_on = (ImageButton)findViewById(R.id.subtitle_on);
         subtitle_off = (ImageButton)findViewById(R.id.subitle_off);
-        logout = (ImageButton)findViewById(R.id.logout);
         nmd_exit = (ImageButton)findViewById(R.id.nmd_exit);
 
         sound = ((Setting_data)this.getApplication()).getSound();
@@ -111,12 +110,12 @@ import android.widget.ImageButton;
                 setSubtitle(subtitle);
             }
         });
-        logout.setOnClickListener(new View.OnClickListener() {
+        /*logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
-        });
+        });*/
         nmd_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
