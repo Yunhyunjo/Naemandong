@@ -68,6 +68,6 @@ public class Pig25 extends AppCompatActivity {
     }
     public void removeData() {
         ((Setting_data)this.getApplication()).myList.remove(0);
-        Toast.makeText(this,String.valueOf(((Setting_data)this.getApplication()).myList),Toast.LENGTH_LONG).show();
+        // Toast.makeText(this,String.valueOf(((Setting_data)this.getApplication()).myList),Toast.LENGTH_LONG).show();
     }
 }

@@ -96,7 +96,7 @@ public class Save_Dialog extends Dialog {
             intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, activity.getPackageName());
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR");
         } catch (Exception e) {
-            Toast.makeText(activity,e.toString(),Toast.LENGTH_LONG).show();
+            //Toast.makeText(activity,e.toString(),Toast.LENGTH_LONG).show();
         }
 
         Log.d("Save Dialog >>>>>>>> ", String.valueOf(recordList));
@@ -312,7 +312,7 @@ public class Save_Dialog extends Dialog {
         String book_cover = cover;
 
         startRecordSave(new srecordData(storynum, book_no, book_title, book_cover, ad0, ad1, ad2, ad3, ad4, ad5, ad6, ad7, ad8, ad9, ad10, ad11, ad12, ad13, ad14, ad15, ad16, ad17, ad18, ad19, ad20, ad21, ad22, ad23, ad24, ad25, ad26, ad27, ad28, ad29));
-        Toast.makeText(activity, String.valueOf(recordList), Toast.LENGTH_LONG).show();
+        //Toast.makeText(activity, String.valueOf(recordList), Toast.LENGTH_LONG).show();
         dismiss();
         activity.finish();
     }
@@ -329,7 +329,7 @@ public class Save_Dialog extends Dialog {
         String book_cover = cover;
 
         startSave(new savebookData(storynum, book_title, book_select0, book_select1, book_select2, book_select3, book_select4, book_select5, book_select6, book_cover));
-        Toast.makeText(activity, String.valueOf(myList), Toast.LENGTH_LONG).show();
+        // Toast.makeText(activity, String.valueOf(myList), Toast.LENGTH_LONG).show();
         dismiss();
         activity.finish();
     }
