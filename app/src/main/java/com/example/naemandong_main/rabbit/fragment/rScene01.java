@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.naemandong_main.R;
 import com.example.naemandong_main.Record;
+import com.example.naemandong_main.Setting;
 import com.example.naemandong_main.Setting_data;
 
 import java.io.IOException;
@@ -40,12 +41,28 @@ public class rScene01 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            subtitle = savedInstanceState.getBoolean("saveSubtitle");
+        }
+
         view = inflater.inflate(R.layout.rscene01, container,false);
 
         background = view.findViewById(R.id.background);
         box = view.findViewById(R.id.subtitlebox);
         subtitles = view.findViewById(R.id.subTitle);
         next = view.findViewById(R.id.next);
+
+        if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+            subtitles.setVisibility(View.VISIBLE);
+            box.setVisibility(View.VISIBLE);
+        } else {
+            subtitles.setVisibility(View.INVISIBLE);
+            box.setVisibility(View.INVISIBLE);
+        }
+
+
 
         try {
             mp1.setDataSource("http://49.50.174.179:9000/voice/rScene01_1.mp3");
@@ -142,5 +159,11 @@ public class rScene01 extends Fragment {
         if (mp1 != null) mp1.release();
         if (mp2 != null) mp2.release();
         if (recordmp != null) recordmp.release();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean("saveSubtitle", ((Setting_data) getContext().getApplicationContext()).getSubtitle());
+        super.onSaveInstanceState(outState);
     }
 }
