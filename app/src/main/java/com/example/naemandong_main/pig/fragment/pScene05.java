@@ -55,34 +55,39 @@ public class pScene05 extends Fragment {
                 .load("http://49.50.174.179:9000/images/pig/4_1-01.png")
                 .into(background);
 
-        (new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (!Thread.interrupted()) {
-                    try {
-                        Thread.sleep(1000); //1초 간격으로 실행
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
-                                    subtitles.setVisibility(View.VISIBLE);
-                                    box.setVisibility(View.VISIBLE);
-                                } else {
-                                    subtitles.setVisibility(View.INVISIBLE);
-                                    box.setVisibility(View.INVISIBLE);
+        if(!((Setting_data) getContext().getApplicationContext()).isRecord()){
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (!Thread.interrupted()) {
+                        try {
+                            Thread.sleep(1000); //1초 간격으로 실행
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (((Setting_data) getContext().getApplicationContext()).getSubtitle() == true) {
+                                        subtitles.setVisibility(View.VISIBLE);
+                                        box.setVisibility(View.VISIBLE);
+                                    } else {
+                                        subtitles.setVisibility(View.INVISIBLE);
+                                        box.setVisibility(View.INVISIBLE);
+                                    }
+
                                 }
-
-                            }
-                        });
-                    } catch (InterruptedException e) {
-                        // error
+                            });
+                        } catch (InterruptedException e) {
+                            // error
+                        }
+                        if (t)
+                            break;
                     }
-                    if (t)
-                        break;
-                }
 
-            }
-        })).start();
+                }
+            })).start();
+        }
+        else{
+
+        }
 
         if (((Setting_data) getContext().getApplicationContext()).isRecordPlay()) {
             String path = ((Setting_data) getContext().getApplicationContext()).getRecordone();
