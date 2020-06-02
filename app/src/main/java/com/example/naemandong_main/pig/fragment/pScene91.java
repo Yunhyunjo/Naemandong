@@ -150,7 +150,7 @@ public class pScene91 extends Fragment {
                 next.setVisibility(View.VISIBLE);
                 t = true;
 
-                if (((Setting_data) getContext().getApplicationContext()).isRecord()) {
+                if ((((Setting_data) getContext().getApplicationContext()).getSubtitle() == true)&&(((Setting_data) getContext().getApplicationContext()).isRecord()==false)) {
                     subtitles.setVisibility(View.INVISIBLE);
                     box.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(getActivity(), Record.class);
